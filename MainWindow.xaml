@@ -78,7 +78,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="225"/>
             </Grid.ColumnDefinitions>
-            <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="CanvasForMainShape" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove" />
+            <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="CanvasForMainShape" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove" >
+
+            </Canvas>
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
             <TextBlock x:Name="Tb_CursorСoordinates" Panel.ZIndex="-1" Text="X:0 Y:0" Foreground="Black" Grid.Column="0" Margin="5" VerticalAlignment="Bottom"/>
 
@@ -168,9 +170,8 @@
                 </Grid>
 
                 <!--Height="465"-->
-                <TabControl x:Name="TControl" Height="380" Margin="5" >
-                    <TabItem Header="Общие">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                <ScrollViewer x:Name="TControl" Margin="5 0" Height="388" VerticalScrollBarVisibility="Auto">
                             <StackPanel >
 
                                 <GroupBox Header="Высоты этажей">
@@ -243,7 +244,7 @@
                                 </GroupBox>
                                 <GroupBox Header="Кровля">
                                     <StackPanel>
-                                        <ComboBox x:Name="RoofType" Margin="0 3 0 0" SelectionChanged="RoofType_SelectionChanged">
+                                        <ComboBox x:Name="RoofType" Margin="0 3 2 0" SelectionChanged="RoofType_SelectionChanged">
                                             <ComboBoxItem Content="Двускатная"/>
                                             <ComboBoxItem Content="Вальма"/>
                                             <ComboBoxItem Content="Односкатная"/>
@@ -377,12 +378,6 @@
                                         </Grid>
                                     </StackPanel>
                                 </GroupBox>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="Фасады">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                            <StackPanel ClipToBounds="True" >
                                 <GroupBox x:Name="Gb_Facade0Floor" Header="Цокольный этаж" Visibility="Collapsed">
                                     <StackPanel>
                                         <Grid>
@@ -532,12 +527,7 @@
                                              PreviewTextInput="DecimalValidationTextBox" TextChanged="Tb_WindowSquare_TextChanged"
                                              />
                                 </Grid>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="Этажи">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                            <StackPanel>
+               
                                 <ComboBox x:Name="CB_FloorSelect" 
                                           Visibility="Collapsed"
                                           Margin="5" SelectionChanged="CB_FloorSelect_SelectionChanged">
@@ -1631,9 +1621,8 @@
                                 </Grid >
                             </StackPanel>
                         </ScrollViewer>
-                    </TabItem>
-                </TabControl>
-                <Grid Margin="5 0">
+
+                <Grid Margin="5 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

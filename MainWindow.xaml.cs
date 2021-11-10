@@ -243,7 +243,7 @@ namespace BuildingPlanCalc
         }
         private void window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TControl.Height = window.ActualHeight - 210;
+            TControl.Height = window.ActualHeight - 270;
         }
         #endregion
 
