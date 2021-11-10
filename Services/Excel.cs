@@ -1,0 +1,271 @@
+﻿using BuildingPlanCalc.Models;
+using Microsoft.Office.Interop.Excel;
+using System.Windows;
+
+namespace BuildingPlanCalc.Services
+{
+    public static class Excel
+    {
+        private static Microsoft.Office.Interop.Excel.Application xlApp;
+        private static Workbook xlWorkBook;
+        private static Worksheet xlWorkSheet;
+
+        private static bool Initialize()
+        {
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+            if (xlApp == null)
+            {
+                MessageBox.Show("Excel не установлен!");
+                return false;
+            }
+            object misValue = System.Reflection.Missing.Value;
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            return true;
+        }
+        internal static void ShowProjectData()
+        {
+            if (Initialize())
+            {
+                xlWorkSheet.Columns["A:DJ"].ColumnWidth = 15;
+                xlWorkSheet.Columns["A:DJ"].WrapText = true;
+                xlWorkSheet.Columns["A:DJ"].HorizontalAlignment = XlHAlign.xlHAlignCenter;
+
+                xlWorkSheet.Cells[1, 1] = "Номер проекта";
+                xlWorkSheet.Cells[1, 2] = "Заполнил";
+                xlWorkSheet.Cells[1, 3] = "Этажи в доме";
+                xlWorkSheet.Cells[1, 4] = "Количество комнат";
+                xlWorkSheet.Cells[1, 5] = "Количество спален (шт.)";
+                xlWorkSheet.Cells[1, 6] = "Площадь";
+                xlWorkSheet.Cells[1, 7] = "Высота цокольного этажа";
+                xlWorkSheet.Cells[1, 8] = "Высота первого этажа";
+                xlWorkSheet.Cells[1, 9] = "Высота второго этажа";
+                xlWorkSheet.Cells[1, 10] = "Высота третьего этажа";
+                xlWorkSheet.Cells[1, 11] = "Высота до конька крыши";
+                xlWorkSheet.Cells[1, 12] = "Минимальная высота стен последнего этажа";
+                xlWorkSheet.Cells[1, 13] = "Форма кровли";
+                xlWorkSheet.Cells[1, 14] = "Площадь накрытая основной кровлей";
+                xlWorkSheet.Cells[1, 15] = "Длина основной кровли";
+                xlWorkSheet.Cells[1, 16] = "Площадь накрытая навесами";
+                xlWorkSheet.Cells[1, 17] = "Длина навесов вдоль общей стены";
+                xlWorkSheet.Cells[1, 18] = "Площадь Перголы";
+                xlWorkSheet.Cells[1, 19] = "Подшива торцов основной кровли";
+                xlWorkSheet.Cells[1, 20] = "Подшива свесов основной кровли снизу";
+                xlWorkSheet.Cells[1, 21] = "Цокольный этаж. Площадь окон и ст.дверей";
+                xlWorkSheet.Cells[1, 22] = "Цокольный этаж. Периметр окон и ст.дверей";
+                xlWorkSheet.Cells[1, 23] = "1 этаж. Площадь окон и ст.дверей";
+                xlWorkSheet.Cells[1, 24] = "1 этаж. Периметр окон и ст.дверей";
+                xlWorkSheet.Cells[1, 25] = "2 этаж. Площадь окон и ст.дверей";
+                xlWorkSheet.Cells[1, 26] = "2 этаж. Периметр окон и ст.дверей";
+                xlWorkSheet.Cells[1, 27] = "3 этаж. Площадь окон и ст.дверей";
+                xlWorkSheet.Cells[1, 28] = "3 этаж. Периметр окон и ст.дверей";
+                xlWorkSheet.Cells[1, 29] = "Количество мансардных окон";
+                xlWorkSheet.Cells[1, 30] = "Примерная площадь мансардных окон";
+
+                xlWorkSheet.Cells[2, 1] = House.ProjectName;
+                xlWorkSheet.Cells[2, 2] = House.ManagerName;
+                xlWorkSheet.Cells[2, 3] = House.FloorsCount;
+                xlWorkSheet.Cells[2, 4] = House.RoomCount;
+                xlWorkSheet.Cells[2, 5] = House.BedroomCount;
+                xlWorkSheet.Cells[2, 6] = House.KitchensSquare;
+                xlWorkSheet.Cells[2, 7] = House.Floor0Height;
+                xlWorkSheet.Cells[2, 8] = House.Floor1Height;
+                xlWorkSheet.Cells[2, 9] = House.Floor2Height;
+                xlWorkSheet.Cells[2, 10] = House.Floor3Height;
+                xlWorkSheet.Cells[2, 11] = House.RoofHeight;
+                xlWorkSheet.Cells[2, 12] = House.RoofMinWallHeight;
+                xlWorkSheet.Cells[2, 13] = House.RoofType;
+                xlWorkSheet.Cells[2, 14] = House.RoofSquare;
+                xlWorkSheet.Cells[2, 15] = House.RoofLength;
+                xlWorkSheet.Cells[2, 16] = House.CanopySquare;
+                xlWorkSheet.Cells[2, 17] = House.CanopyLength;
+                xlWorkSheet.Cells[2, 18] = House.PergolaSquare;
+                xlWorkSheet.Cells[2, 19] = House.HemmingButt;
+                xlWorkSheet.Cells[2, 20] = House.HemmingOverhangsSquare;
+                xlWorkSheet.Cells[2, 21] = House.Floor0GlaseSq;
+                xlWorkSheet.Cells[2, 22] = House.Floor0GlaseP;
+                xlWorkSheet.Cells[2, 23] = House.Floor1GlaseSq;
+                xlWorkSheet.Cells[2, 24] = House.Floor1GlaseP;
+                xlWorkSheet.Cells[2, 25] = House.Floor2GlaseSq;
+                xlWorkSheet.Cells[2, 26] = House.Floor2GlaseP;
+                xlWorkSheet.Cells[2, 27] = House.Floor3GlaseSq;
+                xlWorkSheet.Cells[2, 28] = House.Floor3GlaseP;
+                xlWorkSheet.Cells[2, 29] = House.WindowCount;
+                xlWorkSheet.Cells[2, 30] = House.WindowSquare;
+
+                xlWorkSheet.Cells[1, 31] = "Длина всех несущих стен на цокольном этаж";
+                xlWorkSheet.Cells[2, 31] = House.Floor0OutWallsLength;
+                xlWorkSheet.Cells[1, 32] = "Длина внутренних стен на цокольном этаже";
+                xlWorkSheet.Cells[2, 32] = House.Floor0InnerWallsLength;
+                xlWorkSheet.Cells[1, 33] = "Длина перегородок на цокольном этаж";
+                xlWorkSheet.Cells[2, 33] = House.Floor0LightWallsLength;
+                xlWorkSheet.Cells[1, 34] = "Разрывы в стене цокольного этаж";
+                xlWorkSheet.Cells[2, 34] = House.Floor0BreakWallsLength;
+                xlWorkSheet.Cells[1, 35] = "Площадь первого этажа";
+                xlWorkSheet.Cells[2, 35] = House.Floor0Square;
+                xlWorkSheet.Cells[1, 36] = "Количество металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 36] = House.Floor0OutDoorsCount;
+                xlWorkSheet.Cells[1, 37] = "Длина металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 37] = House.Floor0OutDoorsLength;
+                xlWorkSheet.Cells[1, 38] = "Количество межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 38] = House.Floor0InnerDoorsCount;
+                xlWorkSheet.Cells[1, 39] = "Длина межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 39] = House.Floor0InnerDoorsLength;
+                xlWorkSheet.Cells[1, 40] = "Количество межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 40] = House.Floor0PartitionsDoorsCount;
+                xlWorkSheet.Cells[1, 41] = "Длина межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 41] = House.Floor0PartitionsDoorsLength;
+                xlWorkSheet.Cells[1, 42] = "Количество ворот";
+                xlWorkSheet.Cells[2, 42] = House.Floor0GatesCount;
+                xlWorkSheet.Cells[1, 43] = "Длина ворот";
+                xlWorkSheet.Cells[2, 43] = House.Floor0GatesLength;
+                xlWorkSheet.Cells[1, 44] = "Площадь террасс";
+                xlWorkSheet.Cells[2, 44] = House.Floor0TerassesSquare;
+                xlWorkSheet.Cells[1, 45] = "Длина внешних террас и крылец";
+                xlWorkSheet.Cells[2, 45] = House.Floor0InnerTerassesLength;
+                xlWorkSheet.Cells[1, 46] = "Длина террасс и крылец";
+                xlWorkSheet.Cells[2, 46] = House.Floor0TerassesLength;
+                xlWorkSheet.Cells[1, 47] = "Длина перил и ограждений";
+                xlWorkSheet.Cells[2, 47] = House.Floor0RailingsLength;
+                xlWorkSheet.Cells[1, 48] = "Высота цоколя";
+                xlWorkSheet.Cells[2, 48] = House.Floor0PlinthHeight;
+                xlWorkSheet.Cells[1, 49] = "Сбоку цоколь открыт на %";
+                xlWorkSheet.Cells[2, 49] = House.PlinthOpenPerc;
+
+                xlWorkSheet.Cells[1, 50] = "Туалеты и ванные на цокольном этаже";
+                xlWorkSheet.Cells[2, 50] = House.Floor0BadroomCount;
+                xlWorkSheet.Cells[1, 51] = "Площадь туалетов и ванных на цокольном этаже";
+                xlWorkSheet.Cells[2, 51] = House.Floor0BadroomSquare;
+                xlWorkSheet.Cells[1, 52] = "Прочие помещения в кафеле";
+                xlWorkSheet.Cells[2, 52] = House.Floor0TileSquare;
+                xlWorkSheet.Cells[1, 53] = "Периметр комнат с кафелем";
+                xlWorkSheet.Cells[2, 53] = House.Floor0TilePerimeter;
+                xlWorkSheet.Cells[1, 54] = "Длина всех несущих стен на 1 этаже";
+                xlWorkSheet.Cells[2, 54] = House.Floor1OutWallsLength;
+                xlWorkSheet.Cells[1, 55] = "Длина внутренних стен на 1 этаже";
+                xlWorkSheet.Cells[2, 55] = House.Floor1InnerWallsLength;
+                xlWorkSheet.Cells[1, 56] = "Длина перегородок на 1 этаже";
+                xlWorkSheet.Cells[2, 56] = House.Floor1LightWallsLength;
+                xlWorkSheet.Cells[1, 57] = "Разрывы в стене 1 этажа";
+                xlWorkSheet.Cells[2, 57] = House.Floor1BreakWallsLength;
+                xlWorkSheet.Cells[1, 58] = "Площадь первого этажа";
+                xlWorkSheet.Cells[2, 58] = House.Floor1Square;
+                xlWorkSheet.Cells[1, 59] = "Количество металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 59] = House.Floor1OutDoorsCount;
+                xlWorkSheet.Cells[1, 60] = "Длина металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 60] = House.Floor1OutDoorsLength;
+                xlWorkSheet.Cells[1, 61] = "Количество межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 61] = House.Floor1InnerDoorsCount;
+                xlWorkSheet.Cells[1, 62] = "Длина межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 62] = House.Floor1InnerDoorsLength;
+                xlWorkSheet.Cells[1, 63] = "Количество межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 63] = House.Floor1PartitionsDoorsCount;
+                xlWorkSheet.Cells[1, 64] = "Длина межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 64] = House.Floor1PartitionsDoorsLength;
+                xlWorkSheet.Cells[1, 65] = "Количество ворот";
+                xlWorkSheet.Cells[2, 65] = House.Floor1GatesCount;
+                xlWorkSheet.Cells[1, 66] = "Длина ворот";
+                xlWorkSheet.Cells[2, 66] = House.Floor1GatesLength;
+                xlWorkSheet.Cells[1, 67] = "Площадь террасс";
+                xlWorkSheet.Cells[2, 67] = House.Floor1TerassesSquare;
+                xlWorkSheet.Cells[1, 68] = "Длина внешних террас и крылец";
+                xlWorkSheet.Cells[2, 68] = House.Floor1InnerTerassesLength;
+                xlWorkSheet.Cells[1, 69] = "Длина террасс и крылец";
+                xlWorkSheet.Cells[2, 69] = House.Floor1TerassesLength;
+                xlWorkSheet.Cells[1, 70] = "Длина перил и ограждений";
+                xlWorkSheet.Cells[2, 70] = House.Floor1RailingsLength;
+                xlWorkSheet.Cells[1, 71] = "Декаративные столбы высотой до 3 метров";
+                xlWorkSheet.Cells[2, 71] = House.Floor1DecatativePillarsLessCount;
+                xlWorkSheet.Cells[1, 72] = "Декоратвные столбы высотой более 3 метров";
+                xlWorkSheet.Cells[2, 72] = House.Floor1DecatativePillarsOverCount;
+                xlWorkSheet.Cells[1, 73] = "Туалеты и ванные на 1 этаже";
+                xlWorkSheet.Cells[2, 73] = House.Floor1BadroomCount;
+                xlWorkSheet.Cells[1, 74] = "Площадь туалетов и ванных на 1 этаже";
+                xlWorkSheet.Cells[2, 74] = House.Floor1BadroomSquare;
+                xlWorkSheet.Cells[1, 75] = "Прочие помещения в кафеле 1 этаж";
+                xlWorkSheet.Cells[2, 75] = House.Floor1TileSquare;
+                xlWorkSheet.Cells[1, 76] = "Периметр комнат с кафелем 1 этажа";
+                xlWorkSheet.Cells[2, 76] = House.Floor1TilePerimeter;
+                xlWorkSheet.Cells[1, 77] = "Длина всех несущих стен на 2 этаже";
+                xlWorkSheet.Cells[2, 77] = House.Floor2OutWallsLength;
+                xlWorkSheet.Cells[1, 78] = "Длина внутренних стен на 2 этаж";
+                xlWorkSheet.Cells[2, 78] = House.Floor2InnerWallsLength;
+                xlWorkSheet.Cells[1, 79] = "Длина перегородок на 2 этаже";
+                xlWorkSheet.Cells[2, 79] = House.Floor2LightWallsLength;
+                xlWorkSheet.Cells[1, 80] = "Разрывы в стене 2 этажа";
+                xlWorkSheet.Cells[2, 80] = House.Floor2BreakWallsLength;
+                xlWorkSheet.Cells[1, 81] = "Площадь 2 этажа";
+                xlWorkSheet.Cells[2, 81] = House.Floor2Square;
+                xlWorkSheet.Cells[1, 82] = "Дырка под второй свет 2 этажа";
+                xlWorkSheet.Cells[2, 82] = House.Floor2РHoleSecondLight;
+                xlWorkSheet.Cells[1, 83] = "Количество металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 83] = House.Floor2OutDoorsCount;
+                xlWorkSheet.Cells[1, 84] = "Длина металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 84] = House.Floor2OutDoorsLength;
+                xlWorkSheet.Cells[1, 85] = "Количество межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 85] = House.Floor2InnerDoorsCount;
+                xlWorkSheet.Cells[1, 86] = "Длина межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 86] = House.Floor2InnerDoorsLength;
+                xlWorkSheet.Cells[1, 87] = "Количество межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 87] = House.Floor2PartitionsDoorsCount;
+                xlWorkSheet.Cells[1, 88] = "Длина межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 88] = House.Floor2PartitionsDoorsLength;
+                xlWorkSheet.Cells[1, 89] = "Площадь балконов";
+                xlWorkSheet.Cells[2, 89] = House.Floor2BalconySquare;
+                xlWorkSheet.Cells[1, 90] = "Длина балконов";
+                xlWorkSheet.Cells[2, 90] = House.Floor2BalconyLength;
+                xlWorkSheet.Cells[1, 91] = "Длина перил и ограждений";
+                xlWorkSheet.Cells[2, 91] = House.Floor2RailingsLength;
+                xlWorkSheet.Cells[1, 92] = "Туалеты и ванные на 2 этаже";
+                xlWorkSheet.Cells[2, 92] = House.Floor2BadroomCount;
+                xlWorkSheet.Cells[1, 93] = "Площадь туалетов и ванных на 2 этаже";
+                xlWorkSheet.Cells[2, 93] = House.Floor2BadroomSquare;
+                xlWorkSheet.Cells[1, 94] = "Прочие помещения в кафеле 2 этаж";
+                xlWorkSheet.Cells[2, 94] = House.Floor2TileSquare;
+                xlWorkSheet.Cells[1, 95] = "Периметр комнат с кафелем 2 этаж";
+                xlWorkSheet.Cells[2, 95] = House.Floor2TilePerimeter;
+                xlWorkSheet.Cells[1, 96] = "Длина всех несущих стен на 3 этаже";
+                xlWorkSheet.Cells[2, 96] = House.Floor3OutWallsLength;
+                xlWorkSheet.Cells[1, 97] = "Длина внутренних стен на 3 этаже";
+                xlWorkSheet.Cells[2, 97] = House.Floor3InnerWallsLength;
+                xlWorkSheet.Cells[1, 98] = "Длина перегородок на 3 этаже";
+                xlWorkSheet.Cells[2, 98] = House.Floor3LightWallsLength;
+                xlWorkSheet.Cells[1, 99] = "Разрывы в стене 3 этажа";
+                xlWorkSheet.Cells[2, 99] = House.Floor3BreakWallsLength;
+                xlWorkSheet.Cells[1, 100] = "Площадь 3 этажа";
+                xlWorkSheet.Cells[2, 100] = House.Floor3Square;
+                xlWorkSheet.Cells[1, 101] = "Дырка под второй свет 3 этажа";
+                xlWorkSheet.Cells[2, 101] = House.Floor3РHoleSecondLight;
+                xlWorkSheet.Cells[1, 102] = "Количество металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 102] = House.Floor3OutDoorsCount;
+                xlWorkSheet.Cells[1, 103] = "Длина металлических дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 103] = House.Floor3OutDoorsLength;
+                xlWorkSheet.Cells[1, 104] = "Количество межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 104] = House.Floor3InnerDoorsCount;
+                xlWorkSheet.Cells[1, 105] = "Длина межкомнатных дверей в несущих стенах";
+                xlWorkSheet.Cells[2, 105] = House.Floor3InnerDoorsLength;
+                xlWorkSheet.Cells[1, 106] = "Количество межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 106] = House.Floor3PartitionsDoorsCount;
+                xlWorkSheet.Cells[1, 107] = "Длина межкомнатных дверей в перегородках";
+                xlWorkSheet.Cells[2, 107] = House.Floor3PartitionsDoorsLength;
+                xlWorkSheet.Cells[1, 108] = "Площадь балконов";
+                xlWorkSheet.Cells[2, 108] = House.Floor3BalconySquare;
+                xlWorkSheet.Cells[1, 109] = "Длина балконов";
+                xlWorkSheet.Cells[2, 109] = House.Floor3BalconyLength;
+                xlWorkSheet.Cells[1, 110] = "Длина перил и ограждений";
+                xlWorkSheet.Cells[2, 110] = House.Floor3RailingsLength;
+                xlWorkSheet.Cells[1, 111] = "Туалеты и ванные на 3 этаже";
+                xlWorkSheet.Cells[2, 111] = House.Floor3BadroomCount;
+                xlWorkSheet.Cells[1, 112] = "Площадь туалетов и ванных на 3 этаже ";
+                xlWorkSheet.Cells[2, 112] = House.Floor3BadroomSquare;
+                xlWorkSheet.Cells[1, 113] = "Прочие помещения в кафеле на 3 этаже";
+                xlWorkSheet.Cells[2, 113] = House.Floor3TileSquare;
+                xlWorkSheet.Cells[1, 114] = "Периметр комнат с кафелем 3 этажа";
+                xlWorkSheet.Cells[2, 114] = House.Floor3TilePerimeter;
+
+                xlApp.Visible = true;
+            }
+        }
+    }
+}
