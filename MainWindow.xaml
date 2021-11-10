@@ -139,35 +139,40 @@
 
                 <!--Настройки масштаба-->
                 <Grid Margin="5 0 5 5" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Масштаб (мм)" Margin="0 0 2 0"/>
-                    <TextBox x:Name="TB_RealLength" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"/>
+                    <TextBlock Text="Масштаб (мм)" Grid.Row="0"/>
+                    <TextBox x:Name="TB_RealLength" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Grid.Row="0"/>
                     <Button Grid.Column="2" Style="{StaticResource RouletteBtn}"
                             x:Name="Btn_SetRange"
                             IsEnabled="{Binding ElementName=TB_RealLength, Path=Text.Length}" Click="Btn_SetRange_Click">
                         <Image Source="Assets/roulette.png" />
                     </Button>
+                    <GroupBox Header="Этажность дома" Grid.Row="1" Grid.ColumnSpan="3">
+                        <StackPanel>
+                            <CheckBox x:Name="Floor0Enabled" Content="Цокольный этаж" Margin="0 5 0 0" Checked="Floor0" Unchecked="Floor0"/>
+                            <ComboBox x:Name="SetFloorsHouse" Margin="0 3 0 0" SelectionChanged="SetFloorsHouseChanged">
+                                <ComboBoxItem Content="Одноэтажный" IsSelected="True"/>
+                                <ComboBoxItem Content="Двухэтажный"/>
+                                <ComboBoxItem Content="Трехэтажный"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </GroupBox>
                 </Grid>
 
                 <!--Height="465"-->
-                <TabControl x:Name="TControl" Height="443" Margin="5" >
+                <TabControl x:Name="TControl" Height="380" Margin="5" >
                     <TabItem Header="Общие">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel >
-                                <GroupBox Header="Этажность дома">
-                                    <StackPanel>
-                                        <CheckBox x:Name="Floor0Enabled" Content="Цокольный этаж" Margin="0 5 0 0" Checked="Floor0" Unchecked="Floor0"/>
-                                        <ComboBox x:Name="SetFloorsHouse" Margin="0 3 0 0" SelectionChanged="SetFloorsHouseChanged">
-                                            <ComboBoxItem Content="Одноэтажный" IsSelected="True"/>
-                                            <ComboBoxItem Content="Двухэтажный"/>
-                                            <ComboBoxItem Content="Трехэтажный"/>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </GroupBox>
+
                                 <GroupBox Header="Высоты этажей">
                                     <StackPanel>
                                         <Grid x:Name="Floor0HeighSetupBlock" Visibility="Collapsed">
@@ -1633,14 +1638,14 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button
+                    <Button Visibility="Collapsed"
                         Content="в Excel" Width="100" 
                         ToolTip="Выгрузить в Excel"
                         Grid.Column="0" Click="ShowProjDataToExcel"/>
                     <Button
                         IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}"
                         ToolTip="Выгрузить в Google Sheets"
-                        Content="в Google" Width="100"  Grid.Column="1" Click="SendDataToGoogle"/>
+                        Content="Сохранить" Width="100"  Grid.Column="0" Grid.ColumnSpan="2" Click="SendDataToGoogle"/>
                 </Grid>
             </StackPanel>
         </Grid>
