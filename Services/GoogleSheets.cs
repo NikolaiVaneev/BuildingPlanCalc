@@ -265,7 +265,7 @@ namespace BuildingPlanCalc.Services
 
                         var rowValues = findedValues[0];
 
-                        // TODO : Присвоение классу House
+                        // UNDONE : Присвоение данных с google классу House
                            
                         
 

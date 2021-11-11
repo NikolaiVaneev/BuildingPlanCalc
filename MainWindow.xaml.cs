@@ -46,8 +46,6 @@ namespace BuildingPlanCalc
 
             InputBindings.Add(new KeyBinding(ApplicationCommands.Delete,
                 new KeyGesture(Key.Q, ModifierKeys.Control)));
-
-
         }
 
         private Point point_s;
@@ -60,11 +58,13 @@ namespace BuildingPlanCalc
         private byte TrianglePointCount = 0;
         private Point firstTrianglePoint;
         private readonly List<IShape> Shapes;
+        private Brush shapeColor;
+        private Canvas selectedCanvas;
 
         byte ShapeType { get; set; } = 1;
 
         byte SelectedBuidingObj = 0;
-  
+
 
         #region Управление окном
         private void AppClose(object sender, RoutedEventArgs e)
@@ -383,6 +383,7 @@ namespace BuildingPlanCalc
         }
         #endregion
 
+        #region Валидация
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -394,6 +395,8 @@ namespace BuildingPlanCalc
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        #endregion
+
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             point_s = Mouse.GetPosition(CanvasForPhantomShape);
@@ -479,10 +482,10 @@ namespace BuildingPlanCalc
 
                 if (ShapeType == (byte)GlobalVariables.ShapeTypeEnum.Line)
                 {
-                    Shapes.Add(new ModifyLine(new Line() { X1 = point_s.X, Y1 = point_s.Y, X2 = point_f.X, Y2 = point_f.Y }, SelectedBuidingObj, ShapeType, coeffLength));
+                    Shapes.Add(new ModifyLine(new Line() { X1 = point_s.X, Y1 = point_s.Y, X2 = point_f.X, Y2 = point_f.Y }, SelectedBuidingObj, ShapeType, shapeColor, coeffLength, selectedCanvas.Name));
 
                     ModifyLine shape = Shapes[Shapes.Count - 1] as ModifyLine;
-                    CanvasForMainShape.Children.Add(shape.Line);
+                    selectedCanvas.Children.Add(shape.Line);
                 }
 
                 if (ShapeType == (byte)GlobalVariables.ShapeTypeEnum.Rect)
@@ -500,10 +503,10 @@ namespace BuildingPlanCalc
                     Canvas.SetLeft(rect, x);
                     Canvas.SetTop(rect, y);
 
-                    Shapes.Add(new ModifyRect(rect, SelectedBuidingObj, ShapeType, coeffLength));
+                    Shapes.Add(new ModifyRect(rect, SelectedBuidingObj, ShapeType, shapeColor, coeffLength, selectedCanvas.Name));
 
                     ModifyRect shape = Shapes[Shapes.Count - 1] as ModifyRect;
-                    CanvasForMainShape.Children.Add(shape.Rectangle);
+                    selectedCanvas.Children.Add(shape.Rectangle);
                 }
                 //    // ЕСЛИ ТРЕУГОЛЬНИК
                 if (ShapeType == (byte)GlobalVariables.ShapeTypeEnum.Triangle)
@@ -515,10 +518,10 @@ namespace BuildingPlanCalc
                         Y1 = point_s.Y,
                         X2 = point_f.X,
                         Y2 = point_f.Y,
-                        Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString(Settings.ShapeColorDefault),
+                        Stroke = shapeColor,
                         StrokeThickness = Settings.ShapeThickness
                     };
-                    CanvasForMainShape.Children.Add(line);
+                    selectedCanvas.Children.Add(line);
 
                     if (TrianglePointCount == 2)
                     {
@@ -531,7 +534,7 @@ namespace BuildingPlanCalc
                             Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString(Settings.ShapeColorDefault),
                             StrokeThickness = Settings.ShapeThickness
                         };
-                        CanvasForMainShape.Children.Add(line);
+                        selectedCanvas.Children.Add(line);
                         TrianglePointCount = 0;
 
                         var triange = new Polygon();
@@ -541,17 +544,17 @@ namespace BuildingPlanCalc
 
 
                         // Удалить фантомные линии
-                        CanvasForMainShape.Children.RemoveAt(CanvasForMainShape.Children.Count - 1);
-                        CanvasForMainShape.Children.RemoveAt(CanvasForMainShape.Children.Count - 1);
+                        selectedCanvas.Children.RemoveAt(selectedCanvas.Children.Count - 1);
+                        selectedCanvas.Children.RemoveAt(selectedCanvas.Children.Count - 1);
                         //SelectedCanvas.Children.RemoveAt(Walls.Count);
 
-                        Shapes.Add(new ModifyTriangle(triange, SelectedBuidingObj, ShapeType, coeffLength));
+                        Shapes.Add(new ModifyTriangle(triange, SelectedBuidingObj, ShapeType, shapeColor, coeffLength, selectedCanvas.Name));
                         ModifyTriangle shape = Shapes[Shapes.Count - 1] as ModifyTriangle;
-                        CanvasForMainShape.Children.Add(shape.Triangle);
+                        selectedCanvas.Children.Add(shape.Triangle);
                     }
                 }
 
-                if (CanvasForMainShape.Children.Count > 0)
+                if (selectedCanvas.Children.Count > 0)
                     Btn_DeleteLastLine.IsEnabled = true;
                 CalcSize();
             }
@@ -601,22 +604,22 @@ namespace BuildingPlanCalc
         }
         private void DeleteLastShape()
         {
-            if (CanvasForMainShape.Children.Count > 0)
+            if (selectedCanvas.Children.Count > 0)
             {
-                CanvasForMainShape.Children.RemoveAt(CanvasForMainShape.Children.Count - 1);
+                selectedCanvas.Children.RemoveAt(selectedCanvas.Children.Count - 1);
                 if (Shapes.Count > 0)
                 {
                     // Если треугольник, удаляем лишнюю линию
-                    if (Shapes.Last().ShapeType == (byte)GlobalVariables.ShapeTypeEnum.Triangle && CanvasForMainShape.Children.Count > 0)
+                    if (Shapes.Last().ShapeType == (byte)GlobalVariables.ShapeTypeEnum.Triangle && selectedCanvas.Children.Count > 0)
                     {
-                        CanvasForMainShape.Children.RemoveAt(CanvasForMainShape.Children.Count - 1);
+                        selectedCanvas.Children.RemoveAt(selectedCanvas.Children.Count - 1);
                     }
 
                     Shapes.Remove(Shapes.Last());
                     CalcSize();
                 }
             }
-            if (CanvasForMainShape.Children.Count == 0)
+            if (selectedCanvas.Children.Count == 0)
                 Btn_DeleteLastLine.IsEnabled = false;
         }
         private void DrawPhantomLine(Point start, Point stop)
@@ -1279,12 +1282,30 @@ namespace BuildingPlanCalc
         }
         private void ClearAllMainLine()
         {
-            CanvasForMainShape.Children.Clear();
+            selectedCanvas.Children.Clear();
+            if (Shapes.Count > 0)
+            {
+                Shapes.RemoveAll(s => s.ParrentCanvasName == selectedCanvas.Name);
+                CalcSize();
+            }
         }
         private void Btn_DeleteLastLine_Click(object sender, RoutedEventArgs e)
         {
             DeleteLastShape();
         }
+
+        #region Работа с Google
+        private void SendDataToGoogle(object sender, RoutedEventArgs e)
+        {
+            if (House.ProjectName != null)
+                GoogleSheets.SaveData();
+        }
+        private void LoadProjectData(object sender, RoutedEventArgs e)
+        {
+            // TODO : включить, как допишу присвоение
+            // GoogleSheets.LoadData();
+        }
+        #endregion
 
         #region Установка типа выбранной геометрической фигуры
         /// <summary>
@@ -1296,8 +1317,6 @@ namespace BuildingPlanCalc
             ShapeType = (byte)GlobalVariables.ShapeTypeEnum.Line;
             if (SelectedBuidingObj != buidObj)
             {
-                // HACK : Убрано принудительное стирание линий при смене типа объекта
-                //   ClearAllMainLine();
                 SelectedBuidingObj = buidObj;
             }
             isPainting = true;
@@ -1442,94 +1461,173 @@ namespace BuildingPlanCalc
         #region Выбор объектов вкладки "Общие"
         private void Btn_Set0FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetHeighSetupLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0Height);
         }
         private void Btn_Set1FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetHeighSetupLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1Height);
         }
         private void Btn_Set2FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetHeighSetupLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2Height);
         }
         private void Btn_Set3FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetHeighSetupLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3Height);
         }
         private void Btn_SetKitchenSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoomsLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.KitchensSquare);
         }
         private void Btn_SetFullHouseHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.RoofHeight);
         }
         private void Btn_SetRoofMinWallHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.RoofMinWallHeight);
         }
         private void Btn_SetRoofSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.RoofSquare);
         }
         private void Btn_SetRoofLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.RoofLength);
         }
         private void Btn_SetCanopySquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.CanopySquare);
         }
         private void Btn_SetCanopyLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.CanopyLength);
         }
         private void Btn_SetPergolaSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.PergolaSquare);
         }
         private void Btn_SetHemmingButt_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.HemmingButt);
         }
         private void Btn_SetHemmingOverhangsSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare);
         }
-
-
         #endregion
         #region Выбор объектов вкладки "Фасады"
         private void Btn_Set0FloorGlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq);
         }
         private void Btn_Set0FloorGlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq);
         }
         private void Btn_Set1FloorGlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq);
         }
         private void Btn_Set1FloorGlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq);
         }
         private void Btn_Set2FloorGlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq);
         }
         private void Btn_Set2FloorGlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq);
         }
         private void Btn_Set3FloorGlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq);
         }
         private void Btn_Set3FloorGlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq);
         }
 
@@ -1537,225 +1635,432 @@ namespace BuildingPlanCalc
         #region Выбор объектов вкладки "Этажи"
         private void Btn_SetFloor0PlinthHeight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0ODLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0PlinthHeight);
         }
         private void Btn_SetFloor0BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0ODLayout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare);
         }
         private void Btn_SetFloor0TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0ODLayout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare);
         }
         private void Btn_SetFloor0OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0OutWallsLength);
         }
         private void Btn_SetFloor0InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0InnerWallsLength);
         }
         private void Btn_SetFloor0LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0LightWallsLength);
         }
         private void Btn_SetFloor0BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0BreakWallsLength);
         }
         private void Btn_SetFloor0OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength);
         }
         private void Btn_SetFloor0InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength);
         }
         private void Btn_SetFloor0PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength);
         }
         private void Btn_SetFloor0GatesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0DoorsLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength);
         }
         private void Btn_SetFloor0TerassesSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0TerasesLayout.IsChecked = true;
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0TerassesSquare);
         }
         private void Btn_SetFloor0InnerTerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0TerasesLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0InnerTerassesLength);
         }
         private void Btn_SetFloor0TerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0TerasesLayout.IsChecked = true;
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0TerassesLength);
         }
         private void Btn_SetFloor0RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0TerasesLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0RailingsLength);
         }
 
         private void Btn_SetFloor1BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare);
         }
         private void Btn_SetFloor1TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare);
         }
         private void Btn_SetFloor1OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1OutWallsLength);
         }
         private void Btn_SetFloor1InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1InnerWallsLength);
         }
         private void Btn_SetFloor1LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1LightWallsLength);
         }
         private void Btn_SetFloor1BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1BreakWallsLength);
         }
         private void Btn_SetFloor1OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength);
         }
         private void Btn_SetFloor1InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength);
         }
         private void Btn_SetFloor1PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength);
         }
         private void Btn_SetFloor1GatesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength);
         }
         private void Btn_SetFloor1TerassesSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1TerasesLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare);
         }
         private void Btn_SetFloor1InnerTerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1TerasesLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1InnerTerassesLength);
         }
         private void Btn_SetFloor1TerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1TerasesLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1TerassesLength);
         }
         private void Btn_SetFloor1RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1TerasesLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1RailingsLength);
         }
 
         private void Btn_SetFloor2РHoleSecondLight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2РHoleSecondLight);
         }
         private void Btn_SetFloor2BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare);
         }
         private void Btn_SetFloor2TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare);
         }
         private void Btn_SetFloor2OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2OutWallsLength);
         }
         private void Btn_SetFloor2InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2InnerWallsLength);
         }
         private void Btn_SetFloor2LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2LightWallsLength);
         }
         private void Btn_SetFloor2BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2BreakWallsLength);
         }
         private void Btn_SetFloor2OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength);
         }
         private void Btn_SetFloor2InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength);
         }
         private void Btn_SetFloor2PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength);
         }
         private void Btn_SetFloor2BalconySquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2BalconyLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare);
         }
         private void Btn_SetFloor2BalconyLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2BalconyLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2BalconyLength);
         }
-
         private void Btn_SetFloor2RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2BalconyLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2RailingsLength);
         }
+
         private void Btn_SetFloor3РHoleSecondLight_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3РHoleSecondLight);
         }
         private void Btn_SetFloor3BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare);
         }
         private void Btn_SetFloor3TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3ODLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare);
         }
         private void Btn_SetFloor3OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3OutWallsLength);
         }
         private void Btn_SetFloor3InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3InnerWallsLength);
         }
         private void Btn_SetFloor3LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3LightWallsLength);
         }
         private void Btn_SetFloor3BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3BreakWallsLength);
         }
         private void Btn_SetFloor3OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength);
         }
         private void Btn_SetFloor3InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength);
         }
         private void Btn_SetFloor3PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3DoorsLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength);
         }
         private void Btn_SetFloor3BalconySquare_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3BalconyLayout.IsChecked = true;
+
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare);
         }
         private void Btn_SetFloor3BalconyLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3BalconyLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3BalconyLength);
         }
         private void Btn_SetFloor3RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3BalconyLayout.IsChecked = true;
+
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3RailingsLength);
         }
 
@@ -1769,7 +2074,7 @@ namespace BuildingPlanCalc
         {
             Shapes.Clear();
             coeffLength = 0.1;
-            CanvasForMainShape.Children.Clear();
+            selectedCanvas.Children.Clear();
 
             foreach (var tb in FindVisualChildren<TextBox>(window))
             {
@@ -1797,16 +2102,98 @@ namespace BuildingPlanCalc
         {
             ClearAllMainLine();
         }
-        private void SendDataToGoogle(object sender, RoutedEventArgs e)
+
+        private void SelectLayouts(Canvas selected)
         {
-            if (House.ProjectName != null)
-                GoogleSheets.SaveData();
+            foreach (var canvas in FindVisualChildren<Canvas>(window))
+            {
+                if (canvas.Name != "CanvasForPhantomShape")
+                    canvas.Visibility = Visibility.Hidden;
+            }
+            selectedCanvas = selected;
+            selectedCanvas.Visibility = Visibility.Visible;
+            SelectedBuidingObj = default;
+        }
+        private void RB_SetHeighSetupLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(HeighLayout);
+        }
+        private void RB_SetRoomsLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(RoomsLayout);
+        }
+        private void RB_SetRoofLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(RoofLayout);
+        }
+        private void RB_SetFasade0Layout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Fasade0Layout);
         }
 
-        private void LoadProjectData(object sender, RoutedEventArgs e)
+        private void RB_SetFasade1Layout_Checked(object sender, RoutedEventArgs e)
         {
-            // TODO : включить, как допишу присвоение
-           // GoogleSheets.LoadData();
+            SelectLayouts(Fasade1Layout);
+        }
+        private void RB_SetFasade2Layout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Fasade2Layout);
+        }
+        private void RB_SetFasade3Layout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Fasade3Layout);
+        }
+
+        private void RB_SetFloor0ODLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor0ODLayout);
+        }
+        private void RB_SetFloor0DoorsLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor0DoorsLayout);
+        }
+        private void RB_SetFloor0TerasesLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor0TerasesLayout);
+        }
+
+        private void RB_SetFloor1ODLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor1ODLayout);
+        }
+        private void RB_SetFloor1DoorsLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor1DoorsLayout);
+        }
+        private void RB_SetFloor1TerasesLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor1TerasesLayout);
+        }
+
+        private void RB_SetFloor2ODLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor2ODLayout);
+        }
+        private void RB_SetFloor2DoorsLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor2DoorsLayout);
+        }
+        private void RB_SetFloor2BalconyLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor2BalconyLayout);
+        }
+
+        private void RB_SetFloor3ODLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor3ODLayout);
+        }
+        private void RB_SetFloor3DoorsLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor3DoorsLayout);
+        }
+        private void RB_SetFloor3BalconyLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(Floor3BalconyLayout);
         }
     }
 }

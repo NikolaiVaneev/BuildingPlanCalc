@@ -12,7 +12,7 @@ namespace BuildingPlanCalc.Interfaces
         byte ObjType { get; set; }
         double Square { get; set; }
         double Perimetr { get; set; }
-
+        string ParrentCanvasName { get; set; }
         byte ShapeType { get; set; }
 
     }

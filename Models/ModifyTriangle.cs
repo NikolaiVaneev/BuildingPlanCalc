@@ -14,33 +14,15 @@ namespace BuildingPlanCalc.Models
         public double Square { get; set; }
         public double Perimetr { get; set; }
         public byte ShapeType { get; set; }
-        public ModifyTriangle(Polygon triangle, byte buildingObjType, byte shapeType, double koef)
+        public string ParrentCanvasName { get; set; }
+        public ModifyTriangle(Polygon triangle, byte buildingObjType, byte shapeType, Brush brush, double koef, string parrentCanvasName)
         {
             ShapeType = shapeType;
             Triangle = triangle;
             ObjType = buildingObjType;
+            ParrentCanvasName = parrentCanvasName;
 
-            string colorName;
-            switch (buildingObjType)
-            {
-                case (byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq:
-                    colorName = Settings.ShapeColorOrange;
-                    break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq:
-                    colorName = Settings.ShapeColorLightGreen;
-                    break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq:
-                    colorName = Settings.ShapeColorYellow;
-                    break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq:
-                    colorName = Settings.ShapeColorDefault;
-                    break;
-                default:
-                    colorName = Settings.ShapeColorDefault;
-                    break;
-            }
-
-            Triangle.Stroke = (SolidColorBrush)new BrushConverter().ConvertFromString(colorName);
+            Triangle.Stroke = brush;
             Triangle.StrokeThickness = Settings.ShapeThickness;
 
             double a = Math.Sqrt(Math.Pow(triangle.Points[0].X - triangle.Points[1].X, 2) + Math.Pow(triangle.Points[0].Y - triangle.Points[1].Y, 2)) / koef / 1000;
