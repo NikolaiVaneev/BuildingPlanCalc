@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BuildingPlanCalc.Models
+﻿namespace BuildingPlanCalc.Models
 {
     public static class House
     {
@@ -95,35 +89,135 @@ namespace BuildingPlanCalc.Models
         /// <summary>
         /// Цокольный этаж. Площадь дверей и окон U
         /// </summary>
-        public static double Floor0GlaseSq { get; set; }
+        public static double Floor0F1GlaseSq { get; set; }
         /// <summary>
         /// Цокольный этаж. Периметр дверей и окон V
         /// </summary>
-        public static double Floor0GlaseP { get; set; }
+        public static double Floor0F1GlaseP { get; set; }
         /// <summary>
         /// Первый этаж. Площадь дверей и окон W
         /// </summary>
-        public static double Floor1GlaseSq { get; set; }
+        public static double Floor1F1GlaseSq { get; set; }
         /// <summary>
         /// Первый этаж. Периметр дверей и окон X
         /// </summary>
-        public static double Floor1GlaseP { get; set; }
+        public static double Floor1F1GlaseP { get; set; }
         /// <summary>
         /// Второй этаж. Площадь дверей и окон Y
         /// </summary>
-        public static double Floor2GlaseSq { get; set; }
+        public static double Floor2F1GlaseSq { get; set; }
         /// <summary>
         /// Второй этаж. Периметр дверей и окон Z
         /// </summary>
-        public static double Floor2GlaseP { get; set; }
+        public static double Floor2F1GlaseP { get; set; }
         /// <summary>
         /// Третий этаж. Площадь дверей и окон AA
         /// </summary>
-        public static double Floor3GlaseSq { get; set; }
+        public static double Floor3F1GlaseSq { get; set; }
         /// <summary>
         /// Третий этаж. Периметр дверей и окон AB
         /// </summary>
-        public static double Floor3GlaseP { get; set; }
+        public static double Floor3F1GlaseP { get; set; }
+
+        /// <summary>
+        /// Цокольный этаж. Площадь дверей и окон U
+        /// </summary>
+        public static double Floor0F2GlaseSq { get; set; }
+        /// <summary>
+        /// Цокольный этаж. Периметр дверей и окон V
+        /// </summary>
+        public static double Floor0F2GlaseP { get; set; }
+        /// <summary>
+        /// Первый этаж. Площадь дверей и окон W
+        /// </summary>
+        public static double Floor1F2GlaseSq { get; set; }
+        /// <summary>
+        /// Первый этаж. Периметр дверей и окон X
+        /// </summary>
+        public static double Floor1F2GlaseP { get; set; }
+        /// <summary>
+        /// Второй этаж. Площадь дверей и окон Y
+        /// </summary>
+        public static double Floor2F2GlaseSq { get; set; }
+        /// <summary>
+        /// Второй этаж. Периметр дверей и окон Z
+        /// </summary>
+        public static double Floor2F2GlaseP { get; set; }
+        /// <summary>
+        /// Третий этаж. Площадь дверей и окон AA
+        /// </summary>
+        public static double Floor3F2GlaseSq { get; set; }
+        /// <summary>
+        /// Третий этаж. Периметр дверей и окон AB
+        /// </summary>
+        public static double Floor3F2GlaseP { get; set; }
+
+        /// <summary>
+        /// Цокольный этаж. Площадь дверей и окон U
+        /// </summary>
+        public static double Floor0F3GlaseSq { get; set; }
+        /// <summary>
+        /// Цокольный этаж. Периметр дверей и окон V
+        /// </summary>
+        public static double Floor0F3GlaseP { get; set; }
+        /// <summary>
+        /// Первый этаж. Площадь дверей и окон W
+        /// </summary>
+        public static double Floor1F3GlaseSq { get; set; }
+        /// <summary>
+        /// Первый этаж. Периметр дверей и окон X
+        /// </summary>
+        public static double Floor1F3GlaseP { get; set; }
+        /// <summary>
+        /// Второй этаж. Площадь дверей и окон Y
+        /// </summary>
+        public static double Floor2F3GlaseSq { get; set; }
+        /// <summary>
+        /// Второй этаж. Периметр дверей и окон Z
+        /// </summary>
+        public static double Floor2F3GlaseP { get; set; }
+        /// <summary>
+        /// Третий этаж. Площадь дверей и окон AA
+        /// </summary>
+        public static double Floor3F3GlaseSq { get; set; }
+        /// <summary>
+        /// Третий этаж. Периметр дверей и окон AB
+        /// </summary>
+        public static double Floor3F3GlaseP { get; set; }
+
+        /// <summary>
+        /// Цокольный этаж. Площадь дверей и окон U
+        /// </summary>
+        public static double Floor0F4GlaseSq { get; set; }
+        /// <summary>
+        /// Цокольный этаж. Периметр дверей и окон V
+        /// </summary>
+        public static double Floor0F4GlaseP { get; set; }
+        /// <summary>
+        /// Первый этаж. Площадь дверей и окон W
+        /// </summary>
+        public static double Floor1F4GlaseSq { get; set; }
+        /// <summary>
+        /// Первый этаж. Периметр дверей и окон X
+        /// </summary>
+        public static double Floor1F4GlaseP { get; set; }
+        /// <summary>
+        /// Второй этаж. Площадь дверей и окон Y
+        /// </summary>
+        public static double Floor2F4GlaseSq { get; set; }
+        /// <summary>
+        /// Второй этаж. Периметр дверей и окон Z
+        /// </summary>
+        public static double Floor2F4GlaseP { get; set; }
+        /// <summary>
+        /// Третий этаж. Площадь дверей и окон AA
+        /// </summary>
+        public static double Floor3F4GlaseSq { get; set; }
+        /// <summary>
+        /// Третий этаж. Периметр дверей и окон AB
+        /// </summary>
+        public static double Floor3F4GlaseP { get; set; }
+
         /// <summary>
         /// Количество мансардных окон AC
         /// </summary>

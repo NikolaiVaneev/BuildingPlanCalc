@@ -12,7 +12,7 @@
         x:Name="window"
         FontFamily="Roboto"
        
-        Height="650" Width="850" SourceInitialized="Window_SourceInitialized" SizeChanged="window_SizeChanged">
+        Height="650"  Width="850" SourceInitialized="Window_SourceInitialized" SizeChanged="window_SizeChanged">
     <Window.Resources>
         <!--650-->
         <Style x:Key="ControlButtonStyle">
@@ -31,24 +31,15 @@
         <Style TargetType="TextBox">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        <Style x:Key="RouletteBtn">
-            <Setter Property="Button.VerticalAlignment" Value="Center"/>
-            <Setter Property="Button.Height" Value="25"/>
-            <Setter Property="Button.Width" Value="25"/>
-            <Setter Property="Button.Padding" Value="1"/>
-            <Setter Property="Button.Margin" Value="2"/>
-            <Setter Property="Button.ToolTip" Value="Линейка"/>
-        </Style>
-        <Style x:Key="SquereBtn">
+        <Style x:Key="Btn">
             <Setter Property="Button.VerticalAlignment" Value="Center"/>
             <Setter Property="Button.HorizontalAlignment" Value="Right"/>
             <Setter Property="Button.Height" Value="25"/>
             <Setter Property="Button.Width" Value="25"/>
             <Setter Property="Button.Padding" Value="1"/>
             <Setter Property="Button.Margin" Value="2"/>
-
-            <Setter Property="Button.ToolTip" Value="Прямоугольник"/>
         </Style>
+
     </Window.Resources>
     <Window.Background>
         <SolidColorBrush Opacity="0.3" Color="Gray"/>
@@ -99,7 +90,7 @@
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3BalconyLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
 
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
-            
+
             <TextBlock x:Name="Tb_CursorСoordinates" Panel.ZIndex="-1" Text="X:0 Y:0" Foreground="Black" Grid.Column="0" Margin="5" VerticalAlignment="Bottom"/>
 
             <StackPanel Grid.Column="1"  Orientation="Vertical"
@@ -115,9 +106,10 @@
                         <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 5"
                                Text="Номер проекта AS-"/>
-                    <TextBox x:Name="TB_ProjectName" Grid.Row="0" Grid.Column="1" TextChanged="TB_ProjectName_TextChanged"/>
+                    <TextBox x:Name="TB_ProjectName" Grid.Row="0" Grid.Column="1" TextChanged="TB_ProjectName_TextChanged"
+                             Margin="0 0 0 5"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" 
                                Text="Заполнил"/>
                     <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"/>
@@ -169,8 +161,8 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Масштаб (мм)" Grid.Row="0"/>
-                    <TextBox x:Name="TB_RealLength" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Grid.Row="0"/>
-                    <Button Grid.Column="2" Style="{StaticResource RouletteBtn}"
+                    <TextBox x:Name="TB_RealLength" Margin="5 0" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Grid.Row="0"/>
+                    <Button Grid.Column="2" Style="{StaticResource Btn}"
                             x:Name="Btn_SetRange"
                             IsEnabled="{Binding ElementName=TB_RealLength, Path=Text.Length}" Click="Btn_SetRange_Click">
                         <Image Source="Assets/roulette.png" />
@@ -187,9 +179,13 @@
                     </GroupBox>
                 </Grid>
 
-                <!--Height="385"-->
+                <!--Height="380"-->
 
-                <ScrollViewer x:Name="TControl" Margin="5 0" Height="385"  VerticalScrollBarVisibility="Auto">
+                <ScrollViewer x:Name="TControl" Height="380"
+                              Margin="5 0" 
+                              
+                              VerticalScrollBarVisibility="Auto"
+                              CanContentScroll="False">
                     <StackPanel >
 
                         <GroupBox>
@@ -198,29 +194,57 @@
                             </GroupBox.Header>
                             <StackPanel>
                                 <Grid x:Name="Floor0HeighSetupBlock" Visibility="Collapsed">
-                                    <TextBlock x:Name="Tb_Set0FloorHeight" Text="Цокольный - 0 м." HorizontalAlignment="Stretch"/>
-                                    <Button x:Name="Btn_Set0FloorHeight" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Click="Btn_Set0FloorHeight_Click" Background="#FF5ADE96">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_Set0FloorHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right"/>
+                                    <TextBlock Text="Цокольный" HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_Set0FloorHeight" Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Click="Btn_Set0FloorHeight_Click" Background="#FF5ADE96" Grid.Column="2">
                                         <Image Source="Assets/roulette.png"  />
                                     </Button>
                                 </Grid>
                                 <Grid x:Name="Floor1HeighSetupBlock">
-                                    <TextBlock x:Name="Tb_Set1FloorHeight" Text="Первый - 0 м." HorizontalAlignment="Stretch"/>
-                                    <Button x:Name="Btn_Set1FloorHeight" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Click="Btn_Set1FloorHeight_Click" Background="#FFE84B4B">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_Set1FloorHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right"/>
+                                    <TextBlock  Text="Первый" HorizontalAlignment="Stretch"/>
+                                    <Button x:Name="Btn_Set1FloorHeight" Style="{StaticResource Btn}"
+                                            HorizontalAlignment="Right" 
+                                            Click="Btn_Set1FloorHeight_Click" 
+                                            Grid.Column="2"
+                                            Background="#FFE84B4B">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
                                 <Grid x:Name="Floor2HeighSetupBlock" Visibility="Collapsed">
-                                    <TextBlock x:Name="Tb_Set2FloorHeight" Text="Второй - 0 м." HorizontalAlignment="Stretch"/>
-                                    <Button x:Name="Btn_Set2FloorHeight" Style="{StaticResource RouletteBtn}"
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_Set2FloorHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right"/>
+                                    <TextBlock  Text="Второй" HorizontalAlignment="Stretch"/>
+                                    <Button x:Name="Btn_Set2FloorHeight" Style="{StaticResource Btn}"
+                                            Grid.Column="2"
                                                 HorizontalAlignment="Right" Click="Btn_Set2FloorHeight_Click" Background="#FFDC9E30">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
                                 <Grid x:Name="Floor3HeighSetupBlock" Visibility="Collapsed">
-                                    <TextBlock x:Name="Tb_Set3FloorHeight" Text="Третий - 0 м." HorizontalAlignment="Stretch"/>
-                                    <Button x:Name="Btn_Set3FloorHeight" Style="{StaticResource RouletteBtn}"
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_Set3FloorHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right"/>
+                                    <TextBlock Text="Третий" HorizontalAlignment="Stretch"/>
+                                    <Button x:Name="Btn_Set3FloorHeight" Style="{StaticResource Btn}" Grid.Column="2"
                                                 HorizontalAlignment="Right" Click="Btn_Set3FloorHeight_Click" Background="#FF4BC9EE">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
@@ -239,28 +263,29 @@
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Кол-во комнат всего - " HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <TextBox x:Name="TB_RoomCount" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" TextChanged="TB_RoomCount_TextChanged"/>
+                                    <TextBlock Text="Кол-во комнат всего" HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <TextBox x:Name="TB_RoomCount" HorizontalAlignment="Right" Width="50" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" TextChanged="TB_RoomCount_TextChanged"/>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Кол-во спален, шт - " HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <TextBox x:Name="TB_BedroomCount" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" TextChanged="TB_BedroomCount_TextChanged"/>
+                                    <TextBlock Text="Кол-во спален, шт"  HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <TextBox x:Name="TB_BedroomCount" HorizontalAlignment="Right" Width="50" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" TextChanged="TB_BedroomCount_TextChanged"/>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetKitchenSquare"
-                                            Text="Площадь кухонь и гостиных - 0 кв.м." 
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetKitchenSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right"/>
+                                    <TextBlock TextWrapping="Wrap" Text="Площадь кухонь и гостиных" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetKitchenSquare" Style="{StaticResource SquereBtn}"
-                                                 Grid.Column="1" Click="Btn_SetKitchenSquare_Click" Background="#FF69EA10">
+                                    <Button x:Name="Btn_SetKitchenSquare" Style="{StaticResource Btn}"
+                                            
+                                            Grid.Column="2" Click="Btn_SetKitchenSquare_Click" Background="#FF69EA10">
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
@@ -282,13 +307,13 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetFullHouseHeight"
-                                            Text="Высота от пола верхнего этажа до конька - 0 м." 
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetFullHouseHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap" Text="Высота от пола верхнего этажа до конька" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                    <Button x:Name="Btn_SetFullHouseHeight" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFullHouseHeight_Click" Background="#FFF56614">
+                                    <Button x:Name="Btn_SetFullHouseHeight" Style="{StaticResource Btn}" Grid.Column="2"
+                                                Click="Btn_SetFullHouseHeight_Click" Background="#FFF56614">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
@@ -296,13 +321,17 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetRoofMinWallHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
                                     <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetRoofMinWallHeight"
-                                            Text="Минимальная высота стен верхнего этажа - 0 м." 
+                                            Text="Минимальная высота стен верхнего этажа"
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetRoofMinWallHeight" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetRoofMinWallHeight_Click" Background="#FFDCBD32">
+                                    <Button x:Name="Btn_SetRoofMinWallHeight" Style="{StaticResource Btn}"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right" 
+                                            Click="Btn_SetRoofMinWallHeight_Click" 
+                                            Background="#FFDCBD32">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
@@ -310,13 +339,15 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetRoofSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
                                     <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetRoofSquare"
-                                            Text="Площадь, накрытая основной кровлей - 0 кв.м." 
+                                                      
+                                            Text="Площадь, накрытая основной кровлей" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetRoofSquare" Style="{StaticResource SquereBtn}"
-                                                 Grid.Column="1" Click="Btn_SetRoofSquare_Click" Background="#FF81C918">
+                                    <Button x:Name="Btn_SetRoofSquare" Style="{StaticResource Btn}"
+                                                 Grid.Column="2" Click="Btn_SetRoofSquare_Click" Background="#FF81C918">
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
@@ -324,252 +355,652 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetRoofLength" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
                                     <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetRoofLength"
-                                            Text="Длина основной кровли - 0 м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetRoofLength" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetRoofLength_Click" Background="#FF56CDB2">
-                                        <Image Source="Assets/roulette.png" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetCanopySquare"
-                                            Text="Площадь, накрытая навесами - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetCanopySquare" Style="{StaticResource SquereBtn}"
-                                                 Grid.Column="1" Click="Btn_SetCanopySquare_Click" Background="#FF29B9E4">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetCanopyLength"
-                                            Text="Длина навесов вдоль стены, общая - 0 м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetCanopyLength" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetCanopyLength_Click" Background="#FF0D7FF1">
-                                        <Image Source="Assets/roulette.png" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetPergolaSquare"
-                                            Text="Площадь Перголы - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetPergolaSquare" Style="{StaticResource SquereBtn}"
-                                                Grid.Column="1" Click="Btn_SetPergolaSquare_Click" Background="#FF747AB2">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetHemmingButt"
-                                            Text="Подшива торцов основной кровли и навесов - 0 м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetHemmingButt" Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetHemmingButt_Click" Background="#FFAD3BE2">
-                                        <Image Source="Assets/roulette.png" />
-                                    </Button>
-                                </Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_SetHemmingOverhangsSquare"
-                                            Text="Подшива свесов основной кровли снизу - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button x:Name="Btn_SetHemmingOverhangsSquare" Style="{StaticResource SquereBtn}"
-                                                 Grid.Column="1" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FFF379E3">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                </Grid>
-                            </StackPanel>
-                        </GroupBox>
-                        
-                        <GroupBox x:Name="Gb_Facade0Floor" Visibility="Collapsed">
-                            <GroupBox.Header>
-                                <RadioButton x:Name="RB_SetFasade0Layout" Content="Цокольный этаж" GroupName="Layouts" Checked="RB_SetFasade0Layout_Checked"/>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-
-
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_Set0FloorGlaseSq"
-                                            Text="Площадь окон и стекляных дверей - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button 
-                                                x:Name="Btn_Set0FloorGlaseQ"
-                                                Style="{StaticResource SquereBtn}"
-                                                Grid.Column="1" Click="Btn_Set0FloorGlaseQ_Click" Background="#FF4EEA20">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                    <Button 
-                                                x:Name="Btn_Set0FloorGlaseT"
-                                                Style="{StaticResource SquereBtn}"
-                                                Grid.Column="2" ToolTip="Треугольник" Click="Btn_Set0FloorGlaseT_Click" Background="#FF3092E4">
-                                        <Image Source="Assets/triangle.png" />
-                                    </Button>
-                                </Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                                   x:Name="Tb_Set0FloorGlaseP"
-                                            Text="Периметр окон и стекляных дверей - 0 м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox x:Name="Gb_Facade1Floor">
-                            <GroupBox.Header>
-                                <RadioButton x:Name="RB_SetFasade1Layout" Content="Первый этаж" GroupName="Layouts" Checked="RB_SetFasade1Layout_Checked"/>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_Set1FloorGlaseSq"
-                                            Text="Площадь окон и стекляных дверей - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button Style="{StaticResource SquereBtn}"
-                                                    x:Name="Btn_Set1FloorGlaseQ"
-                                                 Grid.Column="1" Click="Btn_Set1FloorGlaseQ_Click" Background="#FF4EEA20">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                    <Button Style="{StaticResource SquereBtn}"
-                                                    x:Name="Btn_Set1FloorGlaseT"
-                                                 Grid.Column="2" ToolTip="Треугольник" Click="Btn_Set1FloorGlaseT_Click" Background="#FF3092E4">
-                                        <Image Source="Assets/triangle.png" />
-                                    </Button>
-                                </Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                                   x:Name="Tb_Set1FloorGlaseP"
-                                            Text="Периметр окон и стекляных дверей - 0 м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox x:Name="Gb_Facade2Floor" Visibility="Collapsed">
-                            <GroupBox.Header>
-                                <RadioButton x:Name="RB_SetFasade2Layout" Content="Второй этаж" GroupName="Layouts" Checked="RB_SetFasade2Layout_Checked"/>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                       x:Name="Tb_Set2FloorGlaseSq"
-                                            Text="Площадь окон и стекляных дверей - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button Style="{StaticResource SquereBtn}"
-                                                    x:Name="Btn_Set2FloorGlaseQ"
-                                                 Grid.Column="1" Click="Btn_Set2FloorGlaseQ_Click" Background="#FF4EEA20">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                    <Button Style="{StaticResource SquereBtn}"
-                                                    x:Name="Btn_Set2FloorGlaseT"
-                                                 Grid.Column="2" ToolTip="Треугольник" Click="Btn_Set2FloorGlaseT_Click" Background="#FF3092E4">
-                                        <Image Source="Assets/triangle.png" />
-                                    </Button>
-                                </Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                            Text="Периметр окон и стекляных дверей - 0 м." 
-                                                    x:Name="Tb_Set2FloorGlaseP"
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox x:Name="Gb_Facade3Floor" Visibility="Collapsed">
-                            <GroupBox.Header>
-                                <RadioButton x:Name="RB_SetFasade3Layout" Content="Третий этаж" GroupName="Layouts" Checked="RB_SetFasade3Layout_Checked"/>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap"
-                                                        x:Name="Tb_Set3FloorGlaseSq"
-                                            Text="Площадь окон и стекляных дверей - 0 кв.м." 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                    <Button Style="{StaticResource SquereBtn}"
-                                                    x:Name="Btn_Set3FloorGlaseQ"
-                                                 Grid.Column="1" Click="Btn_Set3FloorGlaseQ_Click" Background="#FF4EEA20">
-                                        <Image Source="Assets/square.png" />
-                                    </Button>
-                                    <Button Style="{StaticResource SquereBtn}"
                                                     
-                                                    x:Name="Btn_Set3FloorGlaseT"
-                                                 Grid.Column="2" ToolTip="Треугольник" Click="Btn_Set3FloorGlaseT_Click" Background="#FF3092E4">
-                                        <Image Source="Assets/triangle.png" />
+                                            Text="Длина основной кровли" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetRoofLength" Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetRoofLength_Click" Background="#FF56CDB2">
+                                        <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
-                                <TextBlock TextWrapping="Wrap"
-                                                   x:Name="Tb_Set3FloorGlaseP"
-                                            Text="Периметр окон и стекляных дверей - 0 м." 
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetCanopySquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                                    
+                                            Text="Площадь, накрытая навесами" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetCanopySquare" Style="{StaticResource Btn}"
+                                                 Grid.Column="2" Click="Btn_SetCanopySquare_Click" Background="#FF29B9E4">
+                                        <Image Source="Assets/square.png" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetCanopyLength" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                                     
+                                            Text="Длина навесов вдоль стены, общая" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetCanopyLength" Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="21" Click="Btn_SetCanopyLength_Click" Background="#FF0D7FF1">
+                                        <Image Source="Assets/roulette.png" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetPergolaSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                                    
+                                            Text="Площадь Перголы" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetPergolaSquare" Style="{StaticResource Btn}"
+                                                Grid.Column="2" Click="Btn_SetPergolaSquare_Click" Background="#FF747AB2">
+                                        <Image Source="Assets/square.png" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetHemmingButt" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                                    
+                                            Text="Подшива торцов основной кровли и навесов" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetHemmingButt" Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetHemmingButt_Click" Background="#FFAD3BE2">
+                                        <Image Source="Assets/roulette.png" />
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsEnabled="False" x:Name="Tb_SetHemmingOverhangsSquare" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                            Text="Подшива свесов основной кровли снизу" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetHemmingOverhangsSquare" Style="{StaticResource Btn}"
+                                                 Grid.Column="23" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FFF379E3">
+                                        <Image Source="Assets/square.png" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
 
+                        <GroupBox x:Name="Gb_Facade0">
+                            <GroupBox.Header>
+                                <RadioButton x:Name="RB_SetFasade0Layout" Content="Фасад - 1. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade0Layout_Checked"/>
+                            </GroupBox.Header>
+
+                            <StackPanel>
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set0FloorF1Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF1GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF1GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF1GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2"  Background="#FF4EEA20" Click="Btn_Set0FloorF1GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF1GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3" Background="#FF4EEA20" Click="Btn_Set0FloorF1GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Первый этаж"
+                                          x:Name="GB_Set1FloorF1Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF1GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF1GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF1GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFEA7320" Click="Btn_Set1FloorF1GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF1GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF1GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set2FloorF1Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF1GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF1GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF1GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FF3092E4" Click="Btn_Set2FloorF1GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF1GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF3092E4" Click="Btn_Set2FloorF1GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set3FloorF1Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF1GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF1GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF1GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFE04747" Click="Btn_Set3FloorF1GlaseQ_Click">
+                                            <Image Source="Assets/square.png" OpacityMask="Black" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF1GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE04747" Click="Btn_Set3FloorF1GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox x:Name="Gb_Facade1">
+                            <GroupBox.Header>
+                                <RadioButton x:Name="RB_SetFasade1Layout" Content="Фасад - 2. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade1Layout_Checked"/>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set0FloorF2Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF2GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF2GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF2GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2"  Background="#FF4EEA20" Click="Btn_Set0FloorF2GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF2GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3" Background="#FF4EEA20" Click="Btn_Set0FloorF2GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Первый этаж"
+                                          x:Name="GB_Set1FloorF2Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF2GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF2GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF2GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFEA7320" Click="Btn_Set1FloorF2GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF2GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF2GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set2FloorF2Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF2GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF2GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF2GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FF3092E4" Click="Btn_Set2FloorF2GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF2GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF3092E4" Click="Btn_Set2FloorF2GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set3FloorF2Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF2GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF2GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF2GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFE04747" Click="Btn_Set3FloorF2GlaseQ_Click">
+                                            <Image Source="Assets/square.png" OpacityMask="Black" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF2GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE04747" Click="Btn_Set3FloorF2GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox x:Name="Gb_Facade2">
+                            <GroupBox.Header>
+                                <RadioButton x:Name="RB_SetFasade2Layout" Content="Фасад - 3. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade2Layout_Checked"/>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set0FloorF3Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF3GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF3GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF3GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2"  Background="#FF4EEA20" Click="Btn_Set0FloorF3GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF3GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3" Background="#FF4EEA20" Click="Btn_Set0FloorF3GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Первый этаж"
+                                          x:Name="GB_Set1FloorF3Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF3GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF3GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF3GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFEA7320" Click="Btn_Set1FloorF3GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF3GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF3GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set2FloorF3Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF3GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF3GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF3GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FF3092E4" Click="Btn_Set2FloorF3GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF3GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF3092E4" Click="Btn_Set2FloorF3GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set3FloorF3Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF3GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF3GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF3GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFE04747" Click="Btn_Set3FloorF3GlaseQ_Click">
+                                            <Image Source="Assets/square.png" OpacityMask="Black" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF3GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE04747" Click="Btn_Set3FloorF3GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox x:Name="Gb_Facade3">
+                            <GroupBox.Header>
+                                <RadioButton x:Name="RB_SetFasade3Layout" Content="Фасад - 4. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade3Layout_Checked"/>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set0FloorF4Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF4GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set0FloorF4GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF4GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2"  Background="#FF4EEA20" Click="Btn_Set0FloorF4GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set0FloorF4GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3" Background="#FF4EEA20" Click="Btn_Set0FloorF4GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Первый этаж"
+                                          x:Name="GB_Set1FloorF4Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF4GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set1FloorF4GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF4GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFEA7320" Click="Btn_Set1FloorF4GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set1FloorF4GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF4GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set2FloorF4Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF4GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set2FloorF4GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF4GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FF3092E4" Click="Btn_Set2FloorF4GlaseQ_Click">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set2FloorF4GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF3092E4" Click="Btn_Set2FloorF4GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
+                                          x:Name="GB_Set3FloorF4Glase">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock TextWrapping="Wrap" Text="Площадь"/>
+                                            <TextBlock TextWrapping="Wrap" Text="Периметр"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF4GlaseSq" Grid.Column="1" Text="0.00 кв.м."/>
+                                            <TextBox IsEnabled="False" x:Name="Tb_Set3FloorF4GlaseP" TextWrapping="Wrap" Text="0.00 м."/>
+                                        </StackPanel>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF4GlaseQ"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="2" Background="#FFE04747" Click="Btn_Set3FloorF4GlaseQ_Click">
+                                            <Image Source="Assets/square.png" OpacityMask="Black" />
+                                        </Button>
+                                        <Button 
+                                                x:Name="Btn_Set3FloorF4GlaseT"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE04747" Click="Btn_Set3FloorF4GlaseT_Click">
+                                            <Image Source="Assets/triangle.png" />
+                                        </Button>
+                                    </Grid>
+                                </GroupBox>
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Мансардные окна">
                             <StackPanel>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
 
-                                </Grid.ColumnDefinitions>
-                                <TextBlock  Text="Общее количество (шт.) - "/>
-                                <TextBox 
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Text="Общее количество (шт.) - "/>
+                                    <TextBox 
                                         x:Name="Tb_WindowCount"
                                         PreviewTextInput="NumberValidationTextBox" Grid.Column="1" 
                                         TextChanged="Tb_WindowCount_TextChanged"/>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
 
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Width="145" TextWrapping="Wrap"
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
                                             Grid.Column="0"
                                             Text="Мансардные окна примерная площадь (м.кв.) - "/>
-                                <TextBox x:Name="Tb_WindowSquare" Grid.Column="1" 
+                                    <TextBox x:Name="Tb_WindowSquare" Grid.Column="1" 
                                              PreviewTextInput="DecimalValidationTextBox" TextChanged="Tb_WindowSquare_TextChanged"
                                              />
-                            </Grid>
+                                </Grid>
                             </StackPanel>
                         </GroupBox>
 
@@ -584,90 +1015,94 @@
                                     <RadioButton x:Name="RB_SetFloor0ODLayout"  Content="Цокольный этаж - ОД" GroupName="Layouts" Checked="RB_SetFloor0ODLayout_Checked"/>
                                 </GroupBox.Header>
                                 <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
 
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="*"/>
-
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Площадь по полу (кв.м.) - "/>
-                                            <TextBox
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Площадь по полу (кв.м.) - "/>
+                                        <TextBox
                                                         x:Name="Tb_Set0FloorSquare" 
                                                         PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_Set0FloorSquare_TextChanged"/>
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock TextWrapping="Wrap"
-                                                      x:Name="Tb_Floor0PlinthHeight"
-                                            Text="Высота цоколя над землей до плиты перекрытия - 0 м." 
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0PlinthHeight" Grid.Column="1" Text="0.00 м." 
+                                                       HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                        <TextBlock TextWrapping="Wrap"
+                                                    
+                                            Text="Высота цоколя над землей до плиты перекрытия" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                            <Button 
+                                        <Button 
                                                         x:Name="Btn_SetFloor0PlinthHeight"
-                                                        Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0PlinthHeight_Click" Background="#FFE68039">
-                                                <Image Source="Assets/roulette.png" />
-                                            </Button>
-                                        </Grid>
-                                        <StackPanel>
-                                            <TextBlock TextWrapping="Wrap" 
+                                                        Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0PlinthHeight_Click" Background="#FFE68039">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+                                    <StackPanel>
+                                        <TextBlock TextWrapping="Wrap" 
                                                                x:Name="TB_PlinthOpenPerc"
                                                     Text="Сбоку цоколь открыт на 0% (дом на склоне)" 
                                                     HorizontalAlignment="Stretch"/>
-                                            <Slider x:Name="PlinthOpenPerc" Minimum="0" Maximum="100" ValueChanged="PlinthOpenPerc_ValueChanged"/>
-                                        </StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                        <Slider x:Name="PlinthOpenPerc" Minimum="0" Maximum="100" ValueChanged="PlinthOpenPerc_ValueChanged"/>
+                                    </StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
 
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Width="145" TextWrapping="Wrap"
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Width="145" TextWrapping="Wrap"
                                             Grid.Column="0"
                                             Text="Туалеты и ванные комнаты (шт.) - "/>
-                                            <TextBox x:Name="Tb_SetFloor0BadroomCount"
+                                        <TextBox x:Name="Tb_SetFloor0BadroomCount"
                                                         PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetFloor0BadroomCount_TextChanged"/>
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0BadroomSquare"
-                                            Text="Площадь туалетов и ванных комнтат - 0 кв.м." 
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
+                                        <TextBlock TextWrapping="Wrap"
+                                            Text="Площадь туалетов и ванных комнтат" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                            <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0BadroomSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor0BadroomSquare_Click" Background="#FF69D42B">
-                                                <Image Source="Assets/square.png" />
-                                            </Button>
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock TextWrapping="Wrap"
-                                                                x:Name="Tb_Floor0TileSquare" 
-                                            Text="Прочие помещения в кафеле - 0 кв.м." 
+                                                 Grid.Column="2" Click="Btn_SetFloor0BadroomSquare_Click" Background="#FF69D42B">
+                                            <Image Source="Assets/square.png" />
+                                        </Button>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0TileSquare" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock TextWrapping="Wrap"
+                            
+                                            Text="Прочие помещения в кафеле" 
                                                              
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                            <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                              x:Name="Btn_SetFloor0TileSquare" 
-                                                 Grid.Column="1" Click="Btn_SetFloor0TileSquare_Click" Background="#FF247CFB">
-                                                <Image Source="Assets/square.png" />
-                                            </Button>
-                                        </Grid>
-                                        <TextBlock 
+                                                 Grid.Column="2" Click="Btn_SetFloor0TileSquare_Click" Background="#FF247CFB">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+                                    <TextBlock 
                                                     x:Name="Tb_Floor0TilePerimeter" 
                                                     Text="Периметр комнат с кафелем - 0 м." TextWrapping="Wrap"/>
-                                    </StackPanel>
                                 </StackPanel>
+
                             </GroupBox>
                             <GroupBox x:Name="GB_0FloorBlockDoors">
                                 <GroupBox.Header>
@@ -678,14 +1113,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0OutWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0OutWallsLength"
-                                                    Text="Длина внешних несущих стен - 0 м." 
+                                                             
+                                                    Text="Длина внешних несущих стен (вместе с дверями)" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                              x:Name="Btn_SetFloor0OutWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0OutWallsLength_Click" Background="#FFF5534C">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0OutWallsLength_Click" Background="#FFF5534C">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -693,14 +1130,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0InnerWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0InnerWallsLength"
-                                                    Text="Длина внутренних несущих стен - 0 м." 
+                                                    
+                                                    Text="Длина внутренних несущих стен" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                              x:Name="Btn_SetFloor0InnerWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor0InnerWallsLength_Click" Background="#FF269940">
+                                                HorizontalAlignment="Right" Grid.Column="2"  Click="Btn_SetFloor0InnerWallsLength_Click" Background="#FF269940">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -708,14 +1147,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0LightWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                            x:Name="Tb_Floor0LightWallsLength"   
-                                                    Text="Длина перегородок - 0 м." 
+                                                
+                                                    Text="Длина перегородок" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0LightWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor0LightWallsLength_Click" Background="#FF39C5E4">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0LightWallsLength_Click" Background="#FF39C5E4">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -723,14 +1164,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0BreakWallsLength"
-                                                    Text="Разрывы в несущей стене > 2 м. - 0 м." 
+                                                             
+                                                    Text="Разрывы в несущей стене > 2 м." 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0BreakWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor0BreakWallsLength_Click" Background="#FFFFD413">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0BreakWallsLength_Click" Background="#FFFFD413">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -738,78 +1181,73 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0OutDoorsLength"
-                                                    Text="Двери металлические в несущих стенах - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor0OutDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor0OutDoorsLength_Click" Background="#FF4358DE">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0OutDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     x:Name="Tb_Floor0OutDoorsCount"
                                                     Text="Двери металлические в несущих стенах - 0 шт." 
                                                     TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor0OutDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2"  Click="Btn_SetFloor0OutDoorsLength_Click" Background="#FF4358DE">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери межкомнатные в несущих стенах - 0 м." 
-                                                               x:Name="Tb_Floor0InnerDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor0InnerDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor0InnerDoorsLength_Click" Background="#FFDE63C2">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0InnerDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     x:Name="Tb_Floor0InnerDoorsCount"
                                                     Text="Двери межкомнатные в несущих стенах - 0 шт."
-                                                           
                                                            TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor0InnerDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2"  Click="Btn_SetFloor0InnerDoorsLength_Click" Background="#FFDE63C2">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0PartitionsDoorsLength"
-                                                    Text="Двери межкомнатные в перегородках - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor0PartitionsDoorsLength"
-                                                        HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0PartitionsDoorsLength_Click" Background="#FF3B7380">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0PartitionsDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     x:Name="Tb_Floor0PartitionsDoorsCount"
                                                     Text="Двери межкомнатные в перегородках - 0 шт." 
                                                     TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor0PartitionsDoorsLength"
+                                                        HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0PartitionsDoorsLength_Click" Background="#FF3B7380">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Ворота - 0 м." 
-                                                            x:Name="Tb_Floor0GatesLength"   
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0GatesLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
+                                                    x:Name="Tb_Floor0GatesCount"  
+                                                    Text="Ворота - 0 шт." TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0GatesLength"
-                                                            HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0GatesLength_Click" Background="#FF90E854">
+                                                            HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0GatesLength_Click" Background="#FF90E854">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock 
-                                                    x:Name="Tb_Floor0GatesCount"  
-                                                    Text="Ворота - 0 шт." TextWrapping="Wrap"/>
+
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_0FloorBlockTerases">
@@ -821,14 +1259,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0TerassesSquare" Grid.Column="1" Text="0.00 п.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor0TerassesSquare"
-                                            Text="Площадь терасс и крылец - 0 кв.м." 
+                                                 
+                                            Text="Площадь терасс и крылец" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0TerassesSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor0TerassesSquare_Click" Background="#FFF05D26">
+                                                 Grid.Column="2" Click="Btn_SetFloor0TerassesSquare_Click" Background="#FFF05D26">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -836,14 +1276,15 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0InnerTerassesLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внешних стен терасс и крылец - 0 м." 
-                                                               x:Name="Tb_Floor0InnerTerassesLength"
+                                                    Text="Длина внешних стен терасс и крылец" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0InnerTerassesLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0InnerTerassesLength_Click" Background="#FF30CD5B" >
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0InnerTerassesLength_Click" Background="#FF30CD5B" >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -851,14 +1292,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0TerassesLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина терасс и крылец - 0 м." 
-                                                               x:Name="Tb_Floor0TerassesLength"  
+                                                    Text="Длина терасс и крылец" 
+                          
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                           x:Name="Btn_SetFloor0TerassesLength"  
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0TerassesLength_Click" Background="#FF1ABDD6">
+                                                HorizontalAlignment="Right" Grid.Column="2" 
+                                                Click="Btn_SetFloor0TerassesLength_Click" Background="#FF1ABDD6">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -866,14 +1310,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor0RailingsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перил и ограждений - 0 м." 
-                                                               x:Name="Tb_Floor0RailingsLength"
+                                                    Text="Длина перил и ограждений" 
+               
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0RailingsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor0RailingsLength_Click" Background="#FFF7E421">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0RailingsLength_Click" Background="#FFF7E421">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -894,7 +1340,11 @@
 
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Width="145" Text="Площадь по полу (кв.м.) - "/>
-                                        <TextBox x:Name="Tb_SetFloor1Square" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_SetFloor1Square_TextChanged"/>
+                                        <TextBox x:Name="Tb_SetFloor1Square" Width="50"
+                                                 HorizontalAlignment="Right"
+                                                 PreviewTextInput="DecimalValidationTextBox" 
+                                                 Grid.Column="1" TextChanged="Tb_SetFloor1Square_TextChanged"
+                                                 />
                                     </Grid>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -905,21 +1355,27 @@
                                         <TextBlock Width="145" TextWrapping="Wrap"
                                             Grid.Column="0"
                                             Text="Туалеты и ванные комнаты (шт.) - "/>
-                                        <TextBox x:Name="Tb_SetFloor1BadroomCount" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetFloor1BadroomCount_TextChanged"/>
+                                        <TextBox x:Name="Tb_SetFloor1BadroomCount" 
+                                                 PreviewTextInput="NumberValidationTextBox" 
+                                                 Width="50" HorizontalAlignment="Right"
+                                                 Grid.Column="1" 
+                                                 TextChanged="Tb_SetFloor1BadroomCount_TextChanged"/>
                                     </Grid>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor1BadroomSquare"
-                                            Text="Площадь туалетов и ванных комнтат - 0 кв.м." 
+                                                      
+                                            Text="Площадь туалетов и ванных комнтат" 
                                                                
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1BadroomSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor1BadroomSquare_Click" Background="#FF69D42B">
+                                                 Grid.Column="2" Click="Btn_SetFloor1BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -927,15 +1383,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1TileSquare" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                            Text="Прочие помещения в кафеле - 0 кв.м." 
-                                                            x:Name="Tb_Floor1TileSquare"
+                                            Text="Прочие помещения в кафеле" 
+                                                         
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1TileSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor1TileSquare_Click" Background="#FF247CFB">
-                                            <Image Source="Assets/square.png" />
+                                                 Grid.Column="2" Click="Btn_SetFloor1TileSquare_Click" Background="#FF247CFB">
+                                            <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
                                     <TextBlock 
@@ -952,14 +1410,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1OutWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внешних несущих стен - 0 м." 
-                                                               x:Name="Tb_Floor1OutWallsLength"
+                                                    Text="Длина внешних несущих стен (вместе с дверями)" 
+                                                        
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1OutWallsLength"
-                                                            HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1OutWallsLength_Click" Background="#FFF5534C">
+                                                            HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1OutWallsLength_Click" Background="#FFF5534C">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -967,14 +1427,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1InnerWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внутренних несущих стен - 0 м." 
-                                                               x:Name="Tb_Floor1InnerWallsLength"
+                                                    Text="Длина внутренних несущих стен" 
+                                                           
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1InnerWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Margin="0,2,2,2" Click="Btn_SetFloor1InnerWallsLength_Click" Background="#FF269940">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1InnerWallsLength_Click" Background="#FF269940">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -982,14 +1444,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1LightWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перегородок - 0 м." 
-                                                               x:Name="Tb_Floor1LightWallsLength"
+                                                    Text="Длина перегородок" 
+                                                          
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1LightWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1LightWallsLength_Click" Background="#FF39C5E4">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1LightWallsLength_Click" Background="#FF39C5E4">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -997,14 +1461,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor1BreakWallsLength"
-                                                    Text="Разрывы в несущей стене > 2 м. - 0 м." 
+                                                         
+                                                    Text="Разрывы в несущей стене > 2 м." 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1BreakWallsLength"
-                                                    HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1BreakWallsLength_Click" Background="#FFFFD413">
+                                                    HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1BreakWallsLength_Click" Background="#FFFFD413">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1012,74 +1478,71 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери металлические в несущих стенах - 0 м." 
-                                                               x:Name="Tb_Floor1OutDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor1OutDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1OutDoorsLength_Click" Background="#FF4358DE">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1OutDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     x:Name="Tb_Floor1OutDoorsCount"
                                                     Text="Двери металлические в несущих стенах - 0 шт." TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor1OutDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1OutDoorsLength_Click" Background="#FF4358DE">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери межкомнатные в несущих стенах - 0 м." 
-                                                               x:Name="Tb_Floor1InnerDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor1InnerDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1InnerDoorsLength_Click" Background="#FFDE63C2">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock Text="Двери межкомнатные в несущих стенах - 0 шт."
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1InnerDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Двери межкомнатные в несущих стенах - 0 шт."
                                                            x:Name="Tb_Floor1InnerDoorsCount"
                                                            TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor1InnerDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1InnerDoorsLength_Click" Background="#FFDE63C2">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери межкомнатные в перегородках - 0 м." 
-                                                               x:Name="Tb_Floor1PartitionsDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor1PartitionsDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1PartitionsDoorsLength_Click" Background="#FF3B7380">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1PartitionsDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     Text="Двери межкомнатные в перегородках - 0 шт." 
                                                     x:Name="Tb_Floor1PartitionsDoorsCount"
                                                     TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor1PartitionsDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1PartitionsDoorsLength_Click" Background="#FF3B7380">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Ворота - 0 м." x:Name="Tb_Floor1GatesLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1GatesLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Ворота - 0 шт." 
+                                                           x:Name="Tb_Floor1GatesCount"
+                                                           TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1GatesLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1GatesLength_Click" Background="#FF90E854">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1GatesLength_Click" Background="#FF90E854">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Ворота - 0 шт." 
-                                                           x:Name="Tb_Floor1GatesCount"
-                                                           TextWrapping="Wrap"/>
+
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_1FloorBlockTerases">
@@ -1091,14 +1554,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1TerassesSquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                            Text="Площадь терасс и крылец - 0 кв.м." 
-                                                               x:Name="Tb_Floor1TerassesSquare"
+                                            Text="Площадь терасс и крылец" 
+                                                        
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1TerassesSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor1TerassesSquare_Click" Background="#FFF05D26">
+                                                 Grid.Column="2" Click="Btn_SetFloor1TerassesSquare_Click" Background="#FFF05D26">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1106,15 +1571,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1InnerTerassesLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor1InnerTerassesLength"
-                                                    Text="Длина внешних стен терасс и крылец - 0 м." 
+                                                          
+                                                    Text="Длина внешних стен терасс и крылец" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1InnerTerassesLength"
                                                             
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1InnerTerassesLength_Click" Background="#FF30CD5B">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1InnerTerassesLength_Click" Background="#FF30CD5B">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1122,14 +1589,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1TerassesLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина терасс и крылец - 0 м." 
-                                                               x:Name="Tb_Floor1TerassesLength"
+                                                    Text="Длина терасс и крылец" 
+                                                
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1TerassesLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1TerassesLength_Click" Background="#FF1ABDD6">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1TerassesLength_Click" Background="#FF1ABDD6">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1137,13 +1606,15 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor1RailingsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перил и ограждений - 0 м." x:Name="Tb_Floor1RailingsLength"
+                                                    Text="Длина перил и ограждений" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1RailingsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor1RailingsLength_Click" Background="#FFF7E421">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor1RailingsLength_Click" Background="#FFF7E421">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1195,14 +1666,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2РHoleSecondLight" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Дырка в полу под второй свет - 0 кв.м." 
-                                                    x:Name="Tb_Floor2РHoleSecondLight"
+                                                    Text="Дырка в полу под второй свет" 
+                                          
                                                     HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2РHoleSecondLight"
-                                                 Grid.Column="1" Click="Btn_SetFloor2РHoleSecondLight_Click" Background="#FFF0684A">
+                                                 Grid.Column="2" Click="Btn_SetFloor2РHoleSecondLight_Click" Background="#FFF0684A">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1224,14 +1697,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Площадь туалетов и ванных комнтат - 0 кв.м." 
-                                                               x:Name="Tb_Floor2BadroomSquare"
+                                                    Text="Площадь туалетов и ванных комнтат" 
+                                                           
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2BadroomSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor2BadroomSquare_Click" Background="#FF69D42B">
+                                                 Grid.Column="2" Click="Btn_SetFloor2BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1239,15 +1714,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2TileSquare" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                            Text="Прочие помещения в кафеле - 0 кв.м." 
-                                                               x:Name="Tb_Floor2TileSquare"
+                                            Text="Прочие помещения в кафеле" 
+                                                   
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                              x:Name="Btn_SetFloor2TileSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor2TileSquare_Click" Background="#FF247CFB">
-                                            <Image Source="Assets/square.png" />
+                                                 Grid.Column="2" Click="Btn_SetFloor2TileSquare_Click" Background="#FF247CFB">
+                                            <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
                                     <TextBlock Text="Периметр комнат с кафелем - 0 м." 
@@ -1264,14 +1741,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2OutWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внешних несущих стен - 0 м." 
-                                                               x:Name="Tb_Floor2OutWallsLength"
+                                                    Text="Длина внешних несущих стен (вместе с дверями)" 
+                                                      
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2OutWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2OutWallsLength_Click" Background="#FFF5534C">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2OutWallsLength_Click" Background="#FFF5534C">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1279,14 +1758,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2InnerWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внутренних несущих стен - 0 м." 
-                                                               x:Name="Tb_Floor2InnerWallsLength"
+                                                    Text="Длина внутренних несущих стен" 
+                                                            
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2InnerWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2InnerWallsLength_Click" Background="#FF269940">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2InnerWallsLength_Click" Background="#FF269940">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1294,14 +1775,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2LightWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перегородок - 0 м." 
-                                                               x:Name="Tb_Floor2LightWallsLength"
+                                                    Text="Длина перегородок" 
+                                                              
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2LightWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2LightWallsLength_Click" Background="#FF39C5E4">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2LightWallsLength_Click" Background="#FF39C5E4">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1309,14 +1792,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Разрывы в несущей стене > 2 м. - 0 м." 
-                                                               x:Name="Tb_Floor2BreakWallsLength"
+                                                    Text="Разрывы в несущей стене > 2 м." 
+                                                              
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2BreakWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2BreakWallsLength_Click" Background="#FFFFD413">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2BreakWallsLength_Click" Background="#FFFFD413">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1324,57 +1809,54 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери металлические в несущих стенах - 0 м." 
-                                                               x:Name="Tb_Floor2OutDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor2OutDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2OutDoorsLength_Click" Background="#FF4358DE">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock Text="Двери металлические в несущих стенах - 0 шт." 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2OutDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Двери металлические в несущих стенах - 0 шт." 
                                                            x:Name="Tb_Floor2OutDoorsCount"
                                                            TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor2OutDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2OutDoorsLength_Click" Background="#FF4358DE">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor2InnerDoorsLength"
-                                                    Text="Двери межкомнатные в несущих стенах - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor2InnerDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2InnerDoorsLength_Click" Background="#FFDE63C2">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2InnerDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
                                                     Text="Двери межкомнатные в несущих стенах - 0 шт." 
                                                     x:Name="Tb_Floor2InnerDoorsCount"
                                                     TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor2InnerDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2InnerDoorsLength_Click" Background="#FFDE63C2">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    Text="Двери межкомнатные в перегородках - 0 м." 
-                                                               x:Name="Tb_Floor2PartitionsDoorsLength"
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2PartitionsDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock 
+                                                    x:Name="Tb_Floor2PartitionsDoorsCount"
+                                                    Text="Двери межкомнатные в перегородках - 0 шт." TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2PartitionsDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2PartitionsDoorsLength_Click" Background="#FF3B7380">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2PartitionsDoorsLength_Click" Background="#FF3B7380">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock 
-                                                    x:Name="Tb_Floor2PartitionsDoorsCount"
-                                                    Text="Двери межкомнатные в перегородках - 0 шт." TextWrapping="Wrap"/>
+
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_2FloorBlockBalcony">
@@ -1386,14 +1868,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2BalconySquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor2BalconySquare"
-                                                    Text="Площадь балконов - 0 кв.м." 
+                                                            
+                                                    Text="Площадь балконов" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2BalconySquare"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2BalconySquare_Click" Background="#FFE48332">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2BalconySquare_Click" Background="#FFE48332">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1401,14 +1885,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2BalconyLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor2BalconyLength"
-                                                    Text="Длина балконов - 0 м." 
+                                                            
+                                                    Text="Длина балконов" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2BalconyLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2BalconyLength_Click" Background="#FFEC4B27">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2BalconyLength_Click" Background="#FFEC4B27">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1416,14 +1902,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor2RailingsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перил и ограждений - 0 м." 
-                                                               x:Name="Tb_Floor2RailingsLength"
+                                                    Text="Длина перил и ограждений" 
+                                                               
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor2RailingsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor2RailingsLength_Click" Background="#FF50AE10">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2RailingsLength_Click" Background="#FF50AE10">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1451,14 +1939,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3РHoleSecondLight" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Дырка в полу под второй свет - 0 кв.м." 
-                                                               x:Name="Tb_Floor3РHoleSecondLight"
+                                                    Text="Дырка в полу под второй свет" 
+                                                            
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3РHoleSecondLight"
-                                                 Grid.Column="1" Click="Btn_SetFloor3РHoleSecondLight_Click" Background="#FFF0684A">
+                                                 Grid.Column="2" Click="Btn_SetFloor3РHoleSecondLight_Click" Background="#FFF0684A">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1480,14 +1970,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3BadroomSquare"
-                                                    Text="Площадь туалетов и ванных комнтат - 0 кв.м." 
+                                                      
+                                                    Text="Площадь туалетов и ванных комнтат" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3BadroomSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor3BadroomSquare_Click" Background="#FF69D42B">
+                                                 Grid.Column="2" Click="Btn_SetFloor3BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1495,15 +1987,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3TileSquare" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3TileSquare"
-                                            Text="Прочие помещения в кафеле - 0 кв.м." 
+                                                             
+                                            Text="Прочие помещения в кафеле" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button Style="{StaticResource SquereBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3TileSquare"
-                                                 Grid.Column="1" Click="Btn_SetFloor3TileSquare_Click" Background="#FF247CFB">
-                                            <Image Source="Assets/square.png" />
+                                                 Grid.Column="2" Click="Btn_SetFloor3TileSquare_Click" Background="#FF247CFB">
+                                            <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
                                     <TextBlock Text="Периметр комнат с кафелем - 0 м."
@@ -1520,14 +2014,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3OutWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3OutWallsLength"
-                                                    Text="Длина внешних несущих стен - 0 м." 
+                                                              
+                                                    Text="Длина внешних несущих стен (вместе с дверями)" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3OutWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3OutWallsLength_Click" Background="#FFF5534C" >
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3OutWallsLength_Click" Background="#FFF5534C" >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1535,14 +2031,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3InnerWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина внутренних несущих стен - 0 м." 
-                                                               x:Name="Tb_Floor3InnerWallsLength"
+                                                    Text="Длина внутренних несущих стен" 
+                                                          
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3InnerWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3InnerWallsLength_Click" Background="#FF269940" >
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3InnerWallsLength_Click" Background="#FF269940" >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1550,13 +2048,15 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3LightWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3LightWallsLength"
-                                                    Text="Длина перегородок - 0 м." 
+                                                       
+                                                    Text="Длина перегородок" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1"
+                                        <Button Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2"
                                                             x:Name="Btn_SetFloor3LightWallsLength" Click="Btn_SetFloor3LightWallsLength_Click" Background="#FF39C5E4"
                                                             >
                                             <Image Source="Assets/roulette.png" />
@@ -1566,15 +2066,17 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3BreakWallsLength"
-                                                    Text="Разрывы в несущей стене > 2 м. - 0 м." 
+                                                         
+                                                    Text="Разрывы в несущей стене > 2 м." 
                                                                
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3BreakWallsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3BreakWallsLength_Click" Background="#FFFFD413" >
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3BreakWallsLength_Click" Background="#FFFFD413" >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
@@ -1582,57 +2084,54 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3OutDoorsLength"
-                                                    Text="Двери металлические в несущих стенах - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                            x:Name="Btn_SetFloor3OutDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3OutDoorsLength_Click" Background="#FF4358DE">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <TextBlock Text="Двери металлические в несущих стенах - 0 шт." 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3OutDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Двери металлические в несущих стенах - 0 шт." 
                                                            x:Name="Tb_Floor3OutDoorsCount"
                                                            TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                            x:Name="Btn_SetFloor3OutDoorsLength"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3OutDoorsLength_Click" Background="#FF4358DE">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3InnerDoorsLength"
-                                                    Text="Двери межкомнатные в несущих стенах - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" 
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3InnerDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Двери межкомнатные в несущих стенах - 0 шт." 
+                                                           x:Name="Tb_Floor3InnerDoorsCount"
+                                                           TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" 
                                                              x:Name="Btn_SetFloor3InnerDoorsLength" Click="Btn_SetFloor3InnerDoorsLength_Click" Background="#FFDE63C2"
                                                             >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Двери межкомнатные в несущих стенах - 0 шт." 
-                                                           x:Name="Tb_Floor3InnerDoorsCount"
-                                                           TextWrapping="Wrap"/>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock TextWrapping="Wrap"
-                                                               x:Name="Tb_Floor3PartitionsDoorsLength"
-                                                    Text="Двери межкомнатные в перегородках - 0 м." 
-                                                    HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3PartitionsDoorsLength" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock Text="Двери межкомнатные в перегородках - 0 шт." 
+                                                           x:Name="Tb_Floor3PartitionsDoorsCount"
+                                                           TextWrapping="Wrap"/>
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3PartitionsDoorsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3PartitionsDoorsLength_Click" Background="#FF3B7380">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3PartitionsDoorsLength_Click" Background="#FF3B7380">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Двери межкомнатные в перегородках - 0 шт." 
-                                                           x:Name="Tb_Floor3PartitionsDoorsCount"
-                                                           TextWrapping="Wrap"/>
+
 
                                 </StackPanel>
                             </GroupBox>
@@ -1645,14 +2144,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3BalconySquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Площадь балконов - 0 кв.м." 
-                                                               x:Name="Tb_Floor3BalconySquare"
+                                                    Text="Площадь балконов" 
+                                                           
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3BalconySquare"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3BalconySquare_Click" Background="#FFE48332">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3BalconySquare_Click" Background="#FFE48332">
                                             <Image Source="Assets/square.png" />
                                         </Button>
                                     </Grid>
@@ -1660,13 +2161,15 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3BalconyLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина балконов - 0 м." 
-                                                               x:Name="Tb_Floor3BalconyLength"
+                                                    Text="Длина балконов" 
+                                                        
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
-                                                HorizontalAlignment="Right" Grid.Column="1" 
+                                        <Button Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" 
                                                             x:Name="Btn_SetFloor3BalconyLength" Click="Btn_SetFloor3BalconyLength_Click" Background="#FFEC4B27">
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
@@ -1675,14 +2178,16 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
+                                        <TextBox IsEnabled="False" x:Name="Tb_Floor3RailingsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Длина перил и ограждений - 0 м." 
-                                                               x:Name="Tb_Floor3RailingsLength"
+                                                    Text="Длина перил и ограждений" 
+                                                              
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
-                                        <Button Style="{StaticResource RouletteBtn}"
+                                        <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor3RailingsLength"
-                                                HorizontalAlignment="Right" Grid.Column="1" Click="Btn_SetFloor3RailingsLength_Click" Background="#FF50AE10" >
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3RailingsLength_Click" Background="#FF50AE10" >
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>

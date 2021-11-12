@@ -62,7 +62,6 @@ namespace BuildingPlanCalc
         private Canvas selectedCanvas;
 
         byte ShapeType { get; set; } = 1;
-
         byte SelectedBuidingObj = 0;
 
 
@@ -256,17 +255,25 @@ namespace BuildingPlanCalc
                 {
                     Floor0HeighSetupBlock.Visibility = Visibility.Visible;
                     GB_0FloorBlock.Visibility = Visibility.Visible;
-                    Gb_Facade0Floor.Visibility = Visibility.Visible;
 
                     GB_0FloorBlock.Visibility = Visibility.Visible;
+
+                    GB_Set0FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set0FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set0FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set0FloorF4Glase.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     Floor0HeighSetupBlock.Visibility = Visibility.Collapsed;
                     GB_0FloorBlock.Visibility = Visibility.Collapsed;
-                    Gb_Facade0Floor.Visibility = Visibility.Collapsed;
 
                     GB_0FloorBlock.Visibility = Visibility.Collapsed;
+
+                    GB_Set0FloorF1Glase.Visibility = Visibility.Collapsed;
+                    GB_Set0FloorF2Glase.Visibility = Visibility.Collapsed;
+                    GB_Set0FloorF3Glase.Visibility = Visibility.Collapsed;
+                    GB_Set0FloorF4Glase.Visibility = Visibility.Collapsed;
                 }
 
             }
@@ -305,17 +312,21 @@ namespace BuildingPlanCalc
             Floor2HeighSetupBlock.Visibility = Visibility.Collapsed;
             Floor3HeighSetupBlock.Visibility = Visibility.Collapsed;
 
-
             GB_2FloorBlock.Visibility = Visibility.Collapsed;
             GB_3FloorBlock.Visibility = Visibility.Collapsed;
 
-            Gb_Facade1Floor.Visibility = Visibility.Collapsed;
-            Gb_Facade2Floor.Visibility = Visibility.Collapsed;
-            Gb_Facade3Floor.Visibility = Visibility.Collapsed;
-
-            // заказчик...
-
-
+            GB_Set1FloorF1Glase.Visibility = Visibility.Collapsed;
+            GB_Set1FloorF2Glase.Visibility = Visibility.Collapsed;
+            GB_Set1FloorF3Glase.Visibility = Visibility.Collapsed;
+            GB_Set1FloorF4Glase.Visibility = Visibility.Collapsed;
+            GB_Set2FloorF1Glase.Visibility = Visibility.Collapsed;
+            GB_Set2FloorF2Glase.Visibility = Visibility.Collapsed;
+            GB_Set2FloorF3Glase.Visibility = Visibility.Collapsed;
+            GB_Set2FloorF4Glase.Visibility = Visibility.Collapsed;
+            GB_Set3FloorF1Glase.Visibility = Visibility.Collapsed;
+            GB_Set3FloorF2Glase.Visibility = Visibility.Collapsed;
+            GB_Set3FloorF3Glase.Visibility = Visibility.Collapsed;
+            GB_Set3FloorF4Glase.Visibility = Visibility.Collapsed;
 
 
             switch (SetFloorsHouse.SelectedIndex)
@@ -323,7 +334,11 @@ namespace BuildingPlanCalc
                 case 0:
                     Floor1HeighSetupBlock.Visibility = Visibility.Visible;
                     GB_1FloorBlock.Visibility = Visibility.Visible;
-                    Gb_Facade1Floor.Visibility = Visibility.Visible;
+
+                    GB_Set1FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF4Glase.Visibility = Visibility.Visible;
                     break;
                 case 1:
                     Floor1HeighSetupBlock.Visibility = Visibility.Visible;
@@ -332,8 +347,14 @@ namespace BuildingPlanCalc
                     GB_1FloorBlock.Visibility = Visibility.Visible;
                     GB_2FloorBlock.Visibility = Visibility.Visible;
 
-                    Gb_Facade1Floor.Visibility = Visibility.Visible;
-                    Gb_Facade2Floor.Visibility = Visibility.Visible;
+                    GB_Set1FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF4Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF4Glase.Visibility = Visibility.Visible;
                     break;
                 case 2:
                     Floor1HeighSetupBlock.Visibility = Visibility.Visible;
@@ -344,9 +365,20 @@ namespace BuildingPlanCalc
                     GB_2FloorBlock.Visibility = Visibility.Visible;
                     GB_3FloorBlock.Visibility = Visibility.Visible;
 
-                    Gb_Facade1Floor.Visibility = Visibility.Visible;
-                    Gb_Facade2Floor.Visibility = Visibility.Visible;
-                    Gb_Facade3Floor.Visibility = Visibility.Visible;
+                    GB_Set1FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set1FloorF4Glase.Visibility = Visibility.Visible;
+
+                    GB_Set2FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set2FloorF4Glase.Visibility = Visibility.Visible;
+
+                    GB_Set3FloorF1Glase.Visibility = Visibility.Visible;
+                    GB_Set3FloorF2Glase.Visibility = Visibility.Visible;
+                    GB_Set3FloorF3Glase.Visibility = Visibility.Visible;
+                    GB_Set3FloorF4Glase.Visibility = Visibility.Visible;
                     break;
                 default:
                     break;
@@ -458,13 +490,12 @@ namespace BuildingPlanCalc
                     Stroke = Brushes.Red
                 });
 
-                //    Walls.Add(new ModifyLines(new Line() { X1 = point_s.X, Y1 = point_s.Y, X2 = point_f.X, Y2 = point_f.Y }, 255, 255));
                 isControlLine = false;
                 //    Tb_Information.Visibility = Visibility.Collapsed;
                 coeffLength = controlLineLength / realLength;
                 if (CanvasForPhantomShape.Children.Count > 0)
                     Btn_DeleteLastLine.IsEnabled = true;
-                //     CaclWallsLength();
+
                 MessageBox.Show("Коэффициент размера успешно установлен", "Изменение коэффициента", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
@@ -668,383 +699,462 @@ namespace BuildingPlanCalc
                 #region Раздел "Общие"
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0Height:
                     House.Floor0Height = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0Height).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Set0FloorHeight.Text = $"Цокольный - {House.Floor0Height} м.";
+                    Tb_Set0FloorHeight.Text = $"{House.Floor0Height} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1Height:
                     House.Floor1Height = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1Height).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Set1FloorHeight.Text = $"Первый - {House.Floor1Height} м.";
+                    Tb_Set1FloorHeight.Text = $"{House.Floor1Height} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2Height:
                     House.Floor2Height = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2Height).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Set2FloorHeight.Text = $"Второй - {House.Floor2Height} м.";
+                    Tb_Set2FloorHeight.Text = $"{House.Floor2Height} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3Height:
                     House.Floor3Height = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3Height).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Set3FloorHeight.Text = $"Третий - {House.Floor3Height} м.";
+                    Tb_Set3FloorHeight.Text = $"{House.Floor3Height} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.KitchensSquare:
                     House.KitchensSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.KitchensSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_SetKitchenSquare.Text = $"Площадь кухонь и гостиных - {House.KitchensSquare} кв.м.";
+                    Tb_SetKitchenSquare.Text = $"{House.KitchensSquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.RoofHeight:
                     House.RoofHeight = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.RoofHeight).Select(l => l.Length).Sum(), roundTo);
-                    Tb_SetFullHouseHeight.Text = $"Высота от пола верхнего этажа до конька - {House.RoofHeight} м.";
+                    Tb_SetFullHouseHeight.Text = $"{House.RoofHeight} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.RoofMinWallHeight:
                     House.RoofMinWallHeight = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.RoofMinWallHeight).Select(l => l.Length).Sum(), roundTo);
-                    Tb_SetRoofMinWallHeight.Text = $"Минимальная высота стен верхнего этажа - {House.RoofMinWallHeight} м.";
+                    Tb_SetRoofMinWallHeight.Text = $"{House.RoofMinWallHeight} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.RoofSquare:
                     House.RoofSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.RoofSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_SetRoofSquare.Text = $"Площадь, накрытая основной кровлей - {House.RoofSquare} кв.м.";
+                    Tb_SetRoofSquare.Text = $"{House.RoofSquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.RoofLength:
                     House.RoofLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.RoofLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_SetRoofLength.Text = $"Длина основной кровли - {House.RoofLength} м.";
+                    Tb_SetRoofLength.Text = $"{House.RoofLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.CanopySquare:
                     House.CanopySquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.CanopySquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_SetCanopySquare.Text = $"Площадь, накрытая навесами - {House.CanopySquare} кв.м.";
+                    Tb_SetCanopySquare.Text = $"{House.CanopySquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.CanopyLength:
                     House.CanopyLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.CanopyLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_SetCanopyLength.Text = $"Длина навесов вдоль стены, общая - {House.CanopyLength} м.";
+                    Tb_SetCanopyLength.Text = $"{House.CanopyLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.PergolaSquare:
                     House.PergolaSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.PergolaSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_SetPergolaSquare.Text = $"Площадь Перголы - {House.PergolaSquare} кв.м.";
+                    Tb_SetPergolaSquare.Text = $"{House.PergolaSquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.HemmingButt:
                     House.HemmingButt = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.HemmingButt).Select(l => l.Length).Sum(), roundTo);
-                    Tb_SetHemmingButt.Text = $"Подшива торцов основной кровли и навесов - {House.HemmingButt} м.";
+                    Tb_SetHemmingButt.Text = $"{House.HemmingButt} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare:
                     House.HemmingOverhangsSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_SetHemmingOverhangsSquare.Text = $"Подшива свесов основной кровли снизу - {House.HemmingOverhangsSquare} кв.м.";
+                    Tb_SetHemmingOverhangsSquare.Text = $"{House.HemmingOverhangsSquare} кв.м.";
                     break;
                 #endregion
-                #region Раздел "Фасады"
-                case (byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq:
-                    House.Floor0GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq).Select(l => l.Square).Sum(), roundTo);
-                    House.Floor0GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
-                    Tb_Set0FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor0GlaseSq} кв.м.";
-                    Tb_Set0FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor0GlaseP} м.";
+                #region Раздел "Фасады - 1"
+                case (byte)GlobalVariables.ProjectObjEnum.Floor0F1GlaseSq:
+                    House.Floor0F1GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F1GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor0F1GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F1GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set0FloorF1GlaseSq.Text = $"{House.Floor0F1GlaseSq} кв.м.";
+                    Tb_Set0FloorF1GlaseP.Text = $"{House.Floor0F1GlaseP} м.";
                     break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq:
-                    House.Floor1GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq).Select(l => l.Square).Sum(), roundTo);
-                    House.Floor1GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
-                    Tb_Set1FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor1GlaseSq} кв.м.";
-                    Tb_Set1FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor1GlaseP} м.";
+                case (byte)GlobalVariables.ProjectObjEnum.Floor1F1GlaseSq:
+                    House.Floor1F1GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F1GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor1F1GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F1GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set1FloorF1GlaseSq.Text = $"{House.Floor1F1GlaseSq} кв.м.";
+                    Tb_Set1FloorF1GlaseP.Text = $"{House.Floor1F1GlaseP} м.";
                     break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq:
-                    House.Floor2GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq).Select(l => l.Square).Sum(), roundTo);
-                    House.Floor2GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
-                    Tb_Set2FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor2GlaseSq} кв.м.";
-                    Tb_Set2FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor2GlaseP} м.";
+                case (byte)GlobalVariables.ProjectObjEnum.Floor2F1GlaseSq:
+                    House.Floor2F1GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F1GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor2F1GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F1GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set2FloorF1GlaseSq.Text = $"{House.Floor2F1GlaseSq} кв.м.";
+                    Tb_Set2FloorF1GlaseP.Text = $"{House.Floor2F1GlaseP} м.";
                     break;
-                case (byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq:
-                    House.Floor3GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq).Select(l => l.Square).Sum(), roundTo);
-                    House.Floor3GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
-                    Tb_Set3FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor3GlaseSq} кв.м.";
-                    Tb_Set3FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor3GlaseP} м.";
+                case (byte)GlobalVariables.ProjectObjEnum.Floor3F1GlaseSq:
+                    House.Floor3F1GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F1GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor3F1GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F1GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set3FloorF1GlaseSq.Text = $"{House.Floor3F1GlaseSq} кв.м.";
+                    Tb_Set3FloorF1GlaseP.Text = $"{House.Floor3F1GlaseP} м.";
+                    break;
+                #endregion
+                #region Раздел "Фасады - 2"
+                case (byte)GlobalVariables.ProjectObjEnum.Floor0F2GlaseSq:
+                    House.Floor0F2GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F2GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor0F2GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F2GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set0FloorF2GlaseSq.Text = $"{House.Floor0F2GlaseSq} кв.м.";
+                    Tb_Set0FloorF2GlaseP.Text = $"{House.Floor0F2GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor1F2GlaseSq:
+                    House.Floor1F2GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F2GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor1F2GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F2GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set1FloorF2GlaseSq.Text = $"{House.Floor1F2GlaseSq} кв.м.";
+                    Tb_Set1FloorF2GlaseP.Text = $"{House.Floor1F2GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor2F2GlaseSq:
+                    House.Floor2F2GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F2GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor2F2GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F2GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set2FloorF2GlaseSq.Text = $"{House.Floor2F2GlaseSq} кв.м.";
+                    Tb_Set2FloorF2GlaseP.Text = $"{House.Floor2F2GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor3F2GlaseSq:
+                    House.Floor3F2GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F2GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor3F2GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F2GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set3FloorF2GlaseSq.Text = $"{House.Floor3F2GlaseSq} кв.м.";
+                    Tb_Set3FloorF2GlaseP.Text = $"{House.Floor3F2GlaseP} м.";
+                    break;
+                #endregion
+                #region Раздел "Фасады - 3"
+                case (byte)GlobalVariables.ProjectObjEnum.Floor0F3GlaseSq:
+                    House.Floor0F3GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F3GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor0F3GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F3GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set0FloorF3GlaseSq.Text = $"{House.Floor0F3GlaseSq} кв.м.";
+                    Tb_Set0FloorF3GlaseP.Text = $"{House.Floor0F3GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor1F3GlaseSq:
+                    House.Floor1F3GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F3GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor1F3GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F3GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set1FloorF3GlaseSq.Text = $"{House.Floor1F3GlaseSq} кв.м.";
+                    Tb_Set1FloorF3GlaseP.Text = $"{House.Floor1F3GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor2F3GlaseSq:
+                    House.Floor2F3GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F3GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor2F3GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F3GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set2FloorF3GlaseSq.Text = $"{House.Floor2F3GlaseSq} кв.м.";
+                    Tb_Set2FloorF3GlaseP.Text = $"{House.Floor2F3GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor3F3GlaseSq:
+                    House.Floor3F3GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F3GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor3F3GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F3GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set3FloorF3GlaseSq.Text = $"{House.Floor3F3GlaseSq} кв.м.";
+                    Tb_Set3FloorF3GlaseP.Text = $"{House.Floor3F3GlaseP} м.";
+                    break;
+                #endregion
+                #region Раздел "Фасады - 4"
+                case (byte)GlobalVariables.ProjectObjEnum.Floor0F4GlaseSq:
+                    House.Floor0F4GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F4GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor0F4GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0F4GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set0FloorF4GlaseSq.Text = $"{House.Floor0F4GlaseSq} кв.м.";
+                    Tb_Set0FloorF4GlaseP.Text = $"{House.Floor0F4GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor1F4GlaseSq:
+                    House.Floor1F4GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F4GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor1F4GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1F4GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set1FloorF4GlaseSq.Text = $"{House.Floor1F4GlaseSq} кв.м.";
+                    Tb_Set1FloorF4GlaseP.Text = $"{House.Floor1F4GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor2F4GlaseSq:
+                    House.Floor2F4GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F4GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor2F4GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2F4GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set2FloorF4GlaseSq.Text = $"{House.Floor2F4GlaseSq} кв.м.";
+                    Tb_Set2FloorF4GlaseP.Text = $"{House.Floor2F4GlaseP} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor3F4GlaseSq:
+                    House.Floor3F4GlaseSq = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F4GlaseSq).Select(l => l.Square).Sum(), roundTo);
+                    House.Floor3F4GlaseP = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3F4GlaseSq).Select(l => l.Perimetr).Sum(), roundTo);
+                    Tb_Set3FloorF4GlaseSq.Text = $"{House.Floor3F4GlaseSq} кв.м.";
+                    Tb_Set3FloorF4GlaseP.Text = $"{House.Floor3F4GlaseP} м.";
                     break;
                 #endregion
                 #region Раздел "Этажи"
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0PlinthHeight:
                     House.Floor0PlinthHeight = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0PlinthHeight).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0PlinthHeight.Text = $"Высота цоколя над землей до плиты перекрытия - {House.Floor0PlinthHeight} м.";
+                    Tb_Floor0PlinthHeight.Text = $"{House.Floor0PlinthHeight} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare:
                     House.Floor0BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor0BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor0BadroomSquare} м.";
+                    Tb_Floor0BadroomSquare.Text = $"{House.Floor0BadroomSquare} м.";
 
                     House.Floor0TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
 
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare:
-                    House.Floor0TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor0TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor0TileSquare} м.";
+                    House.Floor0TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor0TileSquare.Text = $"{House.Floor0TileSquare} м.";
 
                     House.Floor0TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
                     break;
+
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0OutWallsLength:
                     House.Floor0OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0OutWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor0OutWallsLength} м.";
+                    Tb_Floor0OutWallsLength.Text = $"{House.Floor0OutWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0InnerWallsLength:
                     House.Floor0InnerWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor0InnerWallsLength} м.";
+                    Tb_Floor0InnerWallsLength.Text = $"{House.Floor0InnerWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0LightWallsLength:
                     House.Floor0LightWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0LightWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0LightWallsLength.Text = $"Длина перегородок - {House.Floor0LightWallsLength} м.";
+                    Tb_Floor0LightWallsLength.Text = $"{House.Floor0LightWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0BreakWallsLength:
                     House.Floor0BreakWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BreakWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor0BreakWallsLength} м.";
+                    Tb_Floor0BreakWallsLength.Text = $"{House.Floor0BreakWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength:
                     House.Floor0OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor0OutDoorsLength} м.";
+                    Tb_Floor0OutDoorsLength.Text = $"{House.Floor0OutDoorsLength} м.";
                     House.Floor0OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor0OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor0OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength:
                     House.Floor0InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor0InnerDoorsLength} м.";
+                    Tb_Floor0InnerDoorsLength.Text = $"{House.Floor0InnerDoorsLength} м.";
                     House.Floor0InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor0InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor0InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength:
                     House.Floor0PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor0PartitionsDoorsLength} м.";
+                    Tb_Floor0PartitionsDoorsLength.Text = $"{House.Floor0PartitionsDoorsLength} м.";
                     House.Floor0PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor0PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor0PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength:
                     House.Floor0GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0GatesLength.Text = $"Ворота - {House.Floor0GatesLength} м.";
+                    Tb_Floor0GatesLength.Text = $"{House.Floor0GatesLength} м.";
                     House.Floor0GatesCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength).Select(l => l.Length).Count();
                     Tb_Floor0GatesCount.Text = $"Ворота - {House.Floor0GatesCount} шт.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0TerassesSquare:
                     House.Floor0TerassesSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TerassesSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor0TerassesSquare.Text = $"Площадь терасс и крылец - {House.Floor0TerassesSquare} кв.м.";
+                    Tb_Floor0TerassesSquare.Text = $"{House.Floor0TerassesSquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0InnerTerassesLength:
                     House.Floor0InnerTerassesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerTerassesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - {House.Floor0InnerTerassesLength} м.";
+                    Tb_Floor0InnerTerassesLength.Text = $"{House.Floor0InnerTerassesLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0TerassesLength:
                     House.Floor0TerassesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TerassesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0TerassesLength.Text = $"Длина терасс и крылец - {House.Floor0TerassesLength} м.";
+                    Tb_Floor0TerassesLength.Text = $"{House.Floor0TerassesLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0RailingsLength:
                     House.Floor0RailingsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0RailingsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0RailingsLength.Text = $"Длина перил и ограждений - {House.Floor0RailingsLength} м.";
+                    Tb_Floor0RailingsLength.Text = $"{House.Floor0RailingsLength} м.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare:
                     House.Floor1BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor1BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor1BadroomSquare} кв.м.";
+                    Tb_Floor1BadroomSquare.Text = $"{House.Floor1BadroomSquare} кв.м.";
 
                     House.Floor1TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare:
-                    House.Floor1TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor1TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor1TileSquare} кв.м.";
+                    House.Floor1TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor1TileSquare.Text = $"{House.Floor1TileSquare} м.";
                     House.Floor1TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1OutWallsLength:
                     House.Floor1OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor1OutWallsLength} м.";
+                    Tb_Floor1OutWallsLength.Text = $"{House.Floor1OutWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1InnerWallsLength:
                     House.Floor1InnerWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor1InnerWallsLength} м.";
+                    Tb_Floor1InnerWallsLength.Text = $"{House.Floor1InnerWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1LightWallsLength:
                     House.Floor1LightWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1LightWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1LightWallsLength.Text = $"Длина перегородок - {House.Floor1LightWallsLength} м.";
+                    Tb_Floor1LightWallsLength.Text = $"{House.Floor1LightWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1BreakWallsLength:
                     House.Floor1BreakWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BreakWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor1BreakWallsLength} м.";
+                    Tb_Floor1BreakWallsLength.Text = $"{House.Floor1BreakWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength:
                     House.Floor1OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor1OutDoorsLength} м.";
+                    Tb_Floor1OutDoorsLength.Text = $"{House.Floor1OutDoorsLength} м.";
                     House.Floor1OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor1OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor1OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength:
                     House.Floor1InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor1InnerDoorsLength} м.";
+                    Tb_Floor1InnerDoorsLength.Text = $"{House.Floor1InnerDoorsLength} м.";
                     House.Floor1InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor1InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor1InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength:
                     House.Floor1PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor1PartitionsDoorsLength} м.";
+                    Tb_Floor1PartitionsDoorsLength.Text = $"{House.Floor1PartitionsDoorsLength} м.";
                     House.Floor1PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor1PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor1PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength:
                     House.Floor1GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1GatesLength.Text = $"Ворота - {House.Floor1GatesLength} м.";
+                    Tb_Floor1GatesLength.Text = $"{House.Floor1GatesLength} м.";
                     House.Floor1GatesCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength).Select(l => l.Length).Count();
                     Tb_Floor1GatesCount.Text = $"Ворота - {House.Floor1GatesCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare:
                     House.Floor1TerassesSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor1TerassesSquare.Text = $"Площадь терасс и крылец - {House.Floor1TerassesSquare} кв.м.";
+                    Tb_Floor1TerassesSquare.Text = $"{House.Floor1TerassesSquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1InnerTerassesLength:
                     House.Floor1InnerTerassesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerTerassesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - {House.Floor1InnerTerassesLength} м.";
+                    Tb_Floor1InnerTerassesLength.Text = $"{House.Floor1InnerTerassesLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesLength:
                     House.Floor1TerassesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1TerassesLength.Text = $"Длина терасс и крылец - {House.Floor1TerassesLength} м.";
+                    Tb_Floor1TerassesLength.Text = $"{House.Floor1TerassesLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1RailingsLength:
                     House.Floor1RailingsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1RailingsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor1RailingsLength.Text = $"Длина перил и ограждений - {House.Floor1RailingsLength} м.";
+                    Tb_Floor1RailingsLength.Text = $"{House.Floor1RailingsLength} м.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2РHoleSecondLight:
                     House.Floor2РHoleSecondLight = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2РHoleSecondLight).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor2РHoleSecondLight.Text = $"Дырка в полу под второй свет - {House.Floor2РHoleSecondLight} кв.м.";
+                    Tb_Floor2РHoleSecondLight.Text = $"{House.Floor2РHoleSecondLight} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare:
                     House.Floor2BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor2BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor2BadroomSquare} кв.м.";
+                    Tb_Floor2BadroomSquare.Text = $"{House.Floor2BadroomSquare} кв.м.";
 
                     House.Floor2TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare:
-                    House.Floor2TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor2TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor2TileSquare} кв.м.";
+                    House.Floor2TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor2TileSquare.Text = $"{House.Floor2TileSquare} м.";
                     House.Floor2TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2OutWallsLength:
                     House.Floor2OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor2OutWallsLength} м.";
+                    Tb_Floor2OutWallsLength.Text = $"{House.Floor2OutWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2InnerWallsLength:
                     House.Floor2InnerWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2InnerWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor2InnerWallsLength} м.";
+                    Tb_Floor2InnerWallsLength.Text = $"{House.Floor2InnerWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2LightWallsLength:
                     House.Floor2LightWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2LightWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2LightWallsLength.Text = $"Длина перегородок - {House.Floor2LightWallsLength} м.";
+                    Tb_Floor2LightWallsLength.Text = $"{House.Floor2LightWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BreakWallsLength:
                     House.Floor2BreakWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BreakWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor2BreakWallsLength} м.";
+                    Tb_Floor2BreakWallsLength.Text = $"{House.Floor2BreakWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength:
                     House.Floor2OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor2OutDoorsLength} м.";
+                    Tb_Floor2OutDoorsLength.Text = $"{House.Floor2OutDoorsLength} м.";
                     House.Floor2OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor2OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor2OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength:
                     House.Floor2InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor2InnerDoorsLength} м.";
+                    Tb_Floor2InnerDoorsLength.Text = $"{House.Floor2InnerDoorsLength} м.";
                     House.Floor2InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor2InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor2InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength:
                     House.Floor2PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor2PartitionsDoorsLength} м.";
+                    Tb_Floor2PartitionsDoorsLength.Text = $"{House.Floor2PartitionsDoorsLength} м.";
                     House.Floor2PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor2PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor2PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare:
                     House.Floor2BalconySquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor2BalconySquare.Text = $"Площадь балконов - {House.Floor2BalconySquare} кв.м.";
+                    Tb_Floor2BalconySquare.Text = $"{House.Floor2BalconySquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BalconyLength:
                     House.Floor2BalconyLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BalconyLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2BalconyLength.Text = $"Длина балконов - {House.Floor2BalconyLength} м.";
+                    Tb_Floor2BalconyLength.Text = $"{House.Floor2BalconyLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2RailingsLength:
                     House.Floor2RailingsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2RailingsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor2RailingsLength.Text = $"Длина перил и ограждений - {House.Floor2RailingsLength} м.";
+                    Tb_Floor2RailingsLength.Text = $"{House.Floor2RailingsLength} м.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3РHoleSecondLight:
                     House.Floor3РHoleSecondLight = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3РHoleSecondLight).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor3РHoleSecondLight.Text = $"Дырка в полу под второй свет - {House.Floor3РHoleSecondLight} кв.м.";
+                    Tb_Floor3РHoleSecondLight.Text = $"{House.Floor3РHoleSecondLight} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare:
                     House.Floor3BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor3BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor3BadroomSquare} кв.м.";
+                    Tb_Floor3BadroomSquare.Text = $"{House.Floor3BadroomSquare} кв.м.";
 
                     House.Floor3TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare:
-                    House.Floor3TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor3TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor3TileSquare} кв.м.";
+                    House.Floor3TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor3TileSquare.Text = $"{House.Floor3TileSquare} м.";
                     House.Floor3TilePerimeter =
                         Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Perimetr).Sum(), roundTo);
+                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
 
                     Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3OutWallsLength:
                     House.Floor3OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor3OutWallsLength} м.";
+                    Tb_Floor3OutWallsLength.Text = $"{House.Floor3OutWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3InnerWallsLength:
                     House.Floor3InnerWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3InnerWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor3InnerWallsLength} м.";
+                    Tb_Floor3InnerWallsLength.Text = $"{House.Floor3InnerWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3LightWallsLength:
                     House.Floor3LightWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3LightWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3LightWallsLength.Text = $"Длина перегородок - {House.Floor3LightWallsLength} м.";
+                    Tb_Floor3LightWallsLength.Text = $"{House.Floor3LightWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BreakWallsLength:
                     House.Floor3BreakWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BreakWallsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3BreakWallsLength.Text = $"Разрывы в несущей стене > 3 м. - {House.Floor3BreakWallsLength} м.";
+                    Tb_Floor3BreakWallsLength.Text = $"{House.Floor3BreakWallsLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength:
                     House.Floor3OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor3OutDoorsLength} м.";
+                    Tb_Floor3OutDoorsLength.Text = $"{House.Floor3OutDoorsLength} м.";
                     House.Floor3OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor3OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor3OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength:
                     House.Floor3InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor3InnerDoorsLength} м.";
+                    Tb_Floor3InnerDoorsLength.Text = $"{House.Floor3InnerDoorsLength} м.";
                     House.Floor3InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor3InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor3InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength:
                     House.Floor3PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor3PartitionsDoorsLength} м.";
+                    Tb_Floor3PartitionsDoorsLength.Text = $"{House.Floor3PartitionsDoorsLength} м.";
                     House.Floor3PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength).Select(l => l.Length).Count();
                     Tb_Floor3PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor3PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare:
                     House.Floor3BalconySquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare).Select(l => l.Square).Sum(), roundTo);
-                    Tb_Floor3BalconySquare.Text = $"Площадь балконов - {House.Floor3BalconySquare} кв.м.";
+                    Tb_Floor3BalconySquare.Text = $"{House.Floor3BalconySquare} кв.м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BalconyLength:
                     House.Floor3BalconyLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BalconyLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3BalconyLength.Text = $"Длина балконов - {House.Floor3BalconyLength} м.";
+                    Tb_Floor3BalconyLength.Text = $"{House.Floor3BalconyLength} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3RailingsLength:
                     House.Floor3RailingsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3RailingsLength).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor3RailingsLength.Text = $"Длина перил и ограждений - {House.Floor3RailingsLength} м.";
+                    Tb_Floor3RailingsLength.Text = $"{House.Floor3RailingsLength} м.";
                     break;
 
                     #endregion
@@ -1056,215 +1166,142 @@ namespace BuildingPlanCalc
                 Floor0Enabled.IsChecked = false;
             else
                 Floor0Enabled.IsChecked = true;
-            Tb_Set0FloorHeight.Text = $"Цокольный - 0 м.";
-            Tb_Set1FloorHeight.Text = $"Первый - 0 м.";
-            Tb_Set2FloorHeight.Text = $"Второй - 0 м.";
-            Tb_Set3FloorHeight.Text = $"Третий - 0 м.";
-            Tb_SetKitchenSquare.Text = $"Площадь кухонь и гостиных - 0 кв.м.";
-            Tb_SetFullHouseHeight.Text = $"Высота от пола верхнего этажа до конька - 0 м.";
-            Tb_SetRoofMinWallHeight.Text = $"Минимальная высота стен верхнего этажа - 0 м.";
-            Tb_SetRoofSquare.Text = $"Площадь, накрытая основной кровлей - 0 кв.м.";
-            Tb_SetRoofLength.Text = $"Длина основной кровли - 0 м.";
-            Tb_SetCanopySquare.Text = $"Площадь, накрытая навесами - 0 кв.м.";
-            Tb_SetCanopyLength.Text = $"Длина навесов вдоль стены, общая - 0 м.";
-            Tb_SetPergolaSquare.Text = $"Площадь Перголы - 0 кв.м.";
-            Tb_SetHemmingButt.Text = $"Подшива торцов основной кровли и навесов - 0 м.";
-            Tb_SetHemmingOverhangsSquare.Text = $"Подшива свесов основной кровли снизу - 0 кв.м.";
-            Tb_Set0FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - 0 кв.м.";
-            Tb_Set0FloorGlaseP.Text = $"Периметр окон и стекляных дверей - 0 м.";
-            Tb_Set1FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - 0 кв.м.";
-            Tb_Set1FloorGlaseP.Text = $"Периметр окон и стекляных дверей - 0 м.";
-            Tb_Set2FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - 0 кв.м.";
-            Tb_Set2FloorGlaseP.Text = $"Периметр окон и стекляных дверей - 0 м.";
-            Tb_Set3FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - 0 кв.м.";
-            Tb_Set3FloorGlaseP.Text = $"Периметр окон и стекляных дверей - 0 м.";
-            Tb_Floor0PlinthHeight.Text = $"Высота цоколя над землей до плиты перекрытия - 0 м.";
-            Tb_Floor0BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - 0 м.";
-            Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor0TileSquare.Text = $"Прочие помещения в кафеле - 0 м.";
-            Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor0OutWallsLength.Text = $"Длина внешних несущих стен - 0 м.";
-            Tb_Floor0InnerWallsLength.Text = $"Длина внутренних несущих стен - 0 м.";
-            Tb_Floor0LightWallsLength.Text = $"Длина перегородок - 0 м.";
-            Tb_Floor0BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - 0 м.";
-            Tb_Floor0OutDoorsLength.Text = $"Двери металлические в несущих стенах - 0 м.";
+
+            Tb_Set0FloorHeight.Text = "0.00 м.";
+            Tb_Set1FloorHeight.Text = "0.00 м.";
+            Tb_Set2FloorHeight.Text = "0.00 м.";
+            Tb_Set3FloorHeight.Text = "0.00 м.";
+            Tb_SetKitchenSquare.Text = "0.00 кв.м.";
+            Tb_SetFullHouseHeight.Text = "0.00 м.";
+            Tb_SetRoofMinWallHeight.Text = "0.00 м.";
+            Tb_SetRoofSquare.Text = "0.00 кв.м.";
+            Tb_SetRoofLength.Text = "0.00 м.";
+            Tb_SetCanopySquare.Text = "0.00 кв.м.";
+            Tb_SetCanopyLength.Text = "0.00 м.";
+            Tb_SetPergolaSquare.Text = "0.00 кв.м.";
+            Tb_SetHemmingButt.Text = "0.00 м.";
+            Tb_SetHemmingOverhangsSquare.Text = "0.00 кв.м.";
+
+            Tb_Set0FloorF1GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set0FloorF1GlaseP.Text = "0.00 м.";
+            Tb_Set1FloorF1GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set1FloorF1GlaseP.Text = "0.00 м.";
+            Tb_Set2FloorF1GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set2FloorF1GlaseP.Text = "0.00 м.";
+            Tb_Set3FloorF1GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set3FloorF1GlaseP.Text = "0.00 м.";
+
+            Tb_Set0FloorF2GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set0FloorF2GlaseP.Text = "0.00 м.";
+            Tb_Set1FloorF2GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set1FloorF2GlaseP.Text = "0.00 м.";
+            Tb_Set2FloorF2GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set2FloorF2GlaseP.Text = "0.00 м.";
+            Tb_Set3FloorF2GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set3FloorF2GlaseP.Text = "0.00 м.";
+
+            Tb_Set0FloorF3GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set0FloorF3GlaseP.Text = "0.00 м.";
+            Tb_Set1FloorF3GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set1FloorF3GlaseP.Text = "0.00 м.";
+            Tb_Set2FloorF3GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set2FloorF3GlaseP.Text = "0.00 м.";
+            Tb_Set3FloorF3GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set3FloorF3GlaseP.Text = "0.00 м.";
+
+            Tb_Set0FloorF4GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set0FloorF4GlaseP.Text = "0.00 м.";
+            Tb_Set1FloorF4GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set1FloorF4GlaseP.Text = "0.00 м.";
+            Tb_Set2FloorF4GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set2FloorF4GlaseP.Text = "0.00 м.";
+            Tb_Set3FloorF4GlaseSq.Text = "0.00 кв.м.";
+            Tb_Set3FloorF4GlaseP.Text = "0.00 м.";
+
+            Tb_Floor0PlinthHeight.Text = "0.00 м.";
+            Tb_Floor0BadroomSquare.Text = "0.00 м.";
+            Tb_Floor0TilePerimeter.Text = "0.00 м.";
+            Tb_Floor0TileSquare.Text = "0.00 м.";
+            Tb_Floor0TilePerimeter.Text = "0.00 м.";
+            Tb_Floor0OutWallsLength.Text = "0.00 м.";
+            Tb_Floor0InnerWallsLength.Text = "0.00 м.";
+            Tb_Floor0LightWallsLength.Text = "0.00 м.";
+            Tb_Floor0BreakWallsLength.Text = "0.00 м.";
+            Tb_Floor0OutDoorsLength.Text = "0.00 м.";
             Tb_Floor0OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
-            Tb_Floor0InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - 0 м.";
+            Tb_Floor0InnerDoorsLength.Text = "0.00 м.";
             Tb_Floor0InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
-            Tb_Floor0PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - 0 м.";
+            Tb_Floor0PartitionsDoorsLength.Text = "0.00 м.";
             Tb_Floor0PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
-            Tb_Floor0GatesLength.Text = $"Ворота - 0 м.";
+            Tb_Floor0GatesLength.Text = "0.00 м.";
             Tb_Floor0GatesCount.Text = $"Ворота - 0 шт.";
-            Tb_Floor0TerassesSquare.Text = $"Площадь терасс и крылец - 0 кв.м.";
-            Tb_Floor0InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - 0 м.";
-            Tb_Floor0TerassesLength.Text = $"Длина терасс и крылец - 0 м.";
-            Tb_Floor0RailingsLength.Text = $"Длина перил и ограждений - 0 м.";
+            Tb_Floor0TerassesSquare.Text = "0.00 кв.м.";
+            Tb_Floor0InnerTerassesLength.Text = "0.00 м.";
+            Tb_Floor0TerassesLength.Text = "0.00 м.";
+            Tb_Floor0RailingsLength.Text = "0.00 м.";
 
-            Tb_Floor1BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - 0 кв.м.";
-            Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor1TileSquare.Text = $"Прочие помещения в кафеле - 0 кв.м.";
-            Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor1OutWallsLength.Text = $"Длина внешних несущих стен - 0 м.";
-            Tb_Floor1InnerWallsLength.Text = $"Длина внутренних несущих стен - 0 м.";
-            Tb_Floor1LightWallsLength.Text = $"Длина перегородок - 0 м.";
-            Tb_Floor1BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - 0 м.";
-            Tb_Floor1OutDoorsLength.Text = $"Двери металлические в несущих стенах - 0 м.";
+            Tb_Floor1BadroomSquare.Text = "0.00 кв.м.";
+            Tb_Floor1TilePerimeter.Text = "0.00 м.";
+            Tb_Floor1TileSquare.Text = "0.00 кв.м.";
+            Tb_Floor1TilePerimeter.Text = "0.00 м.";
+            Tb_Floor1OutWallsLength.Text = "0.00 м.";
+            Tb_Floor1InnerWallsLength.Text = "0.00 м.";
+            Tb_Floor1LightWallsLength.Text = "0.00 м.";
+            Tb_Floor1BreakWallsLength.Text = "0.00 м.";
+            Tb_Floor1OutDoorsLength.Text = "0.00 м.";
             Tb_Floor1OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
-            Tb_Floor1InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - 0 м.";
+            Tb_Floor1InnerDoorsLength.Text = "0.00 м.";
             Tb_Floor1InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
-            Tb_Floor1PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - 0 м.";
+            Tb_Floor1PartitionsDoorsLength.Text = "0.00 м.";
             Tb_Floor1PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
-            Tb_Floor1GatesLength.Text = $"Ворота - 0 м.";
+            Tb_Floor1GatesLength.Text = "0.00 м.";
             Tb_Floor1GatesCount.Text = $"Ворота - 0 шт.";
-            Tb_Floor1TerassesSquare.Text = $"Площадь терасс и крылец - 0 кв.м.";
-            Tb_Floor1InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - 0 м.";
-            Tb_Floor1TerassesLength.Text = $"Длина терасс и крылец - 0 м.";
-            Tb_Floor1RailingsLength.Text = $"Длина перил и ограждений - 0 м.";
+            Tb_Floor1TerassesSquare.Text = "0.00 кв.м.";
+            Tb_Floor1InnerTerassesLength.Text = "0.00 м.";
+            Tb_Floor1TerassesLength.Text = "0.00 м.";
+            Tb_Floor1RailingsLength.Text = "0.00 м.";
 
-            Tb_Floor2РHoleSecondLight.Text = $"Дырка в полу под второй свет - 0 кв.м.";
-            Tb_Floor2BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - 0 кв.м.";
-            Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor2TileSquare.Text = $"Прочие помещения в кафеле - 0 кв.м.";
-            Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor2OutWallsLength.Text = $"Длина внешних несущих стен - 0 м.";
-            Tb_Floor2InnerWallsLength.Text = $"Длина внутренних несущих стен - 0 м.";
-            Tb_Floor2LightWallsLength.Text = $"Длина перегородок - 0 м.";
-            Tb_Floor2BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - 0 м.";
-            Tb_Floor2OutDoorsLength.Text = $"Двери металлические в несущих стенах - 0 м.";
+            Tb_Floor2РHoleSecondLight.Text = "0.00 кв.м.";
+            Tb_Floor2BadroomSquare.Text = "0.00 кв.м.";
+            Tb_Floor2TilePerimeter.Text = "0.00 м.";
+            Tb_Floor2TileSquare.Text = "0.00 кв.м.";
+            Tb_Floor2TilePerimeter.Text = "0.00 м.";
+            Tb_Floor2OutWallsLength.Text = "0.00 м.";
+            Tb_Floor2InnerWallsLength.Text = "0.00 м.";
+            Tb_Floor2LightWallsLength.Text = "0.00 м.";
+            Tb_Floor2BreakWallsLength.Text = "0.00 м.";
+            Tb_Floor2OutDoorsLength.Text = "0.00 м.";
             Tb_Floor2OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
-            Tb_Floor2InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - 0 м.";
+            Tb_Floor2InnerDoorsLength.Text = "0.00 м.";
             Tb_Floor2InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
-            Tb_Floor2PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - 0 м.";
+            Tb_Floor2PartitionsDoorsLength.Text = "0.00 м.";
             Tb_Floor2PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
-            Tb_Floor2BalconySquare.Text = $"Площадь балконов - 0 кв.м.";
-            Tb_Floor2BalconyLength.Text = $"Длина балконов - 0 м.";
-            Tb_Floor2RailingsLength.Text = $"Длина перил и ограждений - 0 м.";
+            Tb_Floor2BalconySquare.Text = "0.00 кв.м.";
+            Tb_Floor2BalconyLength.Text = "0.00 м.";
+            Tb_Floor2RailingsLength.Text = "0.00 м.";
 
-            Tb_Floor3РHoleSecondLight.Text = $"Дырка в полу под второй свет - 0 кв.м.";
-            Tb_Floor3BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - 0 кв.м.";
-            Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor3TileSquare.Text = $"Прочие помещения в кафеле - 0 кв.м.";
-            Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - 0 м.";
-            Tb_Floor3OutWallsLength.Text = $"Длина внешних несущих стен - 0 м.";
-            Tb_Floor3InnerWallsLength.Text = $"Длина внутренних несущих стен - 0 м.";
-            Tb_Floor3LightWallsLength.Text = $"Длина перегородок - 0 м.";
-            Tb_Floor3BreakWallsLength.Text = $"Разрывы в несущей стене > 3 м. - 0 м.";
-            Tb_Floor3OutDoorsLength.Text = $"Двери металлические в несущих стенах - 0 м.";
+            Tb_Floor3РHoleSecondLight.Text = "0.00 кв.м.";
+            Tb_Floor3BadroomSquare.Text = "0.00 кв.м.";
+            Tb_Floor3TilePerimeter.Text = "0.00 м.";
+            Tb_Floor3TileSquare.Text = "0.00 кв.м.";
+            Tb_Floor3TilePerimeter.Text = "0.00 м.";
+            Tb_Floor3OutWallsLength.Text = "0.00 м.";
+            Tb_Floor3InnerWallsLength.Text = "0.00 м.";
+            Tb_Floor3LightWallsLength.Text = "0.00 м.";
+            Tb_Floor3BreakWallsLength.Text = "0.00 м.";
+            Tb_Floor3OutDoorsLength.Text = "0.00 м.";
             Tb_Floor3OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
-            Tb_Floor3InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - 0 м.";
+            Tb_Floor3InnerDoorsLength.Text = "0.00 м.";
             Tb_Floor3InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
-            Tb_Floor3PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - 0 м.";
+            Tb_Floor3PartitionsDoorsLength.Text = "0.00 м.";
             Tb_Floor3PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
-            Tb_Floor3BalconySquare.Text = $"Площадь балконов - 0 кв.м.";
-            Tb_Floor3BalconyLength.Text = $"Длина балконов - 0 м.";
-            Tb_Floor3RailingsLength.Text = $"Длина перил и ограждений - 0 м.";
+            Tb_Floor3BalconySquare.Text = "0.00 м.";
+            Tb_Floor3BalconyLength.Text = "0.00 м.";
+            Tb_Floor3RailingsLength.Text = "0.00 м.";
 
-            #region Пригодится для загрузки настроек
-            //Tb_Set0FloorHeight.Text = $"Цокольный - {House.Floor0Height} м.";
-            //Tb_Set1FloorHeight.Text = $"Первый - {House.Floor1Height} м.";
-            //Tb_Set2FloorHeight.Text = $"Второй - {House.Floor2Height} м.";
-            //Tb_Set3FloorHeight.Text = $"Третий - {House.Floor3Height} м.";
-            //Tb_SetKitchenSquare.Text = $"Площадь кухонь и гостиных - {House.KitchensSquare} кв.м.";
-            //Tb_SetFullHouseHeight.Text = $"Высота от пола верхнего этажа до конька - {House.RoofHeight} м.";
-            //Tb_SetRoofMinWallHeight.Text = $"Минимальная высота стен верхнего этажа - {House.RoofMinWallHeight} м.";
-            //Tb_SetRoofSquare.Text = $"Площадь, накрытая основной кровлей - {House.RoofSquare} кв.м.";
-            //Tb_SetRoofLength.Text = $"Длина основной кровли - {House.RoofLength} м.";
-            //Tb_SetCanopySquare.Text = $"Площадь, накрытая навесами - {House.CanopySquare} кв.м.";
-            //Tb_SetCanopyLength.Text = $"Длина навесов вдоль стены, общая - {House.CanopyLength} м.";
-            //Tb_SetPergolaSquare.Text = $"Площадь Перголы - {House.PergolaSquare} кв.м.";
-            //Tb_SetHemmingButt.Text = $"Подшива торцов основной кровли и навесов - {House.HemmingButt} м.";
-            //Tb_SetHemmingOverhangsSquare.Text = $"Подшива свесов основной кровли снизу - {House.HemmingOverhangsSquare} кв.м.";
-            //Tb_Set0FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor0GlaseSq} кв.м.";
-            //Tb_Set0FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor0GlaseP} м.";
-            //Tb_Set1FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor1GlaseSq} кв.м.";
-            //Tb_Set1FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor1GlaseP} м.";
-            //Tb_Set2FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor2GlaseSq} кв.м.";
-            //Tb_Set2FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor2GlaseP} м.";
-            //Tb_Set3FloorGlaseSq.Text = $"Площадь окон и стекляных дверей - {House.Floor3GlaseSq} кв.м.";
-            //Tb_Set3FloorGlaseP.Text = $"Периметр окон и стекляных дверей - {House.Floor3GlaseP} м.";
-            //Tb_Floor0PlinthHeight.Text = $"Высота цоколя над землей до плиты перекрытия - {House.Floor0PlinthHeight} м.";
-            //Tb_Floor0BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor0BadroomSquare} м.";
-            //Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
-            //Tb_Floor0TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor0TileSquare} м.";
-            //Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
-            //Tb_Floor0OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor0OutWallsLength} м.";
-            //Tb_Floor0InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor0InnerWallsLength} м.";
-            //Tb_Floor0LightWallsLength.Text = $"Длина перегородок - {House.Floor0LightWallsLength} м.";
-            //Tb_Floor0BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor0BreakWallsLength} м.";
-            //Tb_Floor0OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor0OutDoorsLength} м.";
-            //Tb_Floor0OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor0OutDoorsCount} шт.";
-            //Tb_Floor0InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor0InnerDoorsLength} м.";
-            //Tb_Floor0InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor0InnerDoorsCount} шт.";
-            //Tb_Floor0PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor0PartitionsDoorsLength} м.";
-            //Tb_Floor0PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor0PartitionsDoorsCount} шт.";
-            //Tb_Floor0GatesLength.Text = $"Ворота - {House.Floor0GatesLength} м.";
-            //Tb_Floor0GatesCount.Text = $"Ворота - {House.Floor0GatesCount} шт.";
-            //Tb_Floor0TerassesSquare.Text = $"Площадь терасс и крылец - {House.Floor0TerassesSquare} кв.м.";
-            //Tb_Floor0InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - {House.Floor0InnerTerassesLength} м.";
-            //Tb_Floor0TerassesLength.Text = $"Длина терасс и крылец - {House.Floor0TerassesLength} м.";
-            //Tb_Floor0RailingsLength.Text = $"Длина перил и ограждений - {House.Floor0RailingsLength} м.";
 
-            //Tb_Floor1BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor1BadroomSquare} кв.м.";
-            //Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
-            //Tb_Floor1TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor1TileSquare} кв.м.";
-            //Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
-            //Tb_Floor1OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor1OutWallsLength} м.";
-            //Tb_Floor1InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor1InnerWallsLength} м.";
-            //Tb_Floor1LightWallsLength.Text = $"Длина перегородок - {House.Floor1LightWallsLength} м.";
-            //Tb_Floor1BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor1BreakWallsLength} м.";
-            //Tb_Floor1OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor1OutDoorsLength} м.";
-            //Tb_Floor1OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor1OutDoorsCount} шт.";
-            //Tb_Floor1InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor1InnerDoorsLength} м.";
-            //Tb_Floor1InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor1InnerDoorsCount} шт.";
-            //Tb_Floor1PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor1PartitionsDoorsLength} м.";
-            //Tb_Floor1PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor1PartitionsDoorsCount} шт.";
-            //Tb_Floor1GatesLength.Text = $"Ворота - {House.Floor1GatesLength} м.";
-            //Tb_Floor1GatesCount.Text = $"Ворота - {House.Floor1GatesCount} шт.";
-            //Tb_Floor1TerassesSquare.Text = $"Площадь терасс и крылец - {House.Floor1TerassesSquare} кв.м.";
-            //Tb_Floor1InnerTerassesLength.Text = $"Длина внешних стен терасс и крылец - {House.Floor1InnerTerassesLength} м.";
-            //Tb_Floor1TerassesLength.Text = $"Длина терасс и крылец - {House.Floor1TerassesLength} м.";
-            //Tb_Floor1RailingsLength.Text = $"Длина перил и ограждений - {House.Floor1RailingsLength} м.";
-
-            //Tb_Floor2РHoleSecondLight.Text = $"Дырка в полу под второй свет - {House.Floor2РHoleSecondLight} кв.м.";
-            //Tb_Floor2BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor2BadroomSquare} кв.м.";
-            //Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
-            //Tb_Floor2TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor2TileSquare} кв.м.";
-            //Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
-            //Tb_Floor2OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor2OutWallsLength} м.";
-            //Tb_Floor2InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor2InnerWallsLength} м.";
-            //Tb_Floor2LightWallsLength.Text = $"Длина перегородок - {House.Floor2LightWallsLength} м.";
-            //Tb_Floor2BreakWallsLength.Text = $"Разрывы в несущей стене > 2 м. - {House.Floor2BreakWallsLength} м.";
-            //Tb_Floor2OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor2OutDoorsLength} м.";
-            //Tb_Floor2OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor2OutDoorsCount} шт.";
-            //Tb_Floor2InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor2InnerDoorsLength} м.";
-            //Tb_Floor2InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor2InnerDoorsCount} шт.";
-            //Tb_Floor2PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor2PartitionsDoorsLength} м.";
-            //Tb_Floor2PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor2PartitionsDoorsCount} шт.";
-            //Tb_Floor2BalconySquare.Text = $"Площадь балконов - {House.Floor2BalconySquare} кв.м.";
-            //Tb_Floor2BalconyLength.Text = $"Длина балконов - {House.Floor2BalconyLength} м.";
-            //Tb_Floor2RailingsLength.Text = $"Длина перил и ограждений - {House.Floor2RailingsLength} м.";
-
-            //Tb_Floor3РHoleSecondLight.Text = $"Дырка в полу под второй свет - {House.Floor3РHoleSecondLight} кв.м.";
-            //Tb_Floor3BadroomSquare.Text = $"Площадь туалетов и ванных комнтат - {House.Floor3BadroomSquare} кв.м.";
-            //Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
-            //Tb_Floor3TileSquare.Text = $"Прочие помещения в кафеле - {House.Floor3TileSquare} кв.м.";
-            //Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
-            //Tb_Floor3OutWallsLength.Text = $"Длина внешних несущих стен - {House.Floor3OutWallsLength} м.";
-            //Tb_Floor3InnerWallsLength.Text = $"Длина внутренних несущих стен - {House.Floor3InnerWallsLength} м.";
-            //Tb_Floor3LightWallsLength.Text = $"Длина перегородок - {House.Floor3LightWallsLength} м.";
-            //Tb_Floor3BreakWallsLength.Text = $"Разрывы в несущей стене > 3 м. - {House.Floor3BreakWallsLength} м.";
-            //Tb_Floor3OutDoorsLength.Text = $"Двери металлические в несущих стенах - {House.Floor3OutDoorsLength} м.";
-            //Tb_Floor3OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor3OutDoorsCount} шт.";
-            //Tb_Floor3InnerDoorsLength.Text = $"Двери межкомнатные в несущих стенах - {House.Floor3InnerDoorsLength} м.";
-            //Tb_Floor3InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor3InnerDoorsCount} шт.";
-            //Tb_Floor3PartitionsDoorsLength.Text = $"Двери межкомнатные в перегородках - {House.Floor3PartitionsDoorsLength} м.";
-            //Tb_Floor3PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor3PartitionsDoorsCount} шт.";
-            //Tb_Floor3BalconySquare.Text = $"Площадь балконов - {House.Floor3BalconySquare} кв.м.";
-            //Tb_Floor3BalconyLength.Text = $"Длина балконов - {House.Floor3BalconyLength} м.";
-            //Tb_Floor3RailingsLength.Text = $"Длина перил и ограждений - {House.Floor3RailingsLength} м.";
-            #endregion
             SetFloorsHouse.SelectedIndex = 0;
-            RoofType.SelectedIndex = 0;
+            RoofType.SelectedIndex = -1;
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
@@ -1286,7 +1323,201 @@ namespace BuildingPlanCalc
             if (Shapes.Count > 0)
             {
                 Shapes.RemoveAll(s => s.ParrentCanvasName == selectedCanvas.Name);
-                CalcSize();
+                ResetSelectedCanvasStatistic();
+            }
+        }
+        private void ResetSelectedCanvasStatistic()
+        {
+            if (selectedCanvas == HeighLayout)
+            {
+                Tb_Set0FloorHeight.Text = "0.00 м";
+                Tb_Set1FloorHeight.Text = "0.00 м";
+                Tb_Set2FloorHeight.Text = "0.00 м";
+                Tb_Set3FloorHeight.Text = "0.00 м";
+            }
+            if (selectedCanvas == RoomsLayout)
+            {
+                TB_RoomCount.Text = "";
+                TB_BedroomCount.Text = "";
+                Tb_SetKitchenSquare.Text = "0.00 кв.м.";
+            }
+            if (selectedCanvas == RoofLayout)
+            {
+                RoofType.SelectedIndex = -1;
+                Tb_SetFullHouseHeight.Text = "0.00 м.";
+                Tb_SetRoofMinWallHeight.Text = "0.00 м.";
+                Tb_SetRoofSquare.Text = "0.00 кв.м.";
+                Tb_SetRoofLength.Text = "0.00 м.";
+                Tb_SetCanopySquare.Text = "0.00 кв.м.";
+                Tb_SetCanopyLength.Text = "0.00 м.";
+                Tb_SetPergolaSquare.Text = "0.00 кв.м.";
+                Tb_SetHemmingButt.Text = "0.00 м.";
+                Tb_SetHemmingOverhangsSquare.Text = "0.00 м.";
+
+            }
+            if (selectedCanvas == Fasade0Layout)
+            {
+                Tb_Set0FloorF1GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set0FloorF1GlaseP.Text = "0.00 м.";
+                Tb_Set1FloorF1GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set1FloorF1GlaseP.Text = "0.00 м.";
+                Tb_Set2FloorF1GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set2FloorF1GlaseP.Text = "0.00 м.";
+                Tb_Set3FloorF1GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set3FloorF1GlaseP.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Fasade1Layout)
+            {
+                Tb_Set0FloorF2GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set0FloorF2GlaseP.Text = "0.00 м.";
+                Tb_Set1FloorF2GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set1FloorF2GlaseP.Text = "0.00 м.";
+                Tb_Set2FloorF2GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set2FloorF2GlaseP.Text = "0.00 м.";
+                Tb_Set3FloorF2GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set3FloorF2GlaseP.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Fasade2Layout)
+            {
+                Tb_Set0FloorF3GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set0FloorF3GlaseP.Text = "0.00 м.";
+                Tb_Set1FloorF3GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set1FloorF3GlaseP.Text = "0.00 м.";
+                Tb_Set2FloorF3GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set2FloorF3GlaseP.Text = "0.00 м.";
+                Tb_Set3FloorF3GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set3FloorF3GlaseP.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Fasade3Layout)
+            {
+                Tb_Set0FloorF4GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set0FloorF4GlaseP.Text = "0.00 м.";
+                Tb_Set1FloorF4GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set1FloorF4GlaseP.Text = "0.00 м.";
+                Tb_Set2FloorF4GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set2FloorF4GlaseP.Text = "0.00 м.";
+                Tb_Set3FloorF4GlaseSq.Text = "0.00 кв.м.";
+                Tb_Set3FloorF4GlaseP.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Floor0ODLayout)
+            {
+                Tb_Set0FloorSquare.Text = "";
+                Tb_Floor0PlinthHeight.Text = "0.00 м.";
+                PlinthOpenPerc.Value = 0;
+                Tb_SetFloor0BadroomCount.Text = "";
+                Tb_Floor0BadroomSquare.Text = "0.00 кв.м.";
+                Tb_Floor0TileSquare.Text = "0.00 м.";
+                Tb_Floor0TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+            }
+            if (selectedCanvas == Floor0DoorsLayout)
+            {
+                Tb_Floor0OutWallsLength.Text = "0.00 м.";
+                Tb_Floor0InnerWallsLength.Text = "0.00 м.";
+                Tb_Floor0LightWallsLength.Text = "0.00 м.";
+                Tb_Floor0BreakWallsLength.Text = "0.00 м.";
+                Tb_Floor0OutDoorsLength.Text = "0.00 м.";
+                Tb_Floor0OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor0InnerDoorsLength.Text = "0.00 м.";
+                Tb_Floor0InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor0PartitionsDoorsLength.Text = "0.00 м.";
+                Tb_Floor0PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor0GatesLength.Text = "0.00 м.";
+                Tb_Floor0GatesCount.Text = "Ворота - 0 шт.";
+            }
+            if (selectedCanvas == Floor0TerasesLayout)
+            {
+                Tb_Floor0TerassesSquare.Text = "0.00 кв.м.";
+                Tb_Floor0InnerTerassesLength.Text = "0.00 м.";
+                Tb_Floor0TerassesLength.Text = "0.00 м.";
+                Tb_Floor0RailingsLength.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Floor1ODLayout)
+            {
+                Tb_SetFloor1Square.Text = "";
+                Tb_SetFloor1BadroomCount.Text = "";
+                Tb_Floor1BadroomSquare.Text = "0.00 кв.м.";
+                Tb_Floor1TileSquare.Text = "0.00 м.";
+                Tb_Floor1TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+            }
+            if (selectedCanvas == Floor1DoorsLayout)
+            {
+                Tb_Floor1OutWallsLength.Text = "0.00 м.";
+                Tb_Floor1InnerWallsLength.Text = "0.00 м.";
+                Tb_Floor1LightWallsLength.Text = "0.00 м.";
+                Tb_Floor1BreakWallsLength.Text = "0.00 м.";
+                Tb_Floor1OutDoorsLength.Text = "0.00 м.";
+                Tb_Floor1OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor1InnerDoorsLength.Text = "0.00 м.";
+                Tb_Floor1InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor1PartitionsDoorsLength.Text = "0.00 м.";
+                Tb_Floor1PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor1GatesLength.Text = "0.00 м.";
+                Tb_Floor1GatesCount.Text = "Ворота - 0 шт.";
+            }
+            if (selectedCanvas == Floor1TerasesLayout)
+            {
+                Tb_Floor1TerassesSquare.Text = "0.00 кв.м.";
+                Tb_Floor1InnerTerassesLength.Text = "0.00 м.";
+                Tb_Floor1TerassesLength.Text = "0.00 м.";
+                Tb_Floor1RailingsLength.Text = "0.00 м.";
+                Tb_SetFloor1DecatativePillarsLessCount.Text = "";
+                Tb_SetFloor1DecatativePillarsOverCount.Text = "";
+            }
+            if (selectedCanvas == Floor2ODLayout)
+            {
+                Tb_SetFloor2Square.Text = "";
+                Tb_SetFloor2BadroomCount.Text = "";
+                Tb_Floor2РHoleSecondLight.Text = "0.00 кв.м.";
+                Tb_Floor2BadroomSquare.Text = "0.00 кв.м.";
+                Tb_Floor2TileSquare.Text = "0.00 м.";
+                Tb_Floor2TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+            }
+            if (selectedCanvas == Floor2DoorsLayout)
+            {
+                Tb_Floor2OutWallsLength.Text = "0.00 м.";
+                Tb_Floor2InnerWallsLength.Text = "0.00 м.";
+                Tb_Floor2LightWallsLength.Text = "0.00 м.";
+                Tb_Floor2BreakWallsLength.Text = "0.00 м.";
+                Tb_Floor2OutDoorsLength.Text = "0.00 м.";
+                Tb_Floor2OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor2InnerDoorsLength.Text = "0.00 м.";
+                Tb_Floor2InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor2PartitionsDoorsLength.Text = "0.00 м.";
+                Tb_Floor2PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+            }
+            if (selectedCanvas == Floor2BalconyLayout)
+            {
+                Tb_Floor2BalconySquare.Text = "0.00 кв.м.";
+                Tb_Floor2BalconyLength.Text = "0.00 м.";
+                Tb_Floor2RailingsLength.Text = "0.00 м.";
+            }
+            if (selectedCanvas == Floor3ODLayout)
+            {
+                Tb_SetFloor3Square.Text = "";
+                Tb_SetFloor3BadroomCount.Text = "";
+                Tb_Floor3РHoleSecondLight.Text = "0.00 кв.м.";
+                Tb_Floor3BadroomSquare.Text = "0.00 кв.м.";
+                Tb_Floor3TileSquare.Text = "0.00 м.";
+                Tb_Floor3TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+            }
+            if (selectedCanvas == Floor3DoorsLayout)
+            {
+                Tb_Floor3OutWallsLength.Text = "0.00 м.";
+                Tb_Floor3InnerWallsLength.Text = "0.00 м.";
+                Tb_Floor3LightWallsLength.Text = "0.00 м.";
+                Tb_Floor3BreakWallsLength.Text = "0.00 м.";
+                Tb_Floor3OutDoorsLength.Text = "0.00 м.";
+                Tb_Floor3OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor3InnerDoorsLength.Text = "0.00 м.";
+                Tb_Floor3InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor3PartitionsDoorsLength.Text = "0.00 м.";
+                Tb_Floor3PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+            }
+            if (selectedCanvas == Floor3BalconyLayout)
+            {
+                Tb_Floor3BalconySquare.Text = "0.00 кв.м.";
+                Tb_Floor3BalconyLength.Text = "0.00 м.";
+                Tb_Floor3RailingsLength.Text = "0.00 м.";
             }
         }
         private void Btn_DeleteLastLine_Click(object sender, RoutedEventArgs e)
@@ -1573,64 +1804,235 @@ namespace BuildingPlanCalc
         }
         #endregion
         #region Выбор объектов вкладки "Фасады"
-        private void Btn_Set0FloorGlaseQ_Click(object sender, RoutedEventArgs e)
+        private void Btn_Set0FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0F1GlaseSq);
+        }
+        private void Btn_Set1FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1F1GlaseSq);
+        }
+        private void Btn_Set2FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2F1GlaseSq);
+        }
+        private void Btn_Set3FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3F1GlaseSq);
+        }
+        private void Btn_Set0FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0F2GlaseSq);
+        }
+        private void Btn_Set1FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1F2GlaseSq);
+        }
+        private void Btn_Set2FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2F2GlaseSq);
+        }
+        private void Btn_Set3FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3F2GlaseSq);
+        }
+        private void Btn_Set0FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0F3GlaseSq);
+        }
+        private void Btn_Set1FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1F3GlaseSq);
+        }
+        private void Btn_Set2FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2F3GlaseSq);
+        }
+        private void Btn_Set3FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3F3GlaseSq);
+        }
+        private void Btn_Set0FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0F4GlaseSq);
+        }
+        private void Btn_Set1FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1F4GlaseSq);
+        }
+        private void Btn_Set2FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2F4GlaseSq);
+        }
+        private void Btn_Set3FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3F4GlaseSq);
+        }
+
+        private void Btn_Set0FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
 
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq);
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0F1GlaseSq);
         }
-        private void Btn_Set0FloorGlaseT_Click(object sender, RoutedEventArgs e)
+        private void Btn_Set1FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
-            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0GlaseSq);
-        }
-        private void Btn_Set1FloorGlaseQ_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade1Layout.IsChecked = true;
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq);
-        }
-        private void Btn_Set1FloorGlaseT_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade1Layout.IsChecked = true;
-            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1GlaseSq);
-        }
-        private void Btn_Set2FloorGlaseQ_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade2Layout.IsChecked = true;
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq);
-        }
-        private void Btn_Set2FloorGlaseT_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade2Layout.IsChecked = true;
-            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2GlaseSq);
-        }
-        private void Btn_Set3FloorGlaseQ_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade3Layout.IsChecked = true;
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq);
-        }
-        private void Btn_Set3FloorGlaseT_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetFasade3Layout.IsChecked = true;
-            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3GlaseSq);
-        }
 
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1F1GlaseSq);
+        }
+        private void Btn_Set2FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2F1GlaseSq);
+        }
+        private void Btn_Set3FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade0Layout.IsChecked = true;
+
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3F1GlaseSq);
+        }
+        private void Btn_Set0FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0F2GlaseSq);
+        }
+        private void Btn_Set1FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1F2GlaseSq);
+        }
+        private void Btn_Set2FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2F2GlaseSq);
+        }
+        private void Btn_Set3FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade1Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3F2GlaseSq);
+        }
+        private void Btn_Set0FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0F3GlaseSq);
+        }
+        private void Btn_Set1FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1F3GlaseSq);
+        }
+        private void Btn_Set2FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2F3GlaseSq);
+        }
+        private void Btn_Set3FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade2Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3F3GlaseSq);
+        }
+        private void Btn_Set0FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0F4GlaseSq);
+        }
+        private void Btn_Set1FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1F4GlaseSq);
+        }
+        private void Btn_Set2FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2F4GlaseSq);
+        }
+        private void Btn_Set3FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFasade3Layout.IsChecked = true;
+            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3F4GlaseSq);
+        }
         #endregion
         #region Выбор объектов вкладки "Этажи"
         private void Btn_SetFloor0PlinthHeight_Click(object sender, RoutedEventArgs e)
@@ -1653,7 +2055,7 @@ namespace BuildingPlanCalc
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0ODLayout.IsChecked = true;
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare);
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare);
         }
         private void Btn_SetFloor0OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
@@ -1755,7 +2157,7 @@ namespace BuildingPlanCalc
             shapeColor = button.Background;
             RB_SetFloor1ODLayout.IsChecked = true;
 
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare);
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare);
         }
         private void Btn_SetFloor1OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
@@ -1876,7 +2278,7 @@ namespace BuildingPlanCalc
             shapeColor = button.Background;
             RB_SetFloor2ODLayout.IsChecked = true;
 
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare);
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare);
         }
         private void Btn_SetFloor2OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
@@ -1981,7 +2383,7 @@ namespace BuildingPlanCalc
             shapeColor = button.Background;
             RB_SetFloor3ODLayout.IsChecked = true;
 
-            SelectRectObj((byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare);
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare);
         }
         private void Btn_SetFloor3OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
@@ -2114,6 +2516,7 @@ namespace BuildingPlanCalc
             selectedCanvas.Visibility = Visibility.Visible;
             SelectedBuidingObj = default;
         }
+        #region Выбор слоя
         private void RB_SetHeighSetupLayout_Checked(object sender, RoutedEventArgs e)
         {
             SelectLayouts(HeighLayout);
@@ -2195,5 +2598,6 @@ namespace BuildingPlanCalc
         {
             SelectLayouts(Floor3BalconyLayout);
         }
+        #endregion
     }
 }

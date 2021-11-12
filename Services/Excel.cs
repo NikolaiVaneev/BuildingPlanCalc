@@ -83,14 +83,14 @@ namespace BuildingPlanCalc.Services
                 xlWorkSheet.Cells[2, 18] = House.PergolaSquare;
                 xlWorkSheet.Cells[2, 19] = House.HemmingButt;
                 xlWorkSheet.Cells[2, 20] = House.HemmingOverhangsSquare;
-                xlWorkSheet.Cells[2, 21] = House.Floor0GlaseSq;
-                xlWorkSheet.Cells[2, 22] = House.Floor0GlaseP;
-                xlWorkSheet.Cells[2, 23] = House.Floor1GlaseSq;
-                xlWorkSheet.Cells[2, 24] = House.Floor1GlaseP;
-                xlWorkSheet.Cells[2, 25] = House.Floor2GlaseSq;
-                xlWorkSheet.Cells[2, 26] = House.Floor2GlaseP;
-                xlWorkSheet.Cells[2, 27] = House.Floor3GlaseSq;
-                xlWorkSheet.Cells[2, 28] = House.Floor3GlaseP;
+                xlWorkSheet.Cells[2, 21] = House.Floor0F1GlaseSq + House.Floor0F2GlaseSq + House.Floor0F3GlaseSq + House.Floor0F4GlaseSq;
+                xlWorkSheet.Cells[2, 22] = House.Floor0F1GlaseP + House.Floor0F2GlaseP + House.Floor0F3GlaseP + House.Floor0F4GlaseP;
+                xlWorkSheet.Cells[2, 23] = House.Floor1F1GlaseSq + House.Floor1F2GlaseSq + House.Floor1F3GlaseSq + House.Floor1F4GlaseSq;
+                xlWorkSheet.Cells[2, 24] = House.Floor1F1GlaseP + House.Floor1F2GlaseP + House.Floor1F3GlaseP + House.Floor1F4GlaseP;
+                xlWorkSheet.Cells[2, 25] = House.Floor2F1GlaseSq + House.Floor2F2GlaseSq + House.Floor2F3GlaseSq + House.Floor2F4GlaseSq;
+                xlWorkSheet.Cells[2, 26] = House.Floor2F1GlaseP + House.Floor2F2GlaseP + House.Floor2F3GlaseP + House.Floor2F4GlaseP;
+                xlWorkSheet.Cells[2, 27] = House.Floor3F1GlaseSq + House.Floor3F2GlaseSq + House.Floor3F3GlaseSq + House.Floor3F4GlaseSq;
+                xlWorkSheet.Cells[2, 28] = House.Floor3F1GlaseP + House.Floor3F2GlaseP + House.Floor3F3GlaseP + House.Floor3F4GlaseP;
                 xlWorkSheet.Cells[2, 29] = House.WindowCount;
                 xlWorkSheet.Cells[2, 30] = House.WindowSquare;
 
