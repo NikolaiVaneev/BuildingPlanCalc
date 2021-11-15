@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -1536,15 +1538,26 @@ namespace BuildingPlanCalc
         }
 
         #region Работа с Google
-        private void SendDataToGoogle(object sender, RoutedEventArgs e)
+        private async void SendDataToGoogleAsync(object sender, RoutedEventArgs e)
         {
-            if (House.ProjectName != null)
-                GoogleSheets.SaveData();
+            await Task.Run(() =>
+            {
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_SaveData.IsEnabled = false; }));
+
+                if (House.ProjectName != null)
+                {
+                    GoogleSheets.SaveData();
+                }
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_SaveData.IsEnabled = true; }));
+                
+            });
         }
         private void LoadProjectData(object sender, RoutedEventArgs e)
         {
             // TODO : включить, как допишу присвоение
-            // GoogleSheets.LoadData();
+
+            GoogleSheets.LoadData();
         }
         #endregion
 
