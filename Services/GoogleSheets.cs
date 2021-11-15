@@ -252,7 +252,7 @@ namespace BuildingPlanCalc.Services
                 foreach (var row in values)
                 {
                     lineProjectInTable++;
-                    if (row[0].ToString().ToLower().Contains(House.ProjectName.ToLower())) 
+                    if (row[0].ToString().ToLower().Contains(House.ProjectName.ToLower()))
                     {
                         isFinded = true;
                         // Define request parameters.
@@ -266,8 +266,126 @@ namespace BuildingPlanCalc.Services
                         var rowValues = findedValues[0];
 
                         // UNDONE : Присвоение данных с google классу House
-                           
-                        
+                        try
+                        {
+                            House.ManagerName = rowValues[1].ToString();
+                            House.FloorsCount = ExtractInt(rowValues[2].ToString());
+                            House.RoomCount = ExtractInt(rowValues[3].ToString());
+                            House.BedroomCount = ExtractInt(rowValues[4].ToString());
+                            House.KitchensSquare = ExtractFloat(rowValues[5].ToString());
+                            House.Floor0Height = ExtractFloat(rowValues[6].ToString());
+                            House.Floor1Height = ExtractFloat(rowValues[7].ToString());
+                            House.Floor2Height = ExtractFloat(rowValues[8].ToString());
+                            House.Floor3Height = ExtractFloat(rowValues[9].ToString());
+                            House.RoofHeight = ExtractFloat(rowValues[10].ToString());
+                            House.RoofMinWallHeight = ExtractFloat(rowValues[11].ToString());
+                            House.RoofType = rowValues[12].ToString();
+                            House.RoofSquare = ExtractFloat(rowValues[13].ToString());
+                            House.RoofLength = ExtractFloat(rowValues[14].ToString());
+                            House.CanopySquare = ExtractFloat(rowValues[15].ToString());
+                            House.CanopyLength = ExtractFloat(rowValues[16].ToString());
+                            House.PergolaSquare = ExtractFloat(rowValues[17].ToString());
+                            House.HemmingButt = ExtractFloat(rowValues[18].ToString());
+                            House.HemmingOverhangsSquare = ExtractFloat(rowValues[19].ToString());
+                            House.Floor0F1GlaseSq = ExtractFloat(rowValues[20].ToString());
+                            House.Floor0F1GlaseP = ExtractFloat(rowValues[21].ToString());
+                            House.Floor1F1GlaseSq = ExtractFloat(rowValues[22].ToString());
+                            House.Floor1F1GlaseP = ExtractFloat(rowValues[23].ToString());
+                            House.Floor2F1GlaseSq = ExtractFloat(rowValues[24].ToString());
+                            House.Floor2F1GlaseP = ExtractFloat(rowValues[25].ToString());
+                            House.Floor3F1GlaseSq = ExtractFloat(rowValues[26].ToString());
+                            House.Floor3F1GlaseP = ExtractFloat(rowValues[27].ToString());
+                            House.WindowCount = ExtractInt(rowValues[27].ToString());
+                            House.WindowSquare = ExtractFloat(rowValues[29].ToString());
+                            House.Floor0OutWallsLength = ExtractFloat(rowValues[30].ToString());
+                            House.Floor0InnerWallsLength = ExtractFloat(rowValues[31].ToString());
+                            House.Floor0LightWallsLength = ExtractFloat(rowValues[32].ToString());
+                            House.Floor0BreakWallsLength = ExtractFloat(rowValues[33].ToString());
+                            House.Floor0Square = ExtractFloat(rowValues[34].ToString());
+                            House.Floor0OutDoorsCount = ExtractInt(rowValues[35].ToString());
+                            House.Floor0OutDoorsLength = ExtractFloat(rowValues[36].ToString());
+                            House.Floor0InnerDoorsCount = ExtractInt(rowValues[37].ToString());
+                            House.Floor0InnerDoorsLength = ExtractFloat(rowValues[38].ToString());
+                            House.Floor0PartitionsDoorsCount = ExtractInt(rowValues[39].ToString());
+                            House.Floor0PartitionsDoorsLength = ExtractFloat(rowValues[40].ToString());
+                            House.Floor0GatesCount = ExtractInt(rowValues[41].ToString());
+                            House.Floor0GatesLength = ExtractFloat(rowValues[42].ToString());
+                            House.Floor0TerassesSquare = ExtractFloat(rowValues[43].ToString());
+                            House.Floor0InnerTerassesLength = ExtractFloat(rowValues[44].ToString());
+                            House.Floor0TerassesLength = ExtractFloat(rowValues[45].ToString());
+                            House.Floor0RailingsLength = ExtractFloat(rowValues[46].ToString());
+                            House.Floor0PlinthHeight = ExtractFloat(rowValues[47].ToString());
+                            House.PlinthOpenPerc = ExtractInt(rowValues[48].ToString());
+                            House.Floor0BadroomCount = ExtractInt(rowValues[49].ToString());
+                            House.Floor0BadroomSquare = ExtractFloat(rowValues[50].ToString());
+                            House.Floor0TileSquare = ExtractFloat(rowValues[51].ToString());
+                            House.Floor0TilePerimeter = ExtractFloat(rowValues[52].ToString());
+                            House.Floor1OutWallsLength = ExtractFloat(rowValues[53].ToString());
+                            House.Floor1InnerWallsLength = ExtractFloat(rowValues[54].ToString());
+                            House.Floor1LightWallsLength = ExtractFloat(rowValues[55].ToString());
+                            House.Floor1BreakWallsLength = ExtractFloat(rowValues[56].ToString());
+                            House.Floor1Square = ExtractFloat(rowValues[57].ToString());
+                            House.Floor1OutDoorsCount = ExtractInt(rowValues[58].ToString());
+                            House.Floor1OutDoorsLength = ExtractFloat(rowValues[59].ToString());
+                            House.Floor1InnerDoorsCount = ExtractInt(rowValues[60].ToString());
+                            House.Floor1InnerDoorsLength = ExtractFloat(rowValues[61].ToString());
+                            House.Floor1PartitionsDoorsCount = ExtractInt(rowValues[62].ToString());
+                            House.Floor1PartitionsDoorsLength = ExtractFloat(rowValues[63].ToString());
+                            House.Floor1GatesCount = ExtractInt(rowValues[64].ToString());
+                            House.Floor1GatesLength = ExtractFloat(rowValues[65].ToString());
+                            House.Floor1TerassesSquare = ExtractFloat(rowValues[66].ToString());
+                            House.Floor1InnerTerassesLength = ExtractFloat(rowValues[67].ToString());
+                            House.Floor1TerassesLength = ExtractFloat(rowValues[68].ToString());
+                            House.Floor1RailingsLength = ExtractFloat(rowValues[69].ToString());
+                            House.Floor1DecatativePillarsLessCount = ExtractInt(rowValues[70].ToString());
+                            House.Floor1DecatativePillarsOverCount = ExtractInt(rowValues[71].ToString());
+                            House.Floor1BadroomCount = ExtractInt(rowValues[72].ToString());
+                            House.Floor1BadroomSquare = ExtractFloat(rowValues[73].ToString());
+                            House.Floor1TileSquare = ExtractFloat(rowValues[74].ToString());
+                            House.Floor1TilePerimeter = ExtractFloat(rowValues[75].ToString());
+                            House.Floor2OutWallsLength = ExtractFloat(rowValues[76].ToString());
+                            House.Floor2InnerWallsLength = ExtractFloat(rowValues[77].ToString());
+                            House.Floor2LightWallsLength = ExtractFloat(rowValues[78].ToString());
+                            House.Floor2BreakWallsLength = ExtractFloat(rowValues[79].ToString());
+                            House.Floor2Square = ExtractFloat(rowValues[80].ToString());
+                            House.Floor2РHoleSecondLight = ExtractFloat(rowValues[81].ToString());
+                            House.Floor2OutDoorsCount = ExtractInt(rowValues[82].ToString());
+                            House.Floor2OutDoorsLength = ExtractFloat(rowValues[83].ToString());
+                            House.Floor2InnerDoorsCount = ExtractInt(rowValues[84].ToString());
+                            House.Floor2InnerDoorsLength = ExtractFloat(rowValues[85].ToString());
+                            House.Floor2PartitionsDoorsCount = ExtractInt(rowValues[86].ToString());
+                            House.Floor2PartitionsDoorsLength = ExtractFloat(rowValues[87].ToString());
+                            House.Floor2BalconySquare = ExtractFloat(rowValues[88].ToString());
+                            House.Floor2BalconyLength = ExtractFloat(rowValues[89].ToString());
+                            House.Floor2RailingsLength = ExtractFloat(rowValues[90].ToString());
+                            House.Floor2BadroomCount = ExtractInt(rowValues[91].ToString());
+                            House.Floor2BadroomSquare = ExtractFloat(rowValues[92].ToString());
+                            House.Floor2TileSquare = ExtractFloat(rowValues[93].ToString());
+                            House.Floor2TilePerimeter = ExtractFloat(rowValues[94].ToString());
+                            House.Floor3OutWallsLength = ExtractFloat(rowValues[95].ToString());
+                            House.Floor3InnerWallsLength = ExtractFloat(rowValues[96].ToString());
+                            House.Floor3LightWallsLength = ExtractFloat(rowValues[97].ToString());
+                            House.Floor3BreakWallsLength = ExtractFloat(rowValues[98].ToString());
+                            House.Floor3Square = ExtractFloat(rowValues[99].ToString());
+                            House.Floor3РHoleSecondLight = ExtractFloat(rowValues[100].ToString());
+                            House.Floor3OutDoorsCount = ExtractInt(rowValues[101].ToString());
+                            House.Floor3OutDoorsLength = ExtractFloat(rowValues[102].ToString());
+                            House.Floor3InnerDoorsCount = ExtractInt(rowValues[103].ToString());
+                            House.Floor3InnerDoorsLength = ExtractFloat(rowValues[104].ToString());
+                            House.Floor3PartitionsDoorsCount = ExtractInt(rowValues[105].ToString());
+                            House.Floor3PartitionsDoorsLength = ExtractFloat(rowValues[106].ToString());
+                            House.Floor3BalconySquare = ExtractFloat(rowValues[107].ToString());
+                            House.Floor3BalconyLength = ExtractFloat(rowValues[108].ToString());
+                            House.Floor3RailingsLength = ExtractFloat(rowValues[109].ToString());
+                            House.Floor3BadroomCount = ExtractInt(rowValues[110].ToString());
+                            House.Floor3BadroomSquare = ExtractFloat(rowValues[111].ToString());
+                            House.Floor3TileSquare = ExtractFloat(rowValues[112].ToString());
+                            House.Floor3TilePerimeter = ExtractFloat(rowValues[113].ToString());
+                        }
+                        catch
+                        {
+
+                        }
 
                         MessageBox.Show("Данные проекта успешно загружены", "Загрузка данных", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
@@ -278,5 +396,32 @@ namespace BuildingPlanCalc.Services
                 MessageBox.Show("Данные о проекте не найдены." + Environment.NewLine + "Проверьте правильность названия проекта или его наличие в таблице", "Ошибка добавления данных", MessageBoxButton.OK, MessageBoxImage.Warning);
 
         }
+
+        private static int ExtractInt(string obj)
+        {
+            if (string.IsNullOrEmpty(obj))
+                return 0;
+
+            var result = int.TryParse(obj, out int a);
+            if (result) return a;
+            else
+                return 0;
+        }
+        private static double ExtractFloat(string obj)
+        {
+            if (string.IsNullOrEmpty(obj))
+                return 0.0f;
+
+            var result = float.TryParse(obj, out float a);
+            if (result)
+            {
+               
+                return Math.Round(a, 2);
+            }
+            else
+                return 0.0f;
+        }
+
+
     }
 }

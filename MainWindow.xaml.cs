@@ -418,8 +418,6 @@ namespace BuildingPlanCalc
         }
         #endregion
 
-
-
         #region Валидация
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -1287,6 +1285,167 @@ namespace BuildingPlanCalc
             SetFloorsHouse.SelectedIndex = 0;
             RoofType.SelectedIndex = -1;
         }
+        private void LoadForm()
+        {
+            if (House.Floor0Height == 0)
+                Floor0Enabled.IsChecked = false;
+            else
+                Floor0Enabled.IsChecked = true;
+            TB_RoomCount.Text = $"{House.RoomCount}";
+            TB_BedroomCount.Text = $"{House.BedroomCount}";
+            Tb_WindowSquare.Text = $"{House.WindowSquare}";
+            Tb_WindowCount.Text = $"{House.WindowCount}";
+
+            Tb_SetFloor0BadroomCount.Text = $"{House.Floor0BadroomCount}";
+            Tb_SetFloor1BadroomCount.Text = $"{House.Floor1BadroomCount}";
+            Tb_SetFloor2BadroomCount.Text = $"{House.Floor2BadroomCount}";
+            Tb_SetFloor3BadroomCount.Text = $"{House.Floor3BadroomCount}";
+
+            
+            Tb_SetFloor1Square.Text = $"{House.Floor1Square}";
+            Tb_SetFloor2Square.Text = $"{House.Floor2Square}";
+            Tb_SetFloor3Square.Text = $"{House.Floor3Square}";
+
+            Tb_SetFloor1DecatativePillarsLessCount.Text = $"{House.Floor1DecatativePillarsLessCount}";
+            Tb_SetFloor1DecatativePillarsOverCount.Text = $"{House.Floor1DecatativePillarsOverCount}";
+
+
+            if (House.Floor3Height > 0)
+                SetFloorsHouse.SelectedIndex = 2;
+            else
+            if (House.Floor2Height > 0)
+                SetFloorsHouse.SelectedIndex = 1;
+            else
+                SetFloorsHouse.SelectedIndex = 0;
+
+            foreach (ComboBoxItem item in RoofType.Items)
+                if (item.Content.ToString() == House.RoofType)
+                {
+                    RoofType.SelectedValue = item;
+                    break;
+                }
+
+            Tb_Set0FloorHeight.Text = $"{House.Floor0Height} м.";
+            Tb_Set1FloorHeight.Text = $"{House.Floor1Height} м.";
+            Tb_Set2FloorHeight.Text = $"{House.Floor2Height} м.";
+            Tb_Set3FloorHeight.Text = $"{House.Floor3Height} м.";
+            Tb_SetKitchenSquare.Text = $"{House.KitchensSquare} кв.м.";
+            Tb_SetFullHouseHeight.Text = $"{House.RoofHeight} м.";
+            Tb_SetRoofMinWallHeight.Text = $"{House.RoofMinWallHeight} м.";
+            Tb_SetRoofSquare.Text = $"{House.RoofSquare} кв.м.";
+            Tb_SetRoofLength.Text = $"{House.RoofLength} м.";
+            Tb_SetCanopySquare.Text = $"{House.CanopySquare} кв.м.";
+            Tb_SetCanopyLength.Text = $"{House.CanopyLength} м.";
+            Tb_SetPergolaSquare.Text = $"{House.PergolaSquare} кв.м.";
+            Tb_SetHemmingButt.Text = $"{House.HemmingButt} м.";
+            Tb_SetHemmingOverhangsSquare.Text = $"{House.HemmingOverhangsSquare} кв.м.";
+            Tb_Set0FloorF1GlaseSq.Text = $"{House.Floor0F1GlaseSq} кв.м.";
+            Tb_Set0FloorF1GlaseP.Text = $"{House.Floor0F1GlaseP} м.";
+            Tb_Set1FloorF1GlaseSq.Text = $"{House.Floor1F1GlaseSq} кв.м.";
+            Tb_Set1FloorF1GlaseP.Text = $"{House.Floor1F1GlaseP} м.";
+            Tb_Set2FloorF1GlaseSq.Text = $"{House.Floor2F1GlaseSq} кв.м.";
+            Tb_Set2FloorF1GlaseP.Text = $"{House.Floor2F1GlaseP} м.";
+            Tb_Set3FloorF1GlaseSq.Text = $"{House.Floor3F1GlaseSq} кв.м.";
+            Tb_Set3FloorF1GlaseP.Text = $"{House.Floor3F1GlaseP} м.";
+            Tb_Set0FloorF2GlaseSq.Text = $"{House.Floor0F2GlaseSq} кв.м.";
+            Tb_Set0FloorF2GlaseP.Text = $"{House.Floor0F2GlaseP} м.";
+            Tb_Set1FloorF2GlaseSq.Text = $"{House.Floor1F2GlaseSq} кв.м.";
+            Tb_Set1FloorF2GlaseP.Text = $"{House.Floor1F2GlaseP} м.";
+            Tb_Set2FloorF2GlaseSq.Text = $"{House.Floor2F2GlaseSq} кв.м.";
+            Tb_Set2FloorF2GlaseP.Text = $"{House.Floor2F2GlaseP} м.";
+            Tb_Set3FloorF2GlaseSq.Text = $"{House.Floor3F2GlaseSq} кв.м.";
+            Tb_Set3FloorF2GlaseP.Text = $"{House.Floor3F2GlaseP} м.";
+            Tb_Set0FloorF3GlaseSq.Text = $"{House.Floor0F3GlaseSq} кв.м.";
+            Tb_Set0FloorF3GlaseP.Text = $"{House.Floor0F3GlaseP} м.";
+            Tb_Set1FloorF3GlaseSq.Text = $"{House.Floor1F3GlaseSq} кв.м.";
+            Tb_Set1FloorF3GlaseP.Text = $"{House.Floor1F3GlaseP} м.";
+            Tb_Set2FloorF3GlaseSq.Text = $"{House.Floor2F3GlaseSq} кв.м.";
+            Tb_Set2FloorF3GlaseP.Text = $"{House.Floor2F3GlaseP} м.";
+            Tb_Set3FloorF3GlaseSq.Text = $"{House.Floor3F3GlaseSq} кв.м.";
+            Tb_Set3FloorF3GlaseP.Text = $"{House.Floor3F3GlaseP} м.";
+            Tb_Set0FloorF4GlaseSq.Text = $"{House.Floor0F4GlaseSq} кв.м.";
+            Tb_Set0FloorF4GlaseP.Text = $"{House.Floor0F4GlaseP} м.";
+            Tb_Set1FloorF4GlaseSq.Text = $"{House.Floor1F4GlaseSq} кв.м.";
+            Tb_Set1FloorF4GlaseP.Text = $"{House.Floor1F4GlaseP} м.";
+            Tb_Set2FloorF4GlaseSq.Text = $"{House.Floor2F4GlaseSq} кв.м.";
+            Tb_Set2FloorF4GlaseP.Text = $"{House.Floor2F4GlaseP} м.";
+            Tb_Set3FloorF4GlaseSq.Text = $"{House.Floor3F4GlaseSq} кв.м.";
+            Tb_Set3FloorF4GlaseP.Text = $"{House.Floor3F4GlaseP} м.";
+            Tb_Floor0PlinthHeight.Text = $"{House.Floor0PlinthHeight} м.";
+            Tb_Floor0BadroomSquare.Text = $"{House.Floor0BadroomSquare} м.";
+            Tb_Floor0TileSquare.Text = $"{House.Floor0TileSquare} м.";
+            Tb_Floor0TilePerimeter.Text = $"{House.Floor0TilePerimeter} м.";
+            Tb_Floor0OutWallsLength.Text = $"{House.Floor0OutWallsLength} м.";
+            Tb_Floor0InnerWallsLength.Text = $"{House.Floor0InnerWallsLength} м.";
+            Tb_Floor0LightWallsLength.Text = $"{House.Floor0LightWallsLength} м.";
+            Tb_Floor0BreakWallsLength.Text = $"{House.Floor0BreakWallsLength} м.";
+            Tb_Floor0OutDoorsLength.Text = $"{House.Floor0OutDoorsLength} м.";
+            Tb_Floor0OutDoorsCount.Text = $"{House.Floor0OutDoorsCount} шт.";
+            Tb_Floor0InnerDoorsLength.Text = $"{House.Floor0InnerDoorsLength} м.";
+            Tb_Floor0InnerDoorsCount.Text = $"{House.Floor0InnerDoorsCount} шт.";
+            Tb_Floor0PartitionsDoorsCount.Text = $"{House.Floor0PartitionsDoorsCount} шт.";
+            Tb_Floor0GatesLength.Text = $"{House.Floor0GatesLength} м.";
+            Tb_Floor0GatesCount.Text = $"Ворота - {House.Floor0GatesCount} шт.";
+            Tb_Floor0TerassesSquare.Text = $"{House.Floor0TerassesSquare} кв.м.";
+            Tb_Floor0InnerTerassesLength.Text = $"{House.Floor0InnerTerassesLength} м.";
+            Tb_Floor0TerassesLength.Text = $"{House.Floor0TerassesLength} м.";
+            Tb_Floor0RailingsLength.Text = $"{House.Floor0RailingsLength} м.";
+            Tb_Floor1BadroomSquare.Text = $"{House.Floor1BadroomSquare} кв.м.";
+            Tb_Floor1TileSquare.Text = $"{House.Floor1TileSquare} м.";
+            Tb_Floor1TilePerimeter.Text = $"{House.Floor1TilePerimeter} м.";
+            Tb_Floor1OutWallsLength.Text = $"{House.Floor1OutWallsLength} м.";
+            Tb_Floor1InnerWallsLength.Text = $"{House.Floor1InnerWallsLength} м.";
+            Tb_Floor1LightWallsLength.Text = $"{House.Floor1LightWallsLength} м.";
+            Tb_Floor1BreakWallsLength.Text = $"{House.Floor1BreakWallsLength} м.";
+            Tb_Floor1OutDoorsLength.Text = $"{House.Floor1OutDoorsLength} м.";
+            Tb_Floor1OutDoorsCount.Text = $"{House.Floor1OutDoorsCount} шт.";
+            Tb_Floor1InnerDoorsLength.Text = $"{House.Floor1InnerDoorsLength} м.";
+            Tb_Floor1InnerDoorsCount.Text = $"{House.Floor1InnerDoorsCount} шт.";
+            Tb_Floor1PartitionsDoorsLength.Text = $"{House.Floor1PartitionsDoorsLength} м.";
+            Tb_Floor1PartitionsDoorsCount.Text = $"{House.Floor1PartitionsDoorsCount} шт.";
+            Tb_Floor1GatesLength.Text = $"{House.Floor1GatesLength} м.";
+            Tb_Floor1GatesCount.Text = $"Ворота - {House.Floor1GatesCount} шт.";
+            Tb_Floor1TerassesSquare.Text = $"{House.Floor1TerassesSquare} кв.м.";
+            Tb_Floor1InnerTerassesLength.Text = $"{House.Floor1InnerTerassesLength} м.";
+            Tb_Floor1TerassesLength.Text = $"{House.Floor1TerassesLength} м.";
+            Tb_Floor1RailingsLength.Text = $"{House.Floor1RailingsLength} м.";
+            Tb_Floor2РHoleSecondLight.Text = $"{House.Floor2РHoleSecondLight} кв.м.";
+            Tb_Floor2BadroomSquare.Text = $"{House.Floor2BadroomSquare} кв.м.";
+            Tb_Floor2TileSquare.Text = $"{House.Floor2TileSquare} м.";
+            Tb_Floor2TilePerimeter.Text = $"{House.Floor2TilePerimeter} м.";
+            Tb_Floor2OutWallsLength.Text = $"{House.Floor2OutWallsLength} м.";
+            Tb_Floor2InnerWallsLength.Text = $"{House.Floor2InnerWallsLength} м.";
+            Tb_Floor2LightWallsLength.Text = $"{House.Floor2LightWallsLength} м.";
+            Tb_Floor2BreakWallsLength.Text = $"{House.Floor2BreakWallsLength} м.";
+            Tb_Floor2OutDoorsLength.Text = $"{House.Floor2OutDoorsLength} м.";
+            Tb_Floor2OutDoorsCount.Text = $"{House.Floor2OutDoorsCount} шт.";
+            Tb_Floor2InnerDoorsLength.Text = $"{House.Floor2InnerDoorsLength} м.";
+            Tb_Floor2InnerDoorsCount.Text = $"{House.Floor2InnerDoorsCount} шт.";
+            Tb_Floor2PartitionsDoorsLength.Text = $"{House.Floor2PartitionsDoorsLength} м.";
+            Tb_Floor2PartitionsDoorsCount.Text = $"{House.Floor2PartitionsDoorsCount} шт.";
+            Tb_Floor2BalconySquare.Text = $"{House.Floor2BalconySquare} кв.м.";
+            Tb_Floor2BalconyLength.Text = $"{House.Floor2BalconyLength} м.";
+            Tb_Floor2RailingsLength.Text = $"{House.Floor2RailingsLength} м.";
+            Tb_Floor3РHoleSecondLight.Text = $"{House.Floor3РHoleSecondLight} кв.м.";
+            Tb_Floor3BadroomSquare.Text = $"{House.Floor3BadroomSquare} кв.м.";
+            Tb_Floor3TileSquare.Text = $"{House.Floor3TileSquare} м.";
+            Tb_Floor3TilePerimeter.Text = $"{House.Floor3TilePerimeter} м.";
+            Tb_Floor3OutWallsLength.Text = $"{House.Floor3OutWallsLength} м.";
+            Tb_Floor3InnerWallsLength.Text = $"{House.Floor3InnerWallsLength} м.";
+            Tb_Floor3LightWallsLength.Text = $"{House.Floor3LightWallsLength} м.";
+            Tb_Floor3BreakWallsLength.Text = $"{House.Floor3BreakWallsLength} м.";
+            Tb_Floor3OutDoorsLength.Text = $"{House.Floor3OutDoorsLength} м.";
+            Tb_Floor3OutDoorsCount.Text = $"{House.Floor3OutDoorsCount} шт.";
+            Tb_Floor3InnerDoorsLength.Text = $"{House.Floor3InnerDoorsLength} м.";
+            Tb_Floor3InnerDoorsCount.Text = $"{House.Floor3InnerDoorsCount} шт.";
+            Tb_Floor3PartitionsDoorsLength.Text = $"{House.Floor3PartitionsDoorsLength} м.";
+            Tb_Floor3PartitionsDoorsCount.Text = $"{House.Floor3PartitionsDoorsCount} шт.";
+            Tb_Floor3BalconySquare.Text = $"{House.Floor3BalconySquare} кв.м.";
+            Tb_Floor3BalconyLength.Text = $"{House.Floor3BalconyLength} м.";
+            Tb_Floor3RailingsLength.Text = $"{House.Floor3RailingsLength} м.";
+
+
+        }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TB_RealLength.Text) || TB_RealLength.Text == "0")
@@ -1309,6 +1468,7 @@ namespace BuildingPlanCalc
                 Shapes.RemoveAll(s => s.ParrentCanvasName == selectedCanvas.Name);
                 ResetSelectedCanvasStatistic();
             }
+
         }
         private void ResetSelectedCanvasStatistic()
         {
@@ -1534,10 +1694,12 @@ namespace BuildingPlanCalc
                 if (House.ProjectName != null)
                 {
                     GoogleSheets.LoadData();
+
                 }
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_LoadData.IsEnabled = true; }));
-                
+
             });
+            LoadForm();
         }
         #endregion
 
@@ -2576,7 +2738,7 @@ namespace BuildingPlanCalc
             {
                 tb.Text = "";
             }
-
+            House.Reset();
             ResetForm();
         }
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -2693,7 +2855,5 @@ namespace BuildingPlanCalc
             SelectLayouts(Floor3BalconyLayout);
         }
         #endregion
-
-
     }
 }

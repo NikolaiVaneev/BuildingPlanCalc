@@ -109,7 +109,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 5"
                                Text="Номер проекта AS-"/>
                     <TextBox x:Name="TB_ProjectName" Grid.Row="0" Grid.Column="1" TextChanged="TB_ProjectName_TextChanged"
-                             Margin="0 0 0 5"/>
+                             Margin="0 0 0 5" Text="тесткрым"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" 
                                Text="Заполнил"/>
                     <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"/>

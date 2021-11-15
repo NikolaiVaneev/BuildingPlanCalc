@@ -1,4 +1,7 @@
-﻿namespace BuildingPlanCalc.Models
+﻿using System;
+using System.Reflection;
+
+namespace BuildingPlanCalc.Models
 {
     public static class House
     {
@@ -567,5 +570,122 @@
         /// Периметр комнат с кафелем 3 этажа DJ
         /// </summary>
         public static double Floor3TilePerimeter { get; set; }
+
+        public static void Reset()
+        {
+            ManagerName = string.Empty;
+            FloorsCount = 0;
+            RoomCount = 0;
+            BedroomCount = 0;
+            KitchensSquare = 0;
+            Floor0Height = 0;
+            Floor1Height = 0;
+            Floor2Height = 0;
+            Floor3Height = 0;
+            RoofHeight = 0;
+            RoofMinWallHeight = 0;
+            RoofType = string.Empty;
+            RoofSquare = 0;
+            RoofLength = 0;
+            CanopySquare = 0;
+            CanopyLength = 0;
+            PergolaSquare = 0;
+            HemmingButt = 0;
+            HemmingOverhangsSquare = 0;
+            Floor0F1GlaseSq = 0;
+            Floor0F1GlaseP = 0;
+            Floor1F1GlaseSq = 0;
+            Floor1F1GlaseP = 0;
+            Floor2F1GlaseSq = 0;
+            Floor2F1GlaseP = 0;
+            Floor3F1GlaseSq = 0;
+            Floor3F1GlaseP = 0;
+            WindowCount = 0;
+            WindowSquare = 0;
+            Floor0OutWallsLength = 0;
+            Floor0InnerWallsLength = 0;
+            Floor0LightWallsLength = 0;
+            Floor0BreakWallsLength = 0;
+            Floor0Square = 0;
+            Floor0OutDoorsCount = 0;
+            Floor0OutDoorsLength = 0;
+            Floor0InnerDoorsCount = 0;
+            Floor0InnerDoorsLength = 0;
+            Floor0PartitionsDoorsCount = 0;
+            Floor0PartitionsDoorsLength = 0;
+            Floor0GatesCount = 0;
+            Floor0GatesLength = 0;
+            Floor0TerassesSquare = 0;
+            Floor0InnerTerassesLength = 0;
+            Floor0TerassesLength = 0;
+            Floor0RailingsLength = 0;
+            Floor0PlinthHeight = 0;
+            PlinthOpenPerc = 0;
+            Floor0BadroomCount = 0;
+            Floor0BadroomSquare = 0;;
+            Floor0TileSquare = 0;
+            Floor0TilePerimeter = 0;
+            Floor1OutWallsLength = 0;
+            Floor1InnerWallsLength = 0;
+            Floor1LightWallsLength = 0;
+            Floor1BreakWallsLength = 0;
+            Floor1Square = 0;
+            Floor1OutDoorsCount = 0;
+            Floor1OutDoorsLength = 0;
+            Floor1InnerDoorsCount = 0;
+            Floor1InnerDoorsLength = 0;
+            Floor1PartitionsDoorsCount = 0;
+            Floor1PartitionsDoorsLength = 0;
+            Floor1GatesCount = 0;
+            Floor1GatesLength = 0;
+            Floor1TerassesSquare = 0;
+            Floor1InnerTerassesLength = 0;
+            Floor1TerassesLength = 0;
+            Floor1RailingsLength = 0;
+            Floor1DecatativePillarsLessCount = 0;
+            Floor1DecatativePillarsOverCount = 0;
+            Floor1BadroomCount = 0;
+            Floor1BadroomSquare = 0;
+            Floor1TileSquare = 0;
+            Floor1TilePerimeter = 0;
+            Floor2OutWallsLength = 0;
+            Floor2InnerWallsLength = 0;
+            Floor2LightWallsLength = 0;
+            Floor2BreakWallsLength = 0;
+            Floor2Square = 0;
+            Floor2РHoleSecondLight = 0;
+            Floor2OutDoorsCount = 0;
+            Floor2OutDoorsLength = 0;
+            Floor2InnerDoorsCount = 0;
+            Floor2InnerDoorsLength = 0;
+            Floor2PartitionsDoorsCount = 0;
+            Floor2PartitionsDoorsLength = 0;
+            Floor2BalconySquare = 0;
+            Floor2BalconyLength = 0;
+            Floor2RailingsLength = 0;
+            Floor2BadroomCount = 0;
+            Floor2BadroomSquare = 0;
+            Floor2TileSquare = 0;
+            Floor2TilePerimeter = 0;
+            Floor3OutWallsLength = 0;
+            Floor3InnerWallsLength = 0;
+            Floor3LightWallsLength = 0;
+            Floor3BreakWallsLength = 0;
+            Floor3Square = 0;
+            Floor3РHoleSecondLight = 0;
+            Floor3OutDoorsCount = 0;
+            Floor3OutDoorsLength = 0;
+            Floor3InnerDoorsCount = 0;
+            Floor3InnerDoorsLength = 0;
+            Floor3PartitionsDoorsCount = 0;
+            Floor3PartitionsDoorsLength = 0;
+            Floor3BalconySquare = 0;
+            Floor3BalconyLength = 0;
+            Floor3RailingsLength = 0;
+            Floor3BadroomCount = 0;
+            Floor3BadroomSquare = 0;
+            Floor3TileSquare = 0;
+            Floor3TilePerimeter = 0;
+        }
     }
 }
