@@ -116,7 +116,7 @@
                     <Button Margin="0 5 0 0"
                             x:Name="Btn_LoadData"
                             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Загрузить данные проекта"
-                            IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectData"
+                            IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectDataAsync"
                             />
                 </Grid>
 
@@ -148,7 +148,6 @@
 
                     </Button>
                 </Grid>
-
                 <!--Настройки масштаба-->
                 <Grid Margin="5 0 5 5" >
                     <Grid.RowDefinitions>
@@ -1098,9 +1097,23 @@
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock 
-                                                    x:Name="Tb_Floor0TilePerimeter" 
-                                                    Text="Периметр комнат с кафелем - 0 м." TextWrapping="Wrap"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="Tb_Floor0TilePerimeter" IsReadOnly="True" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock TextWrapping="Wrap"
+                                            Text="Периметр комнат с кафелем" 
+                                                         
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                        <Button Style="{StaticResource Btn}"
+                                                x:Name="Btn_SetFloor0TilePerimeter"       
+                                                 Grid.Column="2"  Background="#FFFB9924" Click="Btn_SetFloor0TilePerimeter_Click">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
                                 </StackPanel>
 
                             </GroupBox>
@@ -1412,9 +1425,24 @@
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock 
-                                                    x:Name="Tb_Floor1TilePerimeter"
-                                                    Text="Периметр комнат с кафелем - 0 м." TextWrapping="Wrap"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="Tb_Floor1TilePerimeter" IsReadOnly="True" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock TextWrapping="Wrap"
+                                            Text="Периметр комнат с кафелем" 
+                                                         
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                        <Button Style="{StaticResource Btn}"
+                                                x:Name="Btn_SetFloor1TilePerimeter"       
+                                                 Grid.Column="2"  Background="#FFFB9924" Click="Btn_SetFloor1TilePerimeter_Click">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
+                                  
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_1FloorBlockDoors">
@@ -1761,9 +1789,23 @@
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Периметр комнат с кафелем - 0 м." 
-                                                           x:Name="Tb_Floor2TilePerimeter"
-                                                           TextWrapping="Wrap"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="Tb_Floor2TilePerimeter" IsReadOnly="True" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock TextWrapping="Wrap"
+                                            Text="Периметр комнат с кафелем" 
+                                                         
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                        <Button Style="{StaticResource Btn}"
+                                                x:Name="Btn_SetFloor2TilePerimeter"       
+                                                 Grid.Column="2"  Background="#FFFB9924" Click="Btn_SetFloor2TilePerimeter_Click">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_2FloorBlockDoors">
@@ -2048,9 +2090,23 @@
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Периметр комнат с кафелем - 0 м."
-                                                           x:Name="Tb_Floor3TilePerimeter"
-                                                           TextWrapping="Wrap"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="Tb_Floor3TilePerimeter" IsReadOnly="True" Grid.Column="1" Text="0.00 м." />
+                                        <TextBlock TextWrapping="Wrap"
+                                            Text="Периметр комнат с кафелем" 
+                                                         
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                        <Button Style="{StaticResource Btn}"
+                                                x:Name="Btn_SetFloor3TilePerimeter"       
+                                                 Grid.Column="2"  Background="#FFFB9924" Click="Btn_SetFloor3TilePerimeter_Click">
+                                            <Image Source="Assets/roulette.png" />
+                                        </Button>
+                                    </Grid>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_3FloorBlockDoors">

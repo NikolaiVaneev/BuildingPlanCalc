@@ -878,21 +878,14 @@ namespace BuildingPlanCalc
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare:
                     House.Floor0BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Square).Sum(), roundTo);
                     Tb_Floor0BadroomSquare.Text = $"{House.Floor0BadroomSquare} м.";
-
-                    House.Floor0TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
-
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare:
                     House.Floor0TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0TileSquare.Text = $"{House.Floor0TileSquare} м.";
-
-                    House.Floor0TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TileSquare).Select(l => l.Length).Sum(), roundTo);
-                    Tb_Floor0TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor0TilePerimeter} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor0TilePerimeter:
+                    House.Floor0TilePerimeter = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0TilePerimeter).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor0TilePerimeter.Text = $"{House.Floor0TilePerimeter} м.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0OutWallsLength:
@@ -956,21 +949,14 @@ namespace BuildingPlanCalc
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare:
                     House.Floor1BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Square).Sum(), roundTo);
                     Tb_Floor1BadroomSquare.Text = $"{House.Floor1BadroomSquare} кв.м.";
-
-                    House.Floor1TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare:
                     House.Floor1TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor1TileSquare.Text = $"{House.Floor1TileSquare} м.";
-                    House.Floor1TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor1TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor1TilePerimeter} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor1TilePerimeter:
+                    House.Floor1TilePerimeter = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TilePerimeter).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor1TilePerimeter.Text = $"{House.Floor1TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1OutWallsLength:
                     House.Floor1OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutWallsLength).Select(l => l.Length).Sum(), roundTo);
@@ -1036,21 +1022,14 @@ namespace BuildingPlanCalc
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare:
                     House.Floor2BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Square).Sum(), roundTo);
                     Tb_Floor2BadroomSquare.Text = $"{House.Floor2BadroomSquare} кв.м.";
-
-                    House.Floor2TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare:
                     House.Floor2TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor2TileSquare.Text = $"{House.Floor2TileSquare} м.";
-                    House.Floor2TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor2TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor2TilePerimeter} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor2TilePerimeter:
+                    House.Floor2TilePerimeter = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2TilePerimeter).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor2TilePerimeter.Text = $"{House.Floor2TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2OutWallsLength:
                     House.Floor2OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutWallsLength).Select(l => l.Length).Sum(), roundTo);
@@ -1106,21 +1085,14 @@ namespace BuildingPlanCalc
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare:
                     House.Floor3BadroomSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Square).Sum(), roundTo);
                     Tb_Floor3BadroomSquare.Text = $"{House.Floor3BadroomSquare} кв.м.";
-
-                    House.Floor3TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare:
                     House.Floor3TileSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor3TileSquare.Text = $"{House.Floor3TileSquare} м.";
-                    House.Floor3TilePerimeter =
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare).Select(l => l.Perimetr).Sum(), roundTo) +
-                        Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TileSquare).Select(l => l.Length).Sum(), roundTo);
-
-                    Tb_Floor3TilePerimeter.Text = $"Периметр комнат с кафелем - {House.Floor3TilePerimeter} м.";
+                    break;
+                case (byte)GlobalVariables.ProjectObjEnum.Floor3TilePerimeter:
+                    House.Floor3TilePerimeter = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3TilePerimeter).Select(l => l.Length).Sum(), roundTo);
+                    Tb_Floor3TilePerimeter.Text = $"{House.Floor3TilePerimeter} м.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3OutWallsLength:
                     House.Floor3OutWallsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutWallsLength).Select(l => l.Length).Sum(), roundTo);
@@ -1419,7 +1391,7 @@ namespace BuildingPlanCalc
                 Tb_SetFloor0BadroomCount.Text = "";
                 Tb_Floor0BadroomSquare.Text = "0.00 кв.м.";
                 Tb_Floor0TileSquare.Text = "0.00 м.";
-                Tb_Floor0TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+                Tb_Floor0TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor0DoorsLayout)
             {
@@ -1449,7 +1421,7 @@ namespace BuildingPlanCalc
                 Tb_SetFloor1BadroomCount.Text = "";
                 Tb_Floor1BadroomSquare.Text = "0.00 кв.м.";
                 Tb_Floor1TileSquare.Text = "0.00 м.";
-                Tb_Floor1TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+                Tb_Floor1TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor1DoorsLayout)
             {
@@ -1482,7 +1454,7 @@ namespace BuildingPlanCalc
                 Tb_Floor2РHoleSecondLight.Text = "0.00 кв.м.";
                 Tb_Floor2BadroomSquare.Text = "0.00 кв.м.";
                 Tb_Floor2TileSquare.Text = "0.00 м.";
-                Tb_Floor2TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+                Tb_Floor2TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor2DoorsLayout)
             {
@@ -1510,7 +1482,7 @@ namespace BuildingPlanCalc
                 Tb_Floor3РHoleSecondLight.Text = "0.00 кв.м.";
                 Tb_Floor3BadroomSquare.Text = "0.00 кв.м.";
                 Tb_Floor3TileSquare.Text = "0.00 м.";
-                Tb_Floor3TilePerimeter.Text = "Периметр комнат с кафелем - 0 м.";
+                Tb_Floor3TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor3DoorsLayout)
             {
@@ -1550,14 +1522,22 @@ namespace BuildingPlanCalc
                 }
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_SaveData.IsEnabled = true; }));
-                
+
             });
         }
-        private void LoadProjectData(object sender, RoutedEventArgs e)
+        private async void LoadProjectDataAsync(object sender, RoutedEventArgs e)
         {
             // TODO : включить, как допишу присвоение
-
-            GoogleSheets.LoadData();
+            await Task.Run(() =>
+            {
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_LoadData.IsEnabled = false; }));
+                if (House.ProjectName != null)
+                {
+                    GoogleSheets.LoadData();
+                }
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { Btn_LoadData.IsEnabled = true; }));
+                
+            });
         }
         #endregion
 
@@ -1653,7 +1633,7 @@ namespace BuildingPlanCalc
         }
         private void Tb_Set0FloorSquare_TextChanged(object sender, TextChangedEventArgs e)
         {
-        
+
             string value = (sender as TextBox).Text;
             value = value.Replace(" ", "");
             value = value.Replace('.', ',').Trim();
@@ -1676,7 +1656,7 @@ namespace BuildingPlanCalc
         }
         private void Tb_SetFloor1Square_TextChanged(object sender, TextChangedEventArgs e)
         {
-    
+
             string value = (sender as TextBox).Text;
             value = value.Replace(" ", "");
             value = value.Replace('.', ',').Trim();
@@ -2552,7 +2532,34 @@ namespace BuildingPlanCalc
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3RailingsLength);
         }
-
+        private void Btn_SetFloor0TilePerimeter_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor0ODLayout.IsChecked = true;
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0TilePerimeter);
+        }
+        private void Btn_SetFloor1TilePerimeter_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor1ODLayout.IsChecked = true;
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor1TilePerimeter);
+        }
+        private void Btn_SetFloor2TilePerimeter_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor2ODLayout.IsChecked = true;
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor2TilePerimeter);
+        }
+        private void Btn_SetFloor3TilePerimeter_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetFloor3ODLayout.IsChecked = true;
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3TilePerimeter);
+        }
         #endregion
 
         private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e)
@@ -2686,5 +2693,7 @@ namespace BuildingPlanCalc
             SelectLayouts(Floor3BalconyLayout);
         }
         #endregion
+
+
     }
 }
