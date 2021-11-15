@@ -3,6 +3,7 @@ using BuildingPlanCalc.Models;
 using BuildingPlanCalc.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -415,6 +416,8 @@ namespace BuildingPlanCalc
         }
         #endregion
 
+
+
         #region Валидация
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -423,10 +426,18 @@ namespace BuildingPlanCalc
         }
         private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            //TODO : Переписать регулярку для double
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex;
+            if ((sender as TextBox).Text.Contains("."))
+            {
+                regex = new Regex("[^0-9]+");
+            }
+            else
+            {
+                regex = new Regex("[^0-9.]+");
+            }
             e.Handled = regex.IsMatch(e.Text);
         }
+
         #endregion
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -503,7 +514,6 @@ namespace BuildingPlanCalc
             // Если рисование
             if (isPainting && SelectedBuidingObj != 0)
             {
-                // HACK : Принудительная установка масштаба. Можно отключить при тестировании
                 if (coeffLength == 0.1)
                 {
                     TB_RealLength.Focus();
@@ -903,19 +913,19 @@ namespace BuildingPlanCalc
                     House.Floor0OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0OutDoorsLength.Text = $"{House.Floor0OutDoorsLength} м.";
                     House.Floor0OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0OutDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor0OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor0OutDoorsCount} шт.";
+                    Tb_Floor0OutDoorsCount.Text = $"{House.Floor0OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength:
                     House.Floor0InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0InnerDoorsLength.Text = $"{House.Floor0InnerDoorsLength} м.";
                     House.Floor0InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0InnerDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor0InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor0InnerDoorsCount} шт.";
+                    Tb_Floor0InnerDoorsCount.Text = $"{House.Floor0InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength:
                     House.Floor0PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0PartitionsDoorsLength.Text = $"{House.Floor0PartitionsDoorsLength} м.";
                     House.Floor0PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0PartitionsDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor0PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor0PartitionsDoorsCount} шт.";
+                    Tb_Floor0PartitionsDoorsCount.Text = $"{House.Floor0PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength:
                     House.Floor0GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength).Select(l => l.Length).Sum(), roundTo);
@@ -980,19 +990,19 @@ namespace BuildingPlanCalc
                     House.Floor1OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor1OutDoorsLength.Text = $"{House.Floor1OutDoorsLength} м.";
                     House.Floor1OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1OutDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor1OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor1OutDoorsCount} шт.";
+                    Tb_Floor1OutDoorsCount.Text = $"{House.Floor1OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength:
                     House.Floor1InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor1InnerDoorsLength.Text = $"{House.Floor1InnerDoorsLength} м.";
                     House.Floor1InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1InnerDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor1InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor1InnerDoorsCount} шт.";
+                    Tb_Floor1InnerDoorsCount.Text = $"{House.Floor1InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength:
                     House.Floor1PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor1PartitionsDoorsLength.Text = $"{House.Floor1PartitionsDoorsLength} м.";
                     House.Floor1PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1PartitionsDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor1PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor1PartitionsDoorsCount} шт.";
+                    Tb_Floor1PartitionsDoorsCount.Text = $"{House.Floor1PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength:
                     House.Floor1GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength).Select(l => l.Length).Sum(), roundTo);
@@ -1060,19 +1070,19 @@ namespace BuildingPlanCalc
                     House.Floor2OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor2OutDoorsLength.Text = $"{House.Floor2OutDoorsLength} м.";
                     House.Floor2OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2OutDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor2OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor2OutDoorsCount} шт.";
+                    Tb_Floor2OutDoorsCount.Text = $"{House.Floor2OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength:
                     House.Floor2InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor2InnerDoorsLength.Text = $"{House.Floor2InnerDoorsLength} м.";
                     House.Floor2InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2InnerDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor2InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor2InnerDoorsCount} шт.";
+                    Tb_Floor2InnerDoorsCount.Text = $"{House.Floor2InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength:
                     House.Floor2PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor2PartitionsDoorsLength.Text = $"{House.Floor2PartitionsDoorsLength} м.";
                     House.Floor2PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2PartitionsDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor2PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor2PartitionsDoorsCount} шт.";
+                    Tb_Floor2PartitionsDoorsCount.Text = $"{House.Floor2PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare:
                     House.Floor2BalconySquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare).Select(l => l.Square).Sum(), roundTo);
@@ -1130,19 +1140,19 @@ namespace BuildingPlanCalc
                     House.Floor3OutDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor3OutDoorsLength.Text = $"{House.Floor3OutDoorsLength} м.";
                     House.Floor3OutDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3OutDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor3OutDoorsCount.Text = $"Двери металлические в несущих стенах - {House.Floor3OutDoorsCount} шт.";
+                    Tb_Floor3OutDoorsCount.Text = $"{House.Floor3OutDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength:
                     House.Floor3InnerDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor3InnerDoorsLength.Text = $"{House.Floor3InnerDoorsLength} м.";
                     House.Floor3InnerDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3InnerDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor3InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - {House.Floor3InnerDoorsCount} шт.";
+                    Tb_Floor3InnerDoorsCount.Text = $"{House.Floor3InnerDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength:
                     House.Floor3PartitionsDoorsLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor3PartitionsDoorsLength.Text = $"{House.Floor3PartitionsDoorsLength} м.";
                     House.Floor3PartitionsDoorsCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3PartitionsDoorsLength).Select(l => l.Length).Count();
-                    Tb_Floor3PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - {House.Floor3PartitionsDoorsCount} шт.";
+                    Tb_Floor3PartitionsDoorsCount.Text = $"{House.Floor3PartitionsDoorsCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare:
                     House.Floor3BalconySquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare).Select(l => l.Square).Sum(), roundTo);
@@ -1228,13 +1238,13 @@ namespace BuildingPlanCalc
             Tb_Floor0LightWallsLength.Text = "0.00 м.";
             Tb_Floor0BreakWallsLength.Text = "0.00 м.";
             Tb_Floor0OutDoorsLength.Text = "0.00 м.";
-            Tb_Floor0OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
+            Tb_Floor0OutDoorsCount.Text = $"0 шт.";
             Tb_Floor0InnerDoorsLength.Text = "0.00 м.";
-            Tb_Floor0InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
+            Tb_Floor0InnerDoorsCount.Text = $"0 шт.";
             Tb_Floor0PartitionsDoorsLength.Text = "0.00 м.";
-            Tb_Floor0PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
+            Tb_Floor0PartitionsDoorsCount.Text = $"0 шт.";
             Tb_Floor0GatesLength.Text = "0.00 м.";
-            Tb_Floor0GatesCount.Text = $"Ворота - 0 шт.";
+            Tb_Floor0GatesCount.Text = $"0 шт.";
             Tb_Floor0TerassesSquare.Text = "0.00 кв.м.";
             Tb_Floor0InnerTerassesLength.Text = "0.00 м.";
             Tb_Floor0TerassesLength.Text = "0.00 м.";
@@ -1249,13 +1259,13 @@ namespace BuildingPlanCalc
             Tb_Floor1LightWallsLength.Text = "0.00 м.";
             Tb_Floor1BreakWallsLength.Text = "0.00 м.";
             Tb_Floor1OutDoorsLength.Text = "0.00 м.";
-            Tb_Floor1OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
+            Tb_Floor1OutDoorsCount.Text = $"0 шт.";
             Tb_Floor1InnerDoorsLength.Text = "0.00 м.";
-            Tb_Floor1InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
+            Tb_Floor1InnerDoorsCount.Text = $"0 шт.";
             Tb_Floor1PartitionsDoorsLength.Text = "0.00 м.";
-            Tb_Floor1PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
+            Tb_Floor1PartitionsDoorsCount.Text = $"0 шт.";
             Tb_Floor1GatesLength.Text = "0.00 м.";
-            Tb_Floor1GatesCount.Text = $"Ворота - 0 шт.";
+            Tb_Floor1GatesCount.Text = $"0 шт.";
             Tb_Floor1TerassesSquare.Text = "0.00 кв.м.";
             Tb_Floor1InnerTerassesLength.Text = "0.00 м.";
             Tb_Floor1TerassesLength.Text = "0.00 м.";
@@ -1271,11 +1281,11 @@ namespace BuildingPlanCalc
             Tb_Floor2LightWallsLength.Text = "0.00 м.";
             Tb_Floor2BreakWallsLength.Text = "0.00 м.";
             Tb_Floor2OutDoorsLength.Text = "0.00 м.";
-            Tb_Floor2OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
+            Tb_Floor2OutDoorsCount.Text = $"0 шт.";
             Tb_Floor2InnerDoorsLength.Text = "0.00 м.";
-            Tb_Floor2InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
+            Tb_Floor2InnerDoorsCount.Text = $"0 шт.";
             Tb_Floor2PartitionsDoorsLength.Text = "0.00 м.";
-            Tb_Floor2PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
+            Tb_Floor2PartitionsDoorsCount.Text = $"0 шт.";
             Tb_Floor2BalconySquare.Text = "0.00 кв.м.";
             Tb_Floor2BalconyLength.Text = "0.00 м.";
             Tb_Floor2RailingsLength.Text = "0.00 м.";
@@ -1290,11 +1300,11 @@ namespace BuildingPlanCalc
             Tb_Floor3LightWallsLength.Text = "0.00 м.";
             Tb_Floor3BreakWallsLength.Text = "0.00 м.";
             Tb_Floor3OutDoorsLength.Text = "0.00 м.";
-            Tb_Floor3OutDoorsCount.Text = $"Двери металлические в несущих стенах - 0 шт.";
+            Tb_Floor3OutDoorsCount.Text = $"0 шт.";
             Tb_Floor3InnerDoorsLength.Text = "0.00 м.";
-            Tb_Floor3InnerDoorsCount.Text = $"Двери межкомнатные в несущих стенах - 0 шт.";
+            Tb_Floor3InnerDoorsCount.Text = $"0 шт.";
             Tb_Floor3PartitionsDoorsLength.Text = "0.00 м.";
-            Tb_Floor3PartitionsDoorsCount.Text = $"Двери межкомнатные в перегородках - 0 шт.";
+            Tb_Floor3PartitionsDoorsCount.Text = $"0 шт.";
             Tb_Floor3BalconySquare.Text = "0.00 м.";
             Tb_Floor3BalconyLength.Text = "0.00 м.";
             Tb_Floor3RailingsLength.Text = "0.00 м.";
@@ -1416,13 +1426,13 @@ namespace BuildingPlanCalc
                 Tb_Floor0LightWallsLength.Text = "0.00 м.";
                 Tb_Floor0BreakWallsLength.Text = "0.00 м.";
                 Tb_Floor0OutDoorsLength.Text = "0.00 м.";
-                Tb_Floor0OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor0OutDoorsCount.Text = "0 шт.";
                 Tb_Floor0InnerDoorsLength.Text = "0.00 м.";
-                Tb_Floor0InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor0InnerDoorsCount.Text = "0 шт.";
                 Tb_Floor0PartitionsDoorsLength.Text = "0.00 м.";
-                Tb_Floor0PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor0PartitionsDoorsCount.Text = "0 шт.";
                 Tb_Floor0GatesLength.Text = "0.00 м.";
-                Tb_Floor0GatesCount.Text = "Ворота - 0 шт.";
+                Tb_Floor0GatesCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor0TerasesLayout)
             {
@@ -1446,13 +1456,13 @@ namespace BuildingPlanCalc
                 Tb_Floor1LightWallsLength.Text = "0.00 м.";
                 Tb_Floor1BreakWallsLength.Text = "0.00 м.";
                 Tb_Floor1OutDoorsLength.Text = "0.00 м.";
-                Tb_Floor1OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor1OutDoorsCount.Text = "0 шт.";
                 Tb_Floor1InnerDoorsLength.Text = "0.00 м.";
-                Tb_Floor1InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor1InnerDoorsCount.Text = "0 шт.";
                 Tb_Floor1PartitionsDoorsLength.Text = "0.00 м.";
-                Tb_Floor1PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor1PartitionsDoorsCount.Text = "0 шт.";
                 Tb_Floor1GatesLength.Text = "0.00 м.";
-                Tb_Floor1GatesCount.Text = "Ворота - 0 шт.";
+                Tb_Floor1GatesCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor1TerasesLayout)
             {
@@ -1479,11 +1489,11 @@ namespace BuildingPlanCalc
                 Tb_Floor2LightWallsLength.Text = "0.00 м.";
                 Tb_Floor2BreakWallsLength.Text = "0.00 м.";
                 Tb_Floor2OutDoorsLength.Text = "0.00 м.";
-                Tb_Floor2OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor2OutDoorsCount.Text = "0 шт.";
                 Tb_Floor2InnerDoorsLength.Text = "0.00 м.";
-                Tb_Floor2InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor2InnerDoorsCount.Text = "0 шт.";
                 Tb_Floor2PartitionsDoorsLength.Text = "0.00 м.";
-                Tb_Floor2PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor2PartitionsDoorsCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor2BalconyLayout)
             {
@@ -1507,11 +1517,11 @@ namespace BuildingPlanCalc
                 Tb_Floor3LightWallsLength.Text = "0.00 м.";
                 Tb_Floor3BreakWallsLength.Text = "0.00 м.";
                 Tb_Floor3OutDoorsLength.Text = "0.00 м.";
-                Tb_Floor3OutDoorsCount.Text = "Двери металлические в несущих стенах - 0 шт.";
+                Tb_Floor3OutDoorsCount.Text = "0 шт.";
                 Tb_Floor3InnerDoorsLength.Text = "0.00 м.";
-                Tb_Floor3InnerDoorsCount.Text = "Двери межкомнатные в несущих стенах - 0 шт.";
+                Tb_Floor3InnerDoorsCount.Text = "0 шт.";
                 Tb_Floor3PartitionsDoorsLength.Text = "0.00 м.";
-                Tb_Floor3PartitionsDoorsCount.Text = "Двери межкомнатные в перегородках - 0 шт.";
+                Tb_Floor3PartitionsDoorsCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor3BalconyLayout)
             {
@@ -1592,6 +1602,7 @@ namespace BuildingPlanCalc
         private void RoofType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)RoofType.SelectedItem;
+            if (typeItem == null) return;
             House.RoofType = typeItem.Content.ToString();
         }
         private void TB_BedroomCount_TextChanged(object sender, TextChangedEventArgs e)
@@ -1612,13 +1623,38 @@ namespace BuildingPlanCalc
         }
         private void Tb_WindowSquare_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_WindowSquare.Text.Length > 0)
-                House.WindowSquare = double.Parse(Tb_WindowSquare.Text);
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+            else
+            if (value[value.Length - 1] == ',')
+            {
+                value += "0";
+            }
+            double result = double.Parse(value);
+
+            House.WindowSquare = result;
         }
         private void Tb_Set0FloorSquare_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_Set0FloorSquare.Text.Length > 0)
-                House.Floor0Square = double.Parse(Tb_Set0FloorSquare.Text);
+        
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+            else
+            if (value[value.Length - 1] == ',')
+            {
+                value += "0";
+            }
+            double result = double.Parse(value);
+
+            House.Floor0Square = result;
         }
         private void Tb_SetFloor0BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -1627,8 +1663,22 @@ namespace BuildingPlanCalc
         }
         private void Tb_SetFloor1Square_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_SetFloor1Square.Text.Length > 0)
-                House.Floor1Square = int.Parse(Tb_SetFloor1Square.Text);
+    
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            double result = 0.0;
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+            else
+            if (value[value.Length - 1] == ',')
+            {
+                value += "0";
+            }
+            result = double.Parse(value);
+
+            House.Floor1Square = result;
         }
         private void Tb_SetFloor1BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -1647,8 +1697,20 @@ namespace BuildingPlanCalc
         }
         private void Tb_SetFloor2Square_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_SetFloor2Square.Text.Length > 0)
-                House.Floor2Square = double.Parse(Tb_SetFloor2Square.Text);
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+            else
+            if (value[value.Length - 1] == ',')
+            {
+                value += "0";
+            }
+            double result = double.Parse(value);
+
+            House.Floor2Square = result;
         }
         private void Tb_SetFloor2BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -1657,8 +1719,20 @@ namespace BuildingPlanCalc
         }
         private void Tb_SetFloor3Square_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_SetFloor3Square.Text.Length > 0)
-                House.Floor3Square = double.Parse(Tb_SetFloor3Square.Text);
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+            else
+            if (value[value.Length - 1] == ',')
+            {
+                value += "0";
+            }
+            double result = double.Parse(value);
+
+            House.Floor3Square = result;
         }
         private void Tb_SetFloor3BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
         {

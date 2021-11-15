@@ -30,9 +30,14 @@ namespace BuildingPlanCalc.Models
             double c = Math.Sqrt(Math.Pow(triangle.Points[2].X - triangle.Points[0].X, 2) + Math.Pow(triangle.Points[2].Y - triangle.Points[0].Y, 2)) / koef / 1000;
 
             Length = Math.Max(a, Math.Max(b, c)) * koef / 100;
+            
             Perimetr = a + b + c;
+            //
             double p = Perimetr / 2;
             Square = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+
+            // HACK : не учитывать третью сторону
+            Perimetr = a + b;
         }
     }
 }
