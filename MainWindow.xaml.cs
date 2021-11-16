@@ -68,7 +68,10 @@ namespace BuildingPlanCalc
         private readonly List<IShape> Shapes;
         private Brush shapeColor;
         private Canvas selectedCanvas;
+
+        // Переменные для выравнивания линии по осям
         private bool axisAligment;
+        private byte sector;
         byte ShapeType { get; set; } = 1;
         byte SelectedBuidingObj = 0;
 
@@ -460,19 +463,33 @@ namespace BuildingPlanCalc
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             Point p = Mouse.GetPosition(CanvasForPhantomShape);
+
+            if (axisAligment)
+            {
+                double diffX = point_s.X - p.X;
+                double diffY = point_s.Y - p.Y;
+                // Горизонт
+                if (Math.Abs(diffX) > Math.Abs(diffY))
+                    p.Y = point_s.Y;
+                // Вертикаль
+                else
+                    p.X = point_s.X;
+                point_f = p;
+            }
             DrawShape(p);
             Tb_CursorСoordinates.Text = $"X:{p.X} Y:{p.Y}";
         }
         private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ClearAllPhantomLine();
-
-            point_f = Mouse.GetPosition(CanvasForPhantomShape);
+            if (!axisAligment)
+                point_f = Mouse.GetPosition(CanvasForPhantomShape);
             // Если контрольная линия
             if (isControlLine)
             {
                 if (!double.TryParse(TB_RealLength.Text, out realLength))
                 {
+                    axisAligment = false;
                     MessageBox.Show("Не верно указан размер", "Ошибка ввода данных", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
@@ -522,6 +539,7 @@ namespace BuildingPlanCalc
                 if (coeffLength == 0.1)
                 {
                     TB_RealLength.Focus();
+                    axisAligment = false;
                     MessageBox.Show("Необходимо установить масштаб чертежа", "Предупреждение расчетов", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
