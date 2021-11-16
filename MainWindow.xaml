@@ -12,7 +12,7 @@
         x:Name="window"
         FontFamily="Roboto"
        
-        Height="650"  Width="850" SourceInitialized="Window_SourceInitialized" SizeChanged="window_SizeChanged">
+        Height="650"  Width="850" SourceInitialized="Window_SourceInitialized" SizeChanged="window_SizeChanged" KeyDown="window_KeyDown" KeyUp="window_KeyUp">
     <Window.Resources>
         <!--650-->
         <Style x:Key="ControlButtonStyle">
