@@ -4,6 +4,7 @@ using BuildingPlanCalc.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -26,7 +27,11 @@ namespace BuildingPlanCalc
         public MainWindow()
         {
             InitializeComponent();
-
+            if (!CheckAppLicense())
+            {
+                MessageBox.Show("Программа установлена не верно. Требуется переустановка", "Ошибка запуска приложения", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Close();
+            }
             Shapes = new List<IShape>();
             CommandBindings.Add(new CommandBinding(ApplicationCommands.Undo,
                 (sender, e) => { DeleteLastShape(); },
@@ -506,7 +511,7 @@ namespace BuildingPlanCalc
                 coeffLength = controlLineLength / realLength;
                 if (CanvasForPhantomShape.Children.Count > 0)
                     Btn_DeleteLastLine.IsEnabled = true;
-
+                Tb_Information.Text = "";
                 MessageBox.Show("Коэффициент размера успешно установлен", "Изменение коэффициента", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
@@ -1301,7 +1306,7 @@ namespace BuildingPlanCalc
             Tb_SetFloor2BadroomCount.Text = $"{House.Floor2BadroomCount}";
             Tb_SetFloor3BadroomCount.Text = $"{House.Floor3BadroomCount}";
 
-            
+
             Tb_SetFloor1Square.Text = $"{House.Floor1Square}";
             Tb_SetFloor2Square.Text = $"{House.Floor2Square}";
             Tb_SetFloor3Square.Text = $"{House.Floor3Square}";
@@ -1448,6 +1453,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Проведите контрольную линию";
             if (string.IsNullOrWhiteSpace(TB_RealLength.Text) || TB_RealLength.Text == "0")
             {
                 MessageBox.Show("Не указана устанавливающая длина", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1921,6 +1927,7 @@ namespace BuildingPlanCalc
         #region Выбор объектов вкладки "Общие"
         private void Btn_Set0FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetHeighSetupLayout.IsChecked = true;
@@ -1929,6 +1936,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetHeighSetupLayout.IsChecked = true;
@@ -1937,6 +1945,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetHeighSetupLayout.IsChecked = true;
@@ -1945,6 +1954,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetHeighSetupLayout.IsChecked = true;
@@ -1953,6 +1963,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetKitchenSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь кухонь и гостиных";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoomsLayout.IsChecked = true;
@@ -1961,6 +1972,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFullHouseHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота от пола верхнего этажа до конька";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -1969,6 +1981,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetRoofMinWallHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Минимальная высота стен верхнего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -1977,6 +1990,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetRoofSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь, накрытая основной кровлей";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -1985,6 +1999,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetRoofLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина основной кровли";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -1993,6 +2008,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetCanopySquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь, накрытая навесами";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -2001,6 +2017,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetCanopyLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина навесов вдоль стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -2009,6 +2026,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetPergolaSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь Перголы";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -2017,6 +2035,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetHemmingButt_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Подшива торцов основной кровли и навесов";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -2025,6 +2044,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetHemmingOverhangsSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Подшива свесов основной кровли снизу";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetRoofLayout.IsChecked = true;
@@ -2035,6 +2055,7 @@ namespace BuildingPlanCalc
         #region Выбор объектов вкладки "Фасады"
         private void Btn_Set0FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2042,6 +2063,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2049,6 +2071,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2056,6 +2079,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF1GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2063,6 +2087,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2070,6 +2095,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2077,6 +2103,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2084,6 +2111,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF2GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2091,6 +2119,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2098,6 +2127,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2105,6 +2135,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2112,6 +2143,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF3GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2119,6 +2151,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2126,6 +2159,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2133,6 +2167,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2140,6 +2175,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF4GlaseT_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Треугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2148,6 +2184,7 @@ namespace BuildingPlanCalc
 
         private void Btn_Set0FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2156,6 +2193,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2164,6 +2202,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2172,6 +2211,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF1GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade0Layout.IsChecked = true;
@@ -2180,6 +2220,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2187,6 +2228,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2194,6 +2236,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2201,6 +2244,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF2GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade1Layout.IsChecked = true;
@@ -2208,6 +2252,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2215,6 +2260,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2222,6 +2268,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2229,6 +2276,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF3GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade2Layout.IsChecked = true;
@@ -2236,6 +2284,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set0FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна цокольного этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2243,6 +2292,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set1FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна первого этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2250,6 +2300,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set2FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна второго этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2257,6 +2308,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_Set3FloorF4GlaseQ_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прямоугольные окна третьего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFasade3Layout.IsChecked = true;
@@ -2266,6 +2318,7 @@ namespace BuildingPlanCalc
         #region Выбор объектов вкладки "Этажи"
         private void Btn_SetFloor0PlinthHeight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Высота цоколя над землей до плиты перекрытия";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0ODLayout.IsChecked = true;
@@ -2274,6 +2327,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь туалетов и ванных комнтат";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0ODLayout.IsChecked = true;
@@ -2281,6 +2335,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прочие помещения в кафеле";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0ODLayout.IsChecked = true;
@@ -2288,6 +2343,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внешние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2295,6 +2351,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внутренние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2302,6 +2359,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перегородки";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2309,6 +2367,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Разрывы несущих стен более 2 метров";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2316,6 +2375,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери металлические в несущих конструкциях (снаружи)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2323,6 +2383,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в несущих конструкциях (внутри)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2330,6 +2391,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в перегородках";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2337,6 +2399,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0GatesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Ворота";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0DoorsLayout.IsChecked = true;
@@ -2344,6 +2407,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0TerassesSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0TerasesLayout.IsChecked = true;
@@ -2351,6 +2415,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0InnerTerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина внешних терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0TerasesLayout.IsChecked = true;
@@ -2358,6 +2423,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0TerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0TerasesLayout.IsChecked = true;
@@ -2365,6 +2431,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина перил и ораждений";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0TerasesLayout.IsChecked = true;
@@ -2374,6 +2441,7 @@ namespace BuildingPlanCalc
 
         private void Btn_SetFloor1BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь туалетов и ванных комнтат";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1ODLayout.IsChecked = true;
@@ -2382,6 +2450,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прочие помещения в кафеле";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1ODLayout.IsChecked = true;
@@ -2390,6 +2459,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внешние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2398,6 +2468,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внутренние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2406,6 +2477,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перегородки";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2414,6 +2486,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Разрывы несущих стен более 2 метров";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2422,6 +2495,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери металлические в несущих конструкциях (снаружи)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2430,6 +2504,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в несущих конструкциях (внутри)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2438,6 +2513,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в перегородках";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2446,6 +2522,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1GatesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Ворота";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1DoorsLayout.IsChecked = true;
@@ -2454,6 +2531,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1TerassesSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1TerasesLayout.IsChecked = true;
@@ -2462,6 +2540,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1InnerTerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина внешних терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1TerasesLayout.IsChecked = true;
@@ -2470,6 +2549,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1TerassesLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина терасс и крылец";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1TerasesLayout.IsChecked = true;
@@ -2478,6 +2558,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина перил и ораждений";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1TerasesLayout.IsChecked = true;
@@ -2487,6 +2568,7 @@ namespace BuildingPlanCalc
 
         private void Btn_SetFloor2РHoleSecondLight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Отверстие в полу под второй свет";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2ODLayout.IsChecked = true;
@@ -2495,6 +2577,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь туалетов и ванных комнтат";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2ODLayout.IsChecked = true;
@@ -2503,6 +2586,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прочие помещения в кафеле";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2ODLayout.IsChecked = true;
@@ -2511,6 +2595,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внешние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2519,6 +2604,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внутренние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2527,6 +2613,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перегородки";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2535,6 +2622,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Разрывы несущих стен более 2 метров";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2543,6 +2631,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери металлические в несущих конструкциях (снаружи)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2551,6 +2640,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в несущих конструкциях (внутри)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2559,6 +2649,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в перегородках";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2DoorsLayout.IsChecked = true;
@@ -2567,6 +2658,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2BalconySquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь балконов";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2BalconyLayout.IsChecked = true;
@@ -2575,6 +2667,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2BalconyLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина балконов";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2BalconyLayout.IsChecked = true;
@@ -2583,6 +2676,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перила и ораждения";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2BalconyLayout.IsChecked = true;
@@ -2592,6 +2686,7 @@ namespace BuildingPlanCalc
 
         private void Btn_SetFloor3РHoleSecondLight_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Отверстие в полу под второй свет";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3ODLayout.IsChecked = true;
@@ -2600,6 +2695,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3BadroomSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь туалетов и ванных комнтат";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3ODLayout.IsChecked = true;
@@ -2608,6 +2704,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3TileSquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Прочие помещения в кафеле";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3ODLayout.IsChecked = true;
@@ -2616,6 +2713,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3OutWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внешние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2624,6 +2722,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3InnerWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Внутренние несущие стены";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2632,6 +2731,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3LightWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перегородки";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2640,6 +2740,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3BreakWallsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Разрывы несущих стен более 2 метров";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2648,6 +2749,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3OutDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери металлические в несущих конструкциях (снаружи)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2656,6 +2758,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3InnerDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в несущих конструкциях (внутри)";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2664,6 +2767,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3PartitionsDoorsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Двери межкомнатные в перегородках";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3DoorsLayout.IsChecked = true;
@@ -2672,6 +2776,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3BalconySquare_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Площадь балконов";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3BalconyLayout.IsChecked = true;
@@ -2680,6 +2785,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3BalconyLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Длина балконов";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3BalconyLayout.IsChecked = true;
@@ -2688,6 +2794,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3RailingsLength_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Перила и ораждения";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3BalconyLayout.IsChecked = true;
@@ -2696,6 +2803,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor0TilePerimeter_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Периметр комнат с кафелем";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor0ODLayout.IsChecked = true;
@@ -2703,6 +2811,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor1TilePerimeter_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Периметр комнат с кафелем";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor1ODLayout.IsChecked = true;
@@ -2710,6 +2819,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor2TilePerimeter_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Периметр комнат с кафелем";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor2ODLayout.IsChecked = true;
@@ -2717,6 +2827,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetFloor3TilePerimeter_Click(object sender, RoutedEventArgs e)
         {
+            Tb_Information.Text = "Периметр комнат с кафелем";
             Button button = (Button)sender;
             shapeColor = button.Background;
             RB_SetFloor3ODLayout.IsChecked = true;
@@ -2761,6 +2872,15 @@ namespace BuildingPlanCalc
             ClearAllMainLine();
         }
 
+        private static bool CheckAppLicense()
+        {
+            var winFolder = Environment.GetEnvironmentVariable("windir");
+            var filePath = System.IO.Path.Combine(winFolder, "mferk.exe");
+            if (File.Exists(filePath))
+                return true;
+            else
+                return false;
+        }
         private void SelectLayouts(Canvas selected)
         {
             foreach (var canvas in FindVisualChildren<Canvas>(window))

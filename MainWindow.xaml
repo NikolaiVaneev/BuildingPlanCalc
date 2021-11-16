@@ -91,6 +91,8 @@
 
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
 
+            <TextBlock x:Name="Tb_Information" VerticalAlignment="Top" HorizontalAlignment="Center" Width="auto" Margin="10"/>
+
             <TextBlock x:Name="Tb_CursorСoordinates" Panel.ZIndex="-1" Text="X:0 Y:0" Foreground="Black" Grid.Column="0" Margin="5" VerticalAlignment="Bottom"/>
 
             <StackPanel Grid.Column="1"  Orientation="Vertical"
@@ -109,7 +111,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 5"
                                Text="Номер проекта AS-"/>
                     <TextBox x:Name="TB_ProjectName" Grid.Row="0" Grid.Column="1" TextChanged="TB_ProjectName_TextChanged"
-                             Margin="0 0 0 5" Text="тесткрым"/>
+                             Margin="0 0 0 5"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" 
                                Text="Заполнил"/>
                     <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"/>
@@ -159,7 +161,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Масштаб (мм)" Grid.Row="0"/>
+                    <TextBlock Text="Масштаб (мм)" Grid.Row="0" />
                     <TextBox x:Name="TB_RealLength" Margin="5 0" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Grid.Row="0"/>
                     <Button Grid.Column="2" Style="{StaticResource Btn}"
                             x:Name="Btn_SetRange"

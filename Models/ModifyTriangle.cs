@@ -36,8 +36,8 @@ namespace BuildingPlanCalc.Models
             double p = Perimetr / 2;
             Square = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
 
-            // HACK : не учитывать третью сторону
-            Perimetr = a + b;
+            // HACK : учитывать треть треугольника
+            Perimetr = (a + b + c) * 0.3;
         }
     }
 }
