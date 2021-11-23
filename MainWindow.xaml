@@ -15,7 +15,7 @@
        
         Height="650"  Width="850" SizeChanged="window_SizeChanged" 
         KeyDown="window_KeyDown" 
-        KeyUp="window_KeyUp" Loaded="window_Loaded">
+        KeyUp="window_KeyUp">
     <Window.Background>
         <SolidColorBrush Opacity="0.3" Color="Gray"/>
     </Window.Background>

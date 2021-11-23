@@ -196,6 +196,7 @@ namespace BuildingPlanCalc.Services
                 foreach (var row in values)
                 {
                     lineProjectInTable++;
+                    if (row.Count > 0)
                     if (House.ProjectName.ToLower() == row[0].ToString().ToLower())
                     {
                         isFinded = true;

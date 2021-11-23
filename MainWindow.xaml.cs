@@ -1,7 +1,7 @@
 ﻿using BuildingPlanCalc.Interfaces;
 using BuildingPlanCalc.Models;
 using BuildingPlanCalc.Services;
-using BuildingPlanCalc.UI;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -3055,11 +3055,7 @@ namespace BuildingPlanCalc
             }
         }
 
-        private void window_Loaded(object sender, RoutedEventArgs e)
-        {
-            var transparencyConverter = new TransparencyConverter(this);
-            transparencyConverter.MakeTransparent();
-        }
+
 
 
 
