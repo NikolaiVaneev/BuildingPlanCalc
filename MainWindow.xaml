@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BuildingPlanCalc"
         mc:Ignorable="d" 
-        AllowsTransparency="True"
+        
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+       AllowsTransparency="True" WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         x:Name="window"
         Title="АКС"
         FontFamily="Roboto"
        
-        Height="4650"  Width="850" SourceInitialized="Window_SourceInitialized" SizeChanged="window_SizeChanged" KeyDown="window_KeyDown" KeyUp="window_KeyUp">
+        Height="650"  Width="850" SizeChanged="window_SizeChanged" 
+        KeyDown="window_KeyDown" 
+        KeyUp="window_KeyUp" Loaded="window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.3" Color="Gray"/>
+    </Window.Background>
+
     <Window.Resources>
         <!--650-->
         <Style x:Key="ControlButtonStyle">
@@ -42,11 +48,10 @@
         </Style>
 
     </Window.Resources>
-    <Window.Background>
-        <SolidColorBrush Opacity="0.3" Color="Gray"/>
-    </Window.Background>
+
     <DockPanel>
         <!--Header-->
+
         <Grid DockPanel.Dock="Top" x:Name="Header" Height="27" Background="#FF5FA1B0" 
               PreviewMouseLeftButtonDown="Header_PreviewMouseLeftButtonDown" 
               PreviewMouseLeftButtonUp="Header_PreviewMouseLeftButtonUp" 
@@ -90,7 +95,6 @@
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3DoorsLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3BalconyLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="HemmingLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
-
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
 
             <TextBlock x:Name="Tb_Information" VerticalAlignment="Top" HorizontalAlignment="Center" Width="auto" Margin="10"/>
@@ -189,7 +193,7 @@
                                 <RadioButton x:Name="RB_SetHeighSetupLayout" IsChecked="True" Content="Высоты этажей" GroupName="Layouts" Checked="RB_SetHeighSetupLayout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
-                                <Grid x:Name="Floor0HeighSetupBlock" Visibility="Visible">
+                                <Grid x:Name="Floor0HeighSetupBlock" Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -218,7 +222,7 @@
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
-                                <Grid x:Name="Floor2HeighSetupBlock" Visibility="Visible">
+                                <Grid x:Name="Floor2HeighSetupBlock" Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -232,7 +236,7 @@
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
-                                <Grid x:Name="Floor3HeighSetupBlock" Visibility="Visible">
+                                <Grid x:Name="Floor3HeighSetupBlock" Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -499,7 +503,7 @@
                             </GroupBox.Header>
 
                             <StackPanel>
-                                <GroupBox Header="Цокольный этаж" Visibility="Visible"
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
                                           x:Name="GB_Set0FloorF1Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -561,7 +565,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Второй этаж" Visibility="Visible"
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
                                           x:Name="GB_Set2FloorF1Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -592,7 +596,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Третий этаж" Visibility="Visible"
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
                                           x:Name="GB_Set3FloorF1Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -630,7 +634,7 @@
                                 <RadioButton x:Name="RB_SetFasade1Layout" Content="Фасад - 2. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade1Layout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
-                                <GroupBox Header="Цокольный этаж" Visibility="Visible"
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
                                           x:Name="GB_Set0FloorF2Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -692,7 +696,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Второй этаж" Visibility="Visible"
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
                                           x:Name="GB_Set2FloorF2Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -723,7 +727,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Третий этаж" Visibility="Visible"
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
                                           x:Name="GB_Set3FloorF2Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -761,7 +765,7 @@
                                 <RadioButton x:Name="RB_SetFasade2Layout" Content="Фасад - 3. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade2Layout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
-                                <GroupBox Header="Цокольный этаж" Visibility="Visible"
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
                                           x:Name="GB_Set0FloorF3Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -823,7 +827,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Второй этаж" Visibility="Visible"
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
                                           x:Name="GB_Set2FloorF3Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -854,7 +858,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Третий этаж" Visibility="Visible"
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
                                           x:Name="GB_Set3FloorF3Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -892,7 +896,7 @@
                                 <RadioButton x:Name="RB_SetFasade3Layout" Content="Фасад - 4. Окна и стекл. двери" GroupName="Layouts" Checked="RB_SetFasade3Layout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
-                                <GroupBox Header="Цокольный этаж" Visibility="Visible"
+                                <GroupBox Header="Цокольный этаж" Visibility="Collapsed"
                                           x:Name="GB_Set0FloorF4Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -954,7 +958,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Второй этаж" Visibility="Visible"
+                                <GroupBox Header="Второй этаж" Visibility="Collapsed"
                                           x:Name="GB_Set2FloorF4Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -985,7 +989,7 @@
                                         </Button>
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="Третий этаж" Visibility="Visible"
+                                <GroupBox Header="Третий этаж" Visibility="Collapsed"
                                           x:Name="GB_Set3FloorF4Glase">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -1049,11 +1053,11 @@
                         </GroupBox>
 
                         <ComboBox x:Name="CB_FloorSelect" 
-                                          Visibility="Visible"
+                                          Visibility="Collapsed"
                                           Margin="5" SelectionChanged="CB_FloorSelect_SelectionChanged">
                             <ComboBoxItem Content="Первый этаж" IsSelected="True"/>
                         </ComboBox>
-                        <StackPanel x:Name="GB_0FloorBlock" Visibility="Visible">
+                        <StackPanel x:Name="GB_0FloorBlock" Visibility="Collapsed">
                             <GroupBox x:Name="GB_0FloorBlockOD">
                                 <GroupBox.Header>
                                     <RadioButton x:Name="RB_SetFloor0ODLayout"  Content="Цокольный этаж - ОД" GroupName="Layouts" Checked="RB_SetFloor0ODLayout_Checked"/>
@@ -1729,7 +1733,7 @@
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
-                        <StackPanel x:Name="GB_2FloorBlock" Visibility="Visible">
+                        <StackPanel x:Name="GB_2FloorBlock" Visibility="Collapsed">
                             <GroupBox x:Name="GB_2FloorBlockOD">
                                 <GroupBox.Header>
                                     <RadioButton x:Name="RB_SetFloor2ODLayout" Content="Второй этаж - ОД" GroupName="Layouts" Checked="RB_SetFloor2ODLayout_Checked"/>
@@ -2031,7 +2035,7 @@
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
-                        <StackPanel x:Name="GB_3FloorBlock" Visibility="Visible">
+                        <StackPanel x:Name="GB_3FloorBlock" Visibility="Collapsed">
                             <GroupBox x:Name="GB_3FloorBlockOD">
                                 <GroupBox.Header>
                                     <RadioButton x:Name="RB_SetFloor3ODLayout" Content="Третий этаж - ОД" GroupName="Layouts" Checked="RB_SetFloor3ODLayout_Checked"/>
@@ -2339,21 +2343,11 @@
                     </StackPanel>
                 </local:WheelSpeedScrollViewer >
 
-                <Grid Margin="5 5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Visibility="Visible"
-                        Content="в Excel" Width="100" 
-                        ToolTip="Выгрузить в Excel"
-                        Grid.Column="0" Click="ShowProjDataToExcel"/>
-                    <Button
+                <Button VerticalAlignment="Center" Margin="0 5"
                         x:Name="Btn_SaveData"
                         IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}"
                         ToolTip="Выгрузить в Google Sheets"
-                        Content="Сохранить" Width="100"  Grid.Column="0" Grid.ColumnSpan="2" Click="SendDataToGoogleAsync"/>
-                </Grid>
+                        Content="Сохранить" Width="100"  Grid.ColumnSpan="2" Click="SendDataToGoogleAsync"/>
             </StackPanel>
         </Grid>
     </DockPanel>

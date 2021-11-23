@@ -91,7 +91,8 @@
     <Compile Include="Services\GlobalVariables.cs" />
     <Compile Include="Services\GoogleSheets.cs" />
     <Compile Include="Services\Settings.cs" />
-    <Compile Include="WheelSpeedScrollViewer.cs" />
+    <Compile Include="UI\TransparencyConverter.cs" />
+    <Compile Include="UI\WheelSpeedScrollViewer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
