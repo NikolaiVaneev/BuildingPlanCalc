@@ -1305,6 +1305,28 @@ namespace BuildingPlanCalc
             Tb_Floor3RailingsLength.Text = "0.00 м.";
 
 
+            // Ручные поля
+            Tb_SetFloor1DecatativePillarsLessCount.Text = "";
+            Tb_SetFloor1DecatativePillarsOverCount.Text = "";
+
+            TB_RoomCount.Text = "";
+            TB_BedroomCount.Text = "";
+
+            Tb_WindowCount.Text = "";
+            Tb_WindowSquare.Text = "";
+
+            Tb_Set0FloorSquare.Text = "";
+            Tb_SetFloor0BadroomCount.Text = "";
+
+            Tb_SetFloor1Square.Text = "";
+            Tb_SetFloor1BadroomCount.Text = "";
+
+            Tb_SetFloor2Square.Text = "";
+            Tb_SetFloor2BadroomCount.Text = "";
+
+            Tb_SetFloor3Square.Text = "";
+            Tb_SetFloor3BadroomCount.Text = "";
+
             SetFloorsHouse.SelectedIndex = 0;
             RoofType.SelectedIndex = -1;
         }
