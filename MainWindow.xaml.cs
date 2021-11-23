@@ -1407,41 +1407,78 @@ namespace BuildingPlanCalc
             if (Shapes.Count > 0)
             {
                 Shapes.RemoveAll(s => s.ParrentCanvasName == selectedCanvas.Name);
-                ResetSelectedCanvasStatistic();
+               
             }
+            ResetSelectedCanvasStatistic();
 
         }
         private void ResetSelectedCanvasStatistic()
         {
             if (selectedCanvas == HeighLayout)
             {
+                House.Floor0Height = 0;
                 Tb_Set0FloorHeight.Text = "0.00 м";
+                House.Floor1Height = 0;
                 Tb_Set1FloorHeight.Text = "0.00 м";
+                House.Floor2Height = 0;
                 Tb_Set2FloorHeight.Text = "0.00 м";
+                House.Floor3Height = 0;
                 Tb_Set3FloorHeight.Text = "0.00 м";
+
+                House.RoofHeight = 0;
+                Tb_SetFullHouseHeight.Text = "0.00 м.";
+
+                House.RoofMinWallHeight = 0;
+                Tb_SetRoofMinWallHeight.Text = "0.00 м.";
+
+                House.Floor1DecatativePillarsLessCount = 0;
+                Tb_SetFloor1DecatativePillarsLessCount.Text = "";
+                House.Floor1DecatativePillarsOverCount = 0;
+                Tb_SetFloor1DecatativePillarsOverCount.Text = "";
             }
             if (selectedCanvas == RoomsLayout)
             {
+                House.RoomCount = 0;
                 TB_RoomCount.Text = "";
+                House.BedroomCount = 0;
                 TB_BedroomCount.Text = "";
+                House.KitchensSquare = 0;
                 Tb_SetKitchenSquare.Text = "0.00 кв.м.";
             }
             if (selectedCanvas == RoofLayout)
             {
+                House.RoofType = "";
                 RoofType.SelectedIndex = -1;
-                Tb_SetFullHouseHeight.Text = "0.00 м.";
-                Tb_SetRoofMinWallHeight.Text = "0.00 м.";
-                Tb_SetRoofSquare.Text = "0.00 кв.м.";
-                Tb_SetRoofLength.Text = "0.00 м.";
-                Tb_SetCanopySquare.Text = "0.00 кв.м.";
-                Tb_SetCanopyLength.Text = "0.00 м.";
-                Tb_SetPergolaSquare.Text = "0.00 кв.м.";
-                Tb_SetHemmingButt.Text = "0.00 м.";
-                Tb_SetHemmingOverhangsSquare.Text = "0.00 м.";
 
+                House.RoofSquare = 0;
+                Tb_SetRoofSquare.Text = "0.00 кв.м.";
+                House.RoofLength = 0;
+                Tb_SetRoofLength.Text = "0.00 м.";
+                House.CanopySquare = 0;
+                Tb_SetCanopySquare.Text = "0.00 кв.м.";
+                House.CanopyLength = 0;
+                Tb_SetCanopyLength.Text = "0.00 м.";
+                House.PergolaSquare = 0;
+                Tb_SetPergolaSquare.Text = "0.00 кв.м.";
+            }
+            if (selectedCanvas == HemmingLayout)
+            {
+                House.HemmingButt = 0;
+                Tb_SetHemmingButt.Text = "0.00 м.";
+                House.HemmingOverhangsSquare = 0;
+                Tb_SetHemmingOverhangsSquare.Text = "0.00 м.";
             }
             if (selectedCanvas == Fasade0Layout)
             {
+                House.Floor0F1GlaseP = 0;
+                House.Floor1F1GlaseP = 0;
+                House.Floor2F1GlaseP = 0;
+                House.Floor3F1GlaseP = 0;
+                House.Floor0F1GlaseSq = 0;
+                House.Floor1F1GlaseSq = 0;
+                House.Floor2F1GlaseSq = 0;
+                House.Floor3F1GlaseSq = 0;
+
                 Tb_Set0FloorF1GlaseSq.Text = "0.00 кв.м.";
                 Tb_Set0FloorF1GlaseP.Text = "0.00 м.";
                 Tb_Set1FloorF1GlaseSq.Text = "0.00 кв.м.";
@@ -1453,6 +1490,15 @@ namespace BuildingPlanCalc
             }
             if (selectedCanvas == Fasade1Layout)
             {
+                House.Floor0F2GlaseP = 0;
+                House.Floor1F2GlaseP = 0;
+                House.Floor2F2GlaseP = 0;
+                House.Floor3F2GlaseP = 0;
+                House.Floor0F2GlaseSq = 0;
+                House.Floor1F2GlaseSq = 0;
+                House.Floor2F2GlaseSq = 0;
+                House.Floor3F2GlaseSq = 0;
+
                 Tb_Set0FloorF2GlaseSq.Text = "0.00 кв.м.";
                 Tb_Set0FloorF2GlaseP.Text = "0.00 м.";
                 Tb_Set1FloorF2GlaseSq.Text = "0.00 кв.м.";
@@ -1464,6 +1510,15 @@ namespace BuildingPlanCalc
             }
             if (selectedCanvas == Fasade2Layout)
             {
+                House.Floor0F3GlaseP = 0;
+                House.Floor1F3GlaseP = 0;
+                House.Floor2F3GlaseP = 0;
+                House.Floor3F3GlaseP = 0;
+                House.Floor0F3GlaseSq = 0;
+                House.Floor1F3GlaseSq = 0;
+                House.Floor2F3GlaseSq = 0;
+                House.Floor3F3GlaseSq = 0;
+
                 Tb_Set0FloorF3GlaseSq.Text = "0.00 кв.м.";
                 Tb_Set0FloorF3GlaseP.Text = "0.00 м.";
                 Tb_Set1FloorF3GlaseSq.Text = "0.00 кв.м.";
@@ -1475,6 +1530,15 @@ namespace BuildingPlanCalc
             }
             if (selectedCanvas == Fasade3Layout)
             {
+                House.Floor0F4GlaseP = 0;
+                House.Floor1F4GlaseP = 0;
+                House.Floor2F4GlaseP = 0;
+                House.Floor3F4GlaseP = 0;
+                House.Floor0F4GlaseSq = 0;
+                House.Floor1F4GlaseSq = 0;
+                House.Floor2F4GlaseSq = 0;
+                House.Floor3F4GlaseSq = 0;
+
                 Tb_Set0FloorF4GlaseSq.Text = "0.00 кв.м.";
                 Tb_Set0FloorF4GlaseP.Text = "0.00 м.";
                 Tb_Set1FloorF4GlaseSq.Text = "0.00 кв.м.";
@@ -1486,122 +1550,204 @@ namespace BuildingPlanCalc
             }
             if (selectedCanvas == Floor0ODLayout)
             {
+                House.Floor0Square = 0;
                 Tb_Set0FloorSquare.Text = "";
+                House.Floor0PlinthHeight = 0;
                 Tb_Floor0PlinthHeight.Text = "0.00 м.";
+                House.PlinthOpenPerc = 0;
                 PlinthOpenPerc.Value = 0;
+                House.Floor0BadroomCount = 0;
                 Tb_SetFloor0BadroomCount.Text = "";
+                House.Floor0BadroomSquare = 0;
                 Tb_Floor0BadroomSquare.Text = "0.00 кв.м.";
+                House.Floor0TileSquare = 0;
                 Tb_Floor0TileSquare.Text = "0.00 м.";
+                House.Floor0TilePerimeter = 0;
                 Tb_Floor0TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor0DoorsLayout)
             {
+                House.Floor0OutWallsLength = 0;
                 Tb_Floor0OutWallsLength.Text = "0.00 м.";
+                House.Floor0InnerWallsLength = 0;
                 Tb_Floor0InnerWallsLength.Text = "0.00 м.";
+                House.Floor0LightWallsLength = 0;
                 Tb_Floor0LightWallsLength.Text = "0.00 м.";
+                House.Floor0BreakWallsLength = 0;
                 Tb_Floor0BreakWallsLength.Text = "0.00 м.";
+                House.Floor0OutDoorsLength = 0;
                 Tb_Floor0OutDoorsLength.Text = "0.00 м.";
+                House.Floor0OutDoorsCount = 0;
                 Tb_Floor0OutDoorsCount.Text = "0 шт.";
+                House.Floor0InnerDoorsLength = 0;
                 Tb_Floor0InnerDoorsLength.Text = "0.00 м.";
+                House.Floor0InnerDoorsCount = 0;
                 Tb_Floor0InnerDoorsCount.Text = "0 шт.";
+                House.Floor0PartitionsDoorsLength = 0;
                 Tb_Floor0PartitionsDoorsLength.Text = "0.00 м.";
+                House.Floor0PartitionsDoorsCount = 0;
                 Tb_Floor0PartitionsDoorsCount.Text = "0 шт.";
+                House.Floor0GatesLength = 0;
                 Tb_Floor0GatesLength.Text = "0.00 м.";
+                House.Floor0GatesCount = 0;
                 Tb_Floor0GatesCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor0TerasesLayout)
             {
+                House.Floor0TerassesSquare = 0;
                 Tb_Floor0TerassesSquare.Text = "0.00 кв.м.";
+                House.Floor0InnerTerassesLength = 0;
                 Tb_Floor0InnerTerassesLength.Text = "0.00 м.";
+                House.Floor0TerassesSquare = 0;
                 Tb_Floor0TerassesLength.Text = "0.00 м.";
+                House.Floor0RailingsLength = 0;
                 Tb_Floor0RailingsLength.Text = "0.00 м.";
             }
             if (selectedCanvas == Floor1ODLayout)
             {
+                House.Floor1Square = 0;
                 Tb_SetFloor1Square.Text = "";
+                House.Floor1BadroomCount = 0;
                 Tb_SetFloor1BadroomCount.Text = "";
+                House.Floor1BadroomSquare = 0;
                 Tb_Floor1BadroomSquare.Text = "0.00 кв.м.";
+                House.Floor1TileSquare = 0;
                 Tb_Floor1TileSquare.Text = "0.00 м.";
+                House.Floor1TilePerimeter = 0;
                 Tb_Floor1TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor1DoorsLayout)
             {
+                House.Floor1OutWallsLength = 0;
                 Tb_Floor1OutWallsLength.Text = "0.00 м.";
+                House.Floor1InnerWallsLength = 0;
                 Tb_Floor1InnerWallsLength.Text = "0.00 м.";
+                House.Floor1LightWallsLength = 0;
                 Tb_Floor1LightWallsLength.Text = "0.00 м.";
+                House.Floor1BreakWallsLength = 0;
                 Tb_Floor1BreakWallsLength.Text = "0.00 м.";
+                House.Floor1OutDoorsLength = 0;
                 Tb_Floor1OutDoorsLength.Text = "0.00 м.";
+                House.Floor1OutDoorsCount = 0;
                 Tb_Floor1OutDoorsCount.Text = "0 шт.";
+
+                House.Floor1InnerDoorsLength = 0;
                 Tb_Floor1InnerDoorsLength.Text = "0.00 м.";
+                House.Floor1InnerDoorsCount = 0;
                 Tb_Floor1InnerDoorsCount.Text = "0 шт.";
+                House.Floor1PartitionsDoorsLength = 0;
                 Tb_Floor1PartitionsDoorsLength.Text = "0.00 м.";
+                House.Floor1PartitionsDoorsCount = 0;
                 Tb_Floor1PartitionsDoorsCount.Text = "0 шт.";
+                House.Floor1GatesLength = 0;
                 Tb_Floor1GatesLength.Text = "0.00 м.";
+                House.Floor1GatesCount = 0;
                 Tb_Floor1GatesCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor1TerasesLayout)
             {
+                House.Floor1TerassesSquare = 0;
                 Tb_Floor1TerassesSquare.Text = "0.00 кв.м.";
+                House.Floor1InnerTerassesLength = 0;
                 Tb_Floor1InnerTerassesLength.Text = "0.00 м.";
+                House.Floor1TerassesLength = 0;
                 Tb_Floor1TerassesLength.Text = "0.00 м.";
+                House.Floor1RailingsLength = 0;
                 Tb_Floor1RailingsLength.Text = "0.00 м.";
-                Tb_SetFloor1DecatativePillarsLessCount.Text = "";
-                Tb_SetFloor1DecatativePillarsOverCount.Text = "";
+
             }
             if (selectedCanvas == Floor2ODLayout)
             {
+                House.Floor2Square = 0;
                 Tb_SetFloor2Square.Text = "";
+                House.Floor2BadroomCount = 0;
                 Tb_SetFloor2BadroomCount.Text = "";
+                House.Floor2РHoleSecondLight = 0;
                 Tb_Floor2РHoleSecondLight.Text = "0.00 кв.м.";
+                House.Floor2BadroomSquare = 0;
                 Tb_Floor2BadroomSquare.Text = "0.00 кв.м.";
+                House.Floor2TileSquare = 0;
                 Tb_Floor2TileSquare.Text = "0.00 м.";
+                House.Floor2TilePerimeter = 0;
                 Tb_Floor2TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor2DoorsLayout)
             {
+                House.Floor2OutWallsLength = 0;
                 Tb_Floor2OutWallsLength.Text = "0.00 м.";
+                House.Floor2InnerWallsLength = 0;
                 Tb_Floor2InnerWallsLength.Text = "0.00 м.";
+                House.Floor2LightWallsLength = 0;
                 Tb_Floor2LightWallsLength.Text = "0.00 м.";
+                House.Floor2BreakWallsLength = 0;
                 Tb_Floor2BreakWallsLength.Text = "0.00 м.";
+                House.Floor2OutDoorsLength = 0;
                 Tb_Floor2OutDoorsLength.Text = "0.00 м.";
+                House.Floor2OutDoorsCount = 0;
                 Tb_Floor2OutDoorsCount.Text = "0 шт.";
+                House.Floor2InnerDoorsLength = 0;
                 Tb_Floor2InnerDoorsLength.Text = "0.00 м.";
+                House.Floor2InnerDoorsCount = 0;
                 Tb_Floor2InnerDoorsCount.Text = "0 шт.";
+                House.Floor2PartitionsDoorsLength = 0;
                 Tb_Floor2PartitionsDoorsLength.Text = "0.00 м.";
+                House.Floor2PartitionsDoorsCount = 0;
                 Tb_Floor2PartitionsDoorsCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor2BalconyLayout)
             {
+                House.Floor2BadroomSquare = 0;
                 Tb_Floor2BalconySquare.Text = "0.00 кв.м.";
+                House.Floor2BalconyLength = 0;
                 Tb_Floor2BalconyLength.Text = "0.00 м.";
+                House.Floor2RailingsLength = 0;
                 Tb_Floor2RailingsLength.Text = "0.00 м.";
             }
             if (selectedCanvas == Floor3ODLayout)
             {
+                House.Floor3Square = 0;
                 Tb_SetFloor3Square.Text = "";
+                House.Floor3BadroomCount = 0;
                 Tb_SetFloor3BadroomCount.Text = "";
+                House.Floor3РHoleSecondLight = 0;
                 Tb_Floor3РHoleSecondLight.Text = "0.00 кв.м.";
+                House.Floor3BadroomSquare = 0;
                 Tb_Floor3BadroomSquare.Text = "0.00 кв.м.";
+                House.Floor3TileSquare = 0;
                 Tb_Floor3TileSquare.Text = "0.00 м.";
+                House.Floor3TilePerimeter = 0;
                 Tb_Floor3TilePerimeter.Text = "0 м.";
             }
             if (selectedCanvas == Floor3DoorsLayout)
             {
+                House.Floor3OutWallsLength = 0;
                 Tb_Floor3OutWallsLength.Text = "0.00 м.";
+                House.Floor3InnerWallsLength = 0;
                 Tb_Floor3InnerWallsLength.Text = "0.00 м.";
+                House.Floor3LightWallsLength = 0;
                 Tb_Floor3LightWallsLength.Text = "0.00 м.";
+                House.Floor3BreakWallsLength = 0;
                 Tb_Floor3BreakWallsLength.Text = "0.00 м.";
+                House.Floor3OutDoorsLength = 0;
                 Tb_Floor3OutDoorsLength.Text = "0.00 м.";
+                House.Floor3OutDoorsCount = 0;
                 Tb_Floor3OutDoorsCount.Text = "0 шт.";
+                House.Floor3InnerDoorsLength = 0;
                 Tb_Floor3InnerDoorsLength.Text = "0.00 м.";
+                House.Floor3InnerDoorsCount = 0;
                 Tb_Floor3InnerDoorsCount.Text = "0 шт.";
+                House.Floor3PartitionsDoorsLength = 0;
                 Tb_Floor3PartitionsDoorsLength.Text = "0.00 м.";
+                House.Floor3PartitionsDoorsCount = 0;
                 Tb_Floor3PartitionsDoorsCount.Text = "0 шт.";
             }
             if (selectedCanvas == Floor3BalconyLayout)
             {
+                House.Floor3BalconySquare = 0;
                 Tb_Floor3BalconySquare.Text = "0.00 кв.м.";
+                House.Floor3BalconyLength = 0;
                 Tb_Floor3BalconyLength.Text = "0.00 м.";
+                House.Floor3RailingsLength = 0;
                 Tb_Floor3RailingsLength.Text = "0.00 м.";
             }
         }
