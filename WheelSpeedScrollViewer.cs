@@ -11,7 +11,7 @@ namespace BuildingPlanCalc
             DependencyProperty.Register(nameof(SpeedFactor),
                                         typeof(double),
                                         typeof(WheelSpeedScrollViewer),
-                                        new PropertyMetadata(0.1));
+                                        new PropertyMetadata(0.2));
 
         public double SpeedFactor
         {
