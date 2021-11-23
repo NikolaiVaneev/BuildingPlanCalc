@@ -1506,7 +1506,7 @@ namespace BuildingPlanCalc
         {
             Excel.ShowProjectData();
         }
-        private void ClearAllMainLine()
+        private void ClearSelectedLayout()
         {
             selectedCanvas.Children.Clear();
             if (Shapes.Count > 0)
@@ -2109,7 +2109,7 @@ namespace BuildingPlanCalc
             Tb_Information.Text = "Подшива торцов основной кровли и навесов";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetRoofLayout.IsChecked = true;
+            RB_SetHemmingLayout.IsChecked = true;
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.HemmingButt);
         }
@@ -2119,7 +2119,7 @@ namespace BuildingPlanCalc
             Tb_Information.Text = "Подшива свесов основной кровли снизу";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetRoofLayout.IsChecked = true;
+            RB_SetHemmingLayout.IsChecked = true;
 
             SelectRectObj((byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare);
         }
@@ -3031,10 +3031,9 @@ namespace BuildingPlanCalc
                 }
             }
         }
-
-        private void ClearAllMainLine_Click(object sender, RoutedEventArgs e)
+        private void ClearSelectedLayout_Click(object sender, RoutedEventArgs e)
         {
-            ClearAllMainLine();
+            ClearSelectedLayout();
         }
 
         private static bool CheckAppLicense()
@@ -3139,6 +3138,10 @@ namespace BuildingPlanCalc
         {
             SelectLayouts(Floor3BalconyLayout);
         }
+        private void RB_SetHemmingLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(HemmingLayout);
+        }
         #endregion
 
         private void window_KeyDown(object sender, KeyEventArgs e)
@@ -3148,7 +3151,6 @@ namespace BuildingPlanCalc
                 axisAligment = true;
             }
         }
-
         private void window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.LeftShift)
@@ -3156,5 +3158,7 @@ namespace BuildingPlanCalc
                 axisAligment = false;
             }
         }
+
+
     }
 }

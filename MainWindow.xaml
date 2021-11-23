@@ -89,6 +89,7 @@
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3ODLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3DoorsLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3BalconyLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
+            <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="HemmingLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
 
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
 
@@ -139,7 +140,7 @@
                             Click="Btn_ClearAllProject_Click"></Button>
                     <Button ToolTip="Очистить выбранный слой (Ctrl + Q)"
                             Grid.Column="2" 
-                            Content="Очистить слой" Background="#FFACD8D2" Click="ClearAllMainLine_Click"
+                            Content="Очистить слой" Background="#FFACD8D2" Click="ClearSelectedLayout_Click"
                              >
                     </Button>
                     <Button
@@ -347,8 +348,6 @@
                                 <RadioButton Content="Кровля" x:Name="RB_SetRoofLayout" GroupName="Layouts" Checked="RB_SetRoofLayout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
-
-
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -365,8 +364,6 @@
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
-
-
                                 <Grid>
                                     <ComboBox x:Name="RoofType" 
                                           Margin="0 3 2 0" SelectionChanged="RoofType_SelectionChanged">
@@ -389,9 +386,6 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                 </Grid>
-
-
-
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -456,6 +450,15 @@
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
+                               
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox >
+                            <GroupBox.Header>
+                                <RadioButton Content="Подшив торцов и свесов" x:Name="RB_SetHemmingLayout" GroupName="Layouts" Checked="RB_SetHemmingLayout_Checked"/>
+                            </GroupBox.Header>
+                            <StackPanel>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -468,7 +471,7 @@
                                             Text="Подшива торцов основной кровли и навесов" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
                                     <Button x:Name="Btn_SetHemmingButt" Style="{StaticResource Btn}"
-                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetHemmingButt_Click" Background="#FFAD3BE2">
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetHemmingButt_Click" Background="#FF3BE252">
                                         <Image Source="Assets/roulette.png" />
                                     </Button>
                                 </Grid>
@@ -483,7 +486,7 @@
                                             Text="Подшива свесов основной кровли снизу" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
                                     <Button x:Name="Btn_SetHemmingOverhangsSquare" Style="{StaticResource Btn}"
-                                                 Grid.Column="23" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FFF379E3">
+                                                 Grid.Column="23" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FF6AA0FF">
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
