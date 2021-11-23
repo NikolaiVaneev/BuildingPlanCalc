@@ -2001,8 +2001,6 @@ namespace BuildingPlanCalc
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3Height);
         }
-
-
         private void Btn_SetKitchenSquare_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectedBlockColor(sender);
@@ -2019,7 +2017,7 @@ namespace BuildingPlanCalc
             Tb_Information.Text = "Высота от пола верхнего этажа до конька";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetRoofLayout.IsChecked = true;
+            RB_SetHeighSetupLayout.IsChecked = true;
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.RoofHeight);
         }
@@ -2029,7 +2027,7 @@ namespace BuildingPlanCalc
             Tb_Information.Text = "Минимальная высота стен верхнего этажа";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetRoofLayout.IsChecked = true;
+            RB_SetHeighSetupLayout.IsChecked = true;
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.RoofMinWallHeight);
         }
@@ -2986,9 +2984,9 @@ namespace BuildingPlanCalc
         {
             Shapes.Clear();
             coeffLength = 0.1;
-            selectedCanvas.Children.Clear();
+           // selectedCanvas.Children.Clear();
 
-            foreach (var cv in FindVisualChildren<Canvas>(window))
+            foreach (Canvas cv in FindVisualChildren<Canvas>(window))
             {
                 cv.Children.Clear();
             }
