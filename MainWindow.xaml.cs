@@ -76,6 +76,7 @@ namespace BuildingPlanCalc
         private bool axisAligment;
 
         byte ShapeType { get; set; } = 1;
+        byte tempShapeType;
         byte SelectedBuidingObj = 0;
 
 
@@ -424,6 +425,8 @@ namespace BuildingPlanCalc
                 if (CanvasForPhantomShape.Children.Count > 0)
                     Btn_DeleteLastLine.IsEnabled = true;
                 Tb_Information.Text = "";
+
+                ShapeType = tempShapeType;
                 MessageBox.Show("Коэффициент размера успешно установлен", "Изменение коэффициента", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
@@ -1388,6 +1391,7 @@ namespace BuildingPlanCalc
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
+            tempShapeType = ShapeType;
             Tb_Information.Text = "Проведите контрольную линию";
             if (string.IsNullOrWhiteSpace(TB_RealLength.Text) || TB_RealLength.Text == "0")
             {
