@@ -331,14 +331,13 @@ namespace BuildingPlanCalc
         private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex;
-            if ((sender as TextBox).Text.Contains("."))
-            {
-                regex = new Regex("[^0-9]+");
-            }
-            else
-            {
+
+            int count = (sender as TextBox).Text.Where(c => c == '.').Count();
+            if (count == 0)
                 regex = new Regex("[^0-9.]+");
-            }
+            else
+                regex = new Regex("[^0-9]+");
+      
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -2931,7 +2930,6 @@ namespace BuildingPlanCalc
         {
             ClearSelectedLayout();
         }
-
         private static bool CheckAppLicense()
         {
             var winFolder = Environment.GetEnvironmentVariable("windir");
