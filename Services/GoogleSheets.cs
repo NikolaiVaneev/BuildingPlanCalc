@@ -186,7 +186,18 @@ namespace BuildingPlanCalc.Services
                         House.Floor3TileSquare,
                         House.Floor3TilePerimeter
                     };
-                    valueRange.Values = new List<IList<object>> { oblist };
+
+                    // Приведение 0 к empty
+                    var newOblist = new List<object>();
+                    foreach (var item in oblist)
+                    {
+                        if (item == null || Convert.ToInt32(item) == 0) 
+                            newOblist.Add(string.Empty);
+                        else
+                            newOblist.Add(item);
+                    }
+
+                    valueRange.Values = new List<IList<object>> { newOblist };
 
                     SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, tableID, range2);
                     update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
@@ -197,15 +208,15 @@ namespace BuildingPlanCalc.Services
                 {
                     lineProjectInTable++;
                     if (row.Count > 0)
-                    if (House.ProjectName.ToLower() == row[0].ToString().ToLower())
-                    {
-                        isFinded = true;
-                        WriteProjectData(1);
-                        //WriteTable(House.ManagerName, "B");
+                        if (House.ProjectName.ToLower() == row[0].ToString().ToLower())
+                        {
+                            isFinded = true;
+                            WriteProjectData(1);
+                            //WriteTable(House.ManagerName, "B");
 
-                        MessageBox.Show("Данные проекта успешно сохранены", "Добавление данных в таблицу", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break;
-                    }
+                            MessageBox.Show("Данные проекта успешно сохранены", "Добавление данных в таблицу", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                        }
                 }
 
 
@@ -416,7 +427,7 @@ namespace BuildingPlanCalc.Services
             var result = float.TryParse(obj, out float a);
             if (result)
             {
-               
+
                 return Math.Round(a, 2);
             }
             else
