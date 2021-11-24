@@ -427,7 +427,7 @@ namespace BuildingPlanCalc
                 if (CanvasForPhantomShape.Children.Count > 0)
                     Btn_DeleteLastLine.IsEnabled = true;
                 Tb_Information.Text = "";
-
+                axisAligment = false;
                 ShapeType = tempShapeType;
                 MessageBox.Show("Коэффициент размера успешно установлен", "Изменение коэффициента", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
@@ -523,6 +523,7 @@ namespace BuildingPlanCalc
                 CalcSize();
             }
             isPainting = false;
+          
         }
         private void DrawShape(Point p)
         {
