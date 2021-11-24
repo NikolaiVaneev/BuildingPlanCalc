@@ -334,11 +334,13 @@ namespace BuildingPlanCalc
             Regex regex;
 
             int count = (sender as TextBox).Text.Where(c => c == '.').Count();
-            if (count == 0)
-                regex = new Regex("[^0-9.]+");
+            int count2 = (sender as TextBox).Text.Where(c => c == ',').Count();
+
+            if (count == 0 && count2 == 0)
+                regex = new Regex("[^0-9.,]+");
             else
                 regex = new Regex("[^0-9]+");
-      
+
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -1875,11 +1877,7 @@ namespace BuildingPlanCalc
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
-            else
-            if (value[value.Length - 1] == ',')
-            {
-                value += "0";
-            }
+
             double result = double.Parse(value);
 
             House.WindowSquare = result;
@@ -1893,11 +1891,7 @@ namespace BuildingPlanCalc
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
-            else
-            if (value[value.Length - 1] == ',')
-            {
-                value += "0";
-            }
+
             double result = double.Parse(value);
 
             House.Floor0Square = result;
@@ -1917,11 +1911,7 @@ namespace BuildingPlanCalc
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
-            else
-            if (value[value.Length - 1] == ',')
-            {
-                value += "0";
-            }
+
             result = double.Parse(value);
 
             House.Floor1Square = result;
@@ -1949,11 +1939,7 @@ namespace BuildingPlanCalc
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
-            else
-            if (value[value.Length - 1] == ',')
-            {
-                value += "0";
-            }
+
             double result = double.Parse(value);
 
             House.Floor2Square = result;
@@ -1971,11 +1957,7 @@ namespace BuildingPlanCalc
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
-            else
-            if (value[value.Length - 1] == ',')
-            {
-                value += "0";
-            }
+
             double result = double.Parse(value);
 
             House.Floor3Square = result;
