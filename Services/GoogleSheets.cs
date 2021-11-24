@@ -187,11 +187,11 @@ namespace BuildingPlanCalc.Services
                         House.Floor3TilePerimeter
                     };
 
-                    // Приведение 0 к empty
+                    //Приведение 0 к empty
                     var newOblist = new List<object>();
                     foreach (var item in oblist)
                     {
-                        if (item == null || Convert.ToInt32(item) == 0) 
+                        if (item == null || item.ToString().Contains("0"))
                             newOblist.Add(string.Empty);
                         else
                             newOblist.Add(item);
