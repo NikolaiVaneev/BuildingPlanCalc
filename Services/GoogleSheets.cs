@@ -191,7 +191,7 @@ namespace BuildingPlanCalc.Services
                     var newOblist = new List<object>();
                     foreach (var item in oblist)
                     {
-                        if (item == null || item.ToString().Contains("0"))
+                        if (item == null || (item.ToString().Contains("0") && item.ToString().Length == 1))
                             newOblist.Add(string.Empty);
                         else
                             newOblist.Add(item);
