@@ -188,16 +188,16 @@ namespace BuildingPlanCalc.Services
                     };
 
                     //Приведение 0 к empty
-                    var newOblist = new List<object>();
-                    foreach (var item in oblist)
-                    {
-                        if (item == null || (item.ToString().Contains("0") && item.ToString().Length == 1))
-                            newOblist.Add(string.Empty);
-                        else
-                            newOblist.Add(item);
-                    }
+                    //var newOblist = new List<object>();
+                    //foreach (var item in oblist)
+                    //{
+                    //    if (item == null || (item.ToString().Contains("0") && item.ToString().Length == 1))
+                    //        newOblist.Add(string.Empty);
+                    //    else
+                    //        newOblist.Add(item);
+                    //}
 
-                    valueRange.Values = new List<IList<object>> { newOblist };
+                    valueRange.Values = new List<IList<object>> { oblist };
 
                     SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, tableID, range2);
                     update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
