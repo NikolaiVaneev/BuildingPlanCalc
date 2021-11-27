@@ -3025,6 +3025,35 @@ namespace BuildingPlanCalc
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor3TilePerimeter);
         }
         #endregion
+        #region Выбор объектов (доп)
+        private void Btn_SetKitchenTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSelectedBlockColor(sender);
+            Tb_Information.Text = "Площадь кухонь и гостиных (треугольная)";
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoomsLayout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.KitchensSquare);
+        }
+        private void Btn_SetHemmingOverhangsSquareTr_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSelectedBlockColor(sender);
+            Tb_Information.Text = "Подшива свесов основной кровли снизу (треугольная)";
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetHemmingLayout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare);
+        }
+        private void Btn_SetRoofSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSelectedBlockColor(sender);
+            Tb_Information.Text = "Площадь, накрытая основной кровлей (треугольная)";
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetRoofLayout.IsChecked = true;
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.RoofSquare);
+        }
+        #region
 
         private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e)
         {
@@ -3185,9 +3214,6 @@ namespace BuildingPlanCalc
                 axisAligment = false;
             }
         }
-
-
-
 
 
     }

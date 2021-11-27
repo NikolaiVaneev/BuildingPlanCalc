@@ -13,7 +13,7 @@
         Title="АКС"
         FontFamily="Roboto"
        
-        Height="650"  Width="850" SizeChanged="window_SizeChanged" 
+        Height="4650"  Width="850" SizeChanged="window_SizeChanged" 
         KeyDown="window_KeyDown" 
         KeyUp="window_KeyUp">
     <Window.Background>
@@ -271,7 +271,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetRoofMinWallHeight" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
                                     <TextBlock TextWrapping="Wrap"
-                                            Text="Минимальная высота стен верхнего этажа"
+                                            Text="Минимальная высота внешних стен верхнего этажа"
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
                                     <Button x:Name="Btn_SetRoofMinWallHeight" Style="{StaticResource Btn}"
                                             Grid.Column="2"
@@ -317,6 +317,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetRoofSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
@@ -327,6 +328,13 @@
                                     <Button x:Name="Btn_SetRoofSquare" Style="{StaticResource Btn}"
                                                  Grid.Column="2" Click="Btn_SetRoofSquare_Click" Background="#FF81C918">
                                         <Image Source="Assets/square.png" />
+                                        
+                                    </Button>
+                                    <Button 
+                                                x:Name="Btn_SetRoofSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF81C918" Click="Btn_SetRoofSquareTriangle_Click" >
+                                        <Image Source="Assets/triangle.png" />
                                     </Button>
                                 </Grid>
                                 <Grid>
@@ -444,14 +452,21 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetHemmingOverhangsSquare" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
                                     <TextBlock TextWrapping="Wrap"
                                             Text="Подшива свесов основной кровли снизу" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button 
+                                                x:Name="Btn_SetHemmingOverhangsSquareTr"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF6AA0FF" Click="Btn_SetHemmingOverhangsSquareTr_Click">
+                                        <Image Source="Assets/triangle.png" />
+                                    </Button>
                                     <Button x:Name="Btn_SetHemmingOverhangsSquare" Style="{StaticResource Btn}"
-                                                 Grid.Column="23" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FF6AA0FF">
+                                                 Grid.Column="2" Click="Btn_SetHemmingOverhangsSquare_Click" Background="#FF6AA0FF">
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
@@ -914,7 +929,7 @@
                                         <Button 
                                                 x:Name="Btn_Set1FloorF4GlaseT"
                                                 Style="{StaticResource Btn}"
-                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF4GlaseT_Click">
+                                                Grid.Column="3"  Background="#FFEA7320" Click="Btn_Set1FloorF4GlaseT_Click" Height="24" Margin="0,0,2,4" VerticalAlignment="Bottom">
                                             <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
@@ -1038,11 +1053,17 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetKitchenSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right"/>
                                     <TextBlock TextWrapping="Wrap" Text="Площадь кухонь и гостиных" 
                                                    HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button x:Name="Btn_SetKitchenTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF69EA10" Click="Btn_SetKitchenTriangle_Click" >
+                                        <Image Source="Assets/triangle.png" />
+                                    </Button>
                                     <Button x:Name="Btn_SetKitchenSquare" Style="{StaticResource Btn}"
                                             
                                             Grid.Column="2" Click="Btn_SetKitchenSquare_Click" Background="#FF69EA10">
