@@ -13,7 +13,7 @@
         Title="АКС"
         FontFamily="Roboto"
        
-        Height="4650"  Width="850" SizeChanged="window_SizeChanged" 
+        Height="650"  Width="850" SizeChanged="window_SizeChanged" 
         KeyDown="window_KeyDown" 
         KeyUp="window_KeyUp">
     <Window.Background>
@@ -379,6 +379,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetCanopySquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
@@ -389,6 +390,12 @@
                                     <Button x:Name="Btn_SetCanopySquare" Style="{StaticResource Btn}"
                                                  Grid.Column="2" Click="Btn_SetCanopySquare_Click" Background="#FF29B9E4">
                                         <Image Source="Assets/square.png" />
+                                    </Button>
+                                    <Button 
+                                                x:Name="Btn_SetCanopySquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF29B9E4" Click="Btn_SetCanopySquareTriangle_Click"  >
+                                        <Image Source="Assets/triangle.png" />
                                     </Button>
                                 </Grid>
                                 <Grid>
@@ -411,6 +418,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBox IsReadOnly="True" x:Name="Tb_SetPergolaSquare" Grid.Column="1" Text="0.00 кв.м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
@@ -421,6 +429,12 @@
                                     <Button x:Name="Btn_SetPergolaSquare" Style="{StaticResource Btn}"
                                                 Grid.Column="2" Click="Btn_SetPergolaSquare_Click" Background="#FF747AB2">
                                         <Image Source="Assets/square.png" />
+                                    </Button>
+                                    <Button 
+                                                x:Name="Btn_SetPergolaSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF747AB2" Click="Btn_SetPergolaSquareTriangle_Click"   >
+                                        <Image Source="Assets/triangle.png" />
                                     </Button>
                                 </Grid>
                                
@@ -1137,6 +1151,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor0BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -1147,6 +1162,11 @@
                                                             x:Name="Btn_SetFloor0BadroomSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor0BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor0BadroomSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF69D42B" Click="Btn_SetFloor0BadroomSquareTriangle_Click"  >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -1358,6 +1378,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor0TerassesSquare" Grid.Column="1" Text="0.00 п.м." />
@@ -1369,6 +1390,11 @@
                                                             x:Name="Btn_SetFloor0TerassesSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor0TerassesSquare_Click" Background="#FFF05D26">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor0TerassesSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFF05D26" Click="Btn_SetFloor0TerassesSquareTriangle_Click"   >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -1464,6 +1490,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor1BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -1476,6 +1503,11 @@
                                                             x:Name="Btn_SetFloor1BadroomSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor1BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor1BadroomSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF69D42B" Click="Btn_SetFloor1BadroomSquareTriangle_Click"   >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -1686,6 +1718,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor1TerassesSquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -1697,6 +1730,11 @@
                                                             x:Name="Btn_SetFloor1TerassesSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor1TerassesSquare_Click" Background="#FFF05D26">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor1TerassesSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFF05D26" Click="Btn_SetFloor1TerassesSquareTriangle_Click"   >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -1775,6 +1813,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor2РHoleSecondLight" Grid.Column="1" Text="0.00 кв.м." />
@@ -1786,6 +1825,11 @@
                                                             x:Name="Btn_SetFloor2РHoleSecondLight"
                                                  Grid.Column="2" Click="Btn_SetFloor2РHoleSecondLight_Click" Background="#FFF0684A">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor2РHoleSecondLightTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFF0684A" Click="Btn_SetFloor2РHoleSecondLightTriangle_Click"  >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
 
@@ -1806,6 +1850,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor2BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -1817,6 +1862,11 @@
                                                             x:Name="Btn_SetFloor2BadroomSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor2BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor2BadroomSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF69D42B" Click="Btn_SetFloor2BadroomSquareTriangle_Click"  >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -2005,6 +2055,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor2BalconySquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -2016,6 +2067,11 @@
                                                             x:Name="Btn_SetFloor2BalconySquare"
                                                 HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor2BalconySquare_Click" Background="#FFE48332">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor2BalconySquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE48332" Click="Btn_SetFloor2BalconySquareTriangle_Click">
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -2076,6 +2132,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor3РHoleSecondLight" Grid.Column="1" Text="0.00 кв.м." />
@@ -2087,6 +2144,11 @@
                                                             x:Name="Btn_SetFloor3РHoleSecondLight"
                                                  Grid.Column="2" Click="Btn_SetFloor3РHoleSecondLight_Click" Background="#FFF0684A">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor3РHoleSecondLightTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFF0684A" Click="Btn_SetFloor3РHoleSecondLightTriangle_Click" >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
 
@@ -2107,6 +2169,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor3BadroomSquare" Grid.Column="1" Text="0.00 кв.м." />
@@ -2118,6 +2181,11 @@
                                                             x:Name="Btn_SetFloor3BadroomSquare"
                                                  Grid.Column="2" Click="Btn_SetFloor3BadroomSquare_Click" Background="#FF69D42B">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor3BadroomSquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FF69D42B" Click="Btn_SetFloor3BadroomSquareTriangle_Click"  >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>
@@ -2310,6 +2378,7 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor3BalconySquare" Grid.Column="1" Text="0.00 кв.м." />
                                         <TextBlock TextWrapping="Wrap"
@@ -2320,6 +2389,11 @@
                                                             x:Name="Btn_SetFloor3BalconySquare"
                                                 HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor3BalconySquare_Click" Background="#FFE48332">
                                             <Image Source="Assets/square.png" />
+                                        </Button>
+                                        <Button x:Name="Btn_SetFloor3BalconySquareTriangle"
+                                                Style="{StaticResource Btn}"
+                                                Grid.Column="3"  Background="#FFE48332" Click="Btn_SetFloor3BalconySquareTriangle_Click"  >
+                                            <Image Source="Assets/triangle.png" />
                                         </Button>
                                     </Grid>
                                     <Grid>

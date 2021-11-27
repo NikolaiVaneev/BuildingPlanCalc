@@ -1414,7 +1414,6 @@ namespace BuildingPlanCalc
             if (Shapes.Count > 0)
             {
                 Shapes.RemoveAll(s => s.ParrentCanvasName == selectedCanvas.Name);
-               
             }
             ResetSelectedCanvasStatistic();
 
@@ -1816,7 +1815,6 @@ namespace BuildingPlanCalc
             ShapeType = (byte)GlobalVariables.ShapeTypeEnum.Rect;
             if (SelectedBuidingObj != buidObj)
             {
-                //   ClearAllMainLine();
                 SelectedBuidingObj = buidObj;
             }
             isPainting = true;
@@ -1826,7 +1824,6 @@ namespace BuildingPlanCalc
             ShapeType = (byte)GlobalVariables.ShapeTypeEnum.Triangle;
             if (SelectedBuidingObj != buidObj)
             {
-                //   ClearAllMainLine();
                 SelectedBuidingObj = buidObj;
             }
             isPainting = true;
@@ -3028,33 +3025,93 @@ namespace BuildingPlanCalc
         #region Выбор объектов (доп)
         private void Btn_SetKitchenTriangle_Click(object sender, RoutedEventArgs e)
         {
-            ChangeSelectedBlockColor(sender);
-            Tb_Information.Text = "Площадь кухонь и гостиных (треугольная)";
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetRoomsLayout.IsChecked = true;
+            SelectBuilderObject(sender, ref RB_SetRoomsLayout);
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.KitchensSquare);
         }
         private void Btn_SetHemmingOverhangsSquareTr_Click(object sender, RoutedEventArgs e)
         {
-            ChangeSelectedBlockColor(sender);
-            Tb_Information.Text = "Подшива свесов основной кровли снизу (треугольная)";
-            Button button = (Button)sender;
-            shapeColor = button.Background;
-            RB_SetHemmingLayout.IsChecked = true;
+            SelectBuilderObject(sender, ref RB_SetHemmingLayout);
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.HemmingOverhangsSquare);
         }
         private void Btn_SetRoofSquareTriangle_Click(object sender, RoutedEventArgs e)
         {
+            SelectBuilderObject(sender, ref RB_SetRoofLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.RoofSquare);
+            
+        }
+        private void Btn_SetCanopySquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetRoofLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.CanopySquare);
+        }
+        private void Btn_SetPergolaSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetRoofLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.PergolaSquare);
+        }
+        private void Btn_SetFloor0BadroomSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor0ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0BadroomSquare);
+        }
+        private void Btn_SetFloor0TerassesSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor0TerasesLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor0TerassesSquare);
+        }
+        private void Btn_SetFloor1BadroomSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor1ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1BadroomSquare);
+        }
+        private void Btn_SetFloor1TerassesSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor1TerasesLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare);
+        }
+        private void Btn_SetFloor2РHoleSecondLightTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor2ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2РHoleSecondLight);
+        }
+        private void Btn_SetFloor2BadroomSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor2ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2BadroomSquare);
+        }
+        private void Btn_SetFloor2BalconySquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor2BalconyLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor2BalconySquare);
+        }
+        private void Btn_SetFloor3РHoleSecondLightTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor3ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3РHoleSecondLight);
+        }
+        private void Btn_SetFloor3BadroomSquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor3ODLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3BadroomSquare);
+        }
+        private void Btn_SetFloor3BalconySquareTriangle_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBuilderObject(sender, ref RB_SetFloor3BalconyLayout);
+            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.Floor3BalconySquare);
+        }
+        #endregion
+
+        private void SelectBuilderObject(object sender, ref RadioButton radioButtonBlock)
+        {
             ChangeSelectedBlockColor(sender);
-            Tb_Information.Text = "Площадь, накрытая основной кровлей (треугольная)";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetRoofLayout.IsChecked = true;
-            SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.RoofSquare);
+            radioButtonBlock.IsChecked = true;
+            var grid = button.Parent;
+            IEnumerable<TextBlock> textBlocks = FindVisualChildren<TextBlock>(grid);
+            Tb_Information.Text = textBlocks.ToList().Count > 0 ? textBlocks.ToList()[0].Text : "";
         }
-        #region
-
+       
         private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e)
         {
             ClearAllProject();
