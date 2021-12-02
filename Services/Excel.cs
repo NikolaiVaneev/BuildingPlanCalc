@@ -176,9 +176,9 @@ namespace BuildingPlanCalc.Services
                 xlWorkSheet.Cells[1, 70] = "Длина перил и ограждений";
                 xlWorkSheet.Cells[2, 70] = House.Floor1RailingsLength;
                 xlWorkSheet.Cells[1, 71] = "Декаративные столбы высотой до 3 метров";
-                xlWorkSheet.Cells[2, 71] = House.Floor1DecatativePillarsLessCount;
+                xlWorkSheet.Cells[2, 71] = House.WoodenPillarsLessCount;
                 xlWorkSheet.Cells[1, 72] = "Декоратвные столбы высотой более 3 метров";
-                xlWorkSheet.Cells[2, 72] = House.Floor1DecatativePillarsOverCount;
+                xlWorkSheet.Cells[2, 72] = House.WoodenPillarsOverCount;
                 xlWorkSheet.Cells[1, 73] = "Туалеты и ванные на 1 этаже";
                 xlWorkSheet.Cells[2, 73] = House.Floor1BadroomCount;
                 xlWorkSheet.Cells[1, 74] = "Площадь туалетов и ванных на 1 этаже";

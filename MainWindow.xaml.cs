@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace BuildingPlanCalc
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -848,7 +845,7 @@ namespace BuildingPlanCalc
                     House.Floor0GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor0GatesLength.Text = $"{House.Floor0GatesLength} м.";
                     House.Floor0GatesCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0GatesLength).Select(l => l.Length).Count();
-                    Tb_Floor0GatesCount.Text = $"Ворота - {House.Floor0GatesCount} шт.";
+                    Tb_Floor0GatesCount.Text = $"{House.Floor0GatesCount} шт.";
                     break;
 
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0TerassesSquare:
@@ -918,7 +915,7 @@ namespace BuildingPlanCalc
                     House.Floor1GatesLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength).Select(l => l.Length).Sum(), roundTo);
                     Tb_Floor1GatesLength.Text = $"{House.Floor1GatesLength} м.";
                     House.Floor1GatesCount = Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1GatesLength).Select(l => l.Length).Count();
-                    Tb_Floor1GatesCount.Text = $"Ворота - {House.Floor1GatesCount} шт.";
+                    Tb_Floor1GatesCount.Text = $"{House.Floor1GatesCount} шт.";
                     break;
                 case (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare:
                     House.Floor1TerassesSquare = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor1TerassesSquare).Select(l => l.Square).Sum(), roundTo);
@@ -1207,8 +1204,10 @@ namespace BuildingPlanCalc
 
 
             // Ручные поля
-            Tb_SetFloor1DecatativePillarsLessCount.Text = "";
-            Tb_SetFloor1DecatativePillarsOverCount.Text = "";
+            Tb_SetWoodenPillarsLessCount.Text = "";
+            Tb_SetWoodenPillarsOverCount.Text = "";
+            Tb_SetConcretePillarsLessCount.Text = "";
+            Tb_SetConcretePillarsOverCount.Text = "";
 
             TB_RoomCount.Text = "";
             TB_BedroomCount.Text = "";
@@ -1252,9 +1251,11 @@ namespace BuildingPlanCalc
             Tb_SetFloor2Square.Text = $"{House.Floor2Square}";
             Tb_SetFloor3Square.Text = $"{House.Floor3Square}";
 
-            Tb_SetFloor1DecatativePillarsLessCount.Text = $"{House.Floor1DecatativePillarsLessCount}";
-            Tb_SetFloor1DecatativePillarsOverCount.Text = $"{House.Floor1DecatativePillarsOverCount}";
+            Tb_SetWoodenPillarsLessCount.Text = $"{House.WoodenPillarsLessCount}";
+            Tb_SetWoodenPillarsOverCount.Text = $"{House.WoodenPillarsOverCount}";
 
+            Tb_SetConcretePillarsLessCount.Text = $"{House.WoodenPillarsLessCount}";
+            Tb_SetConcretePillarsOverCount.Text = $"{House.WoodenPillarsOverCount}";
 
             if (House.Floor3Height > 0)
                 SetFloorsHouse.SelectedIndex = 2;
@@ -1331,7 +1332,7 @@ namespace BuildingPlanCalc
             Tb_Floor0InnerDoorsCount.Text = $"{House.Floor0InnerDoorsCount} шт.";
             Tb_Floor0PartitionsDoorsCount.Text = $"{House.Floor0PartitionsDoorsCount} шт.";
             Tb_Floor0GatesLength.Text = $"{House.Floor0GatesLength} м.";
-            Tb_Floor0GatesCount.Text = $"Ворота - {House.Floor0GatesCount} шт.";
+            Tb_Floor0GatesCount.Text = $"{House.Floor0GatesCount} шт.";
             Tb_Floor0TerassesSquare.Text = $"{House.Floor0TerassesSquare} кв.м.";
             Tb_Floor0InnerTerassesLength.Text = $"{House.Floor0InnerTerassesLength} м.";
             Tb_Floor0TerassesLength.Text = $"{House.Floor0TerassesLength} м.";
@@ -1350,7 +1351,7 @@ namespace BuildingPlanCalc
             Tb_Floor1PartitionsDoorsLength.Text = $"{House.Floor1PartitionsDoorsLength} м.";
             Tb_Floor1PartitionsDoorsCount.Text = $"{House.Floor1PartitionsDoorsCount} шт.";
             Tb_Floor1GatesLength.Text = $"{House.Floor1GatesLength} м.";
-            Tb_Floor1GatesCount.Text = $"Ворота - {House.Floor1GatesCount} шт.";
+            Tb_Floor1GatesCount.Text = $"{House.Floor1GatesCount} шт.";
             Tb_Floor1TerassesSquare.Text = $"{House.Floor1TerassesSquare} кв.м.";
             Tb_Floor1InnerTerassesLength.Text = $"{House.Floor1InnerTerassesLength} м.";
             Tb_Floor1TerassesLength.Text = $"{House.Floor1TerassesLength} м.";
@@ -1437,10 +1438,15 @@ namespace BuildingPlanCalc
                 House.RoofMinWallHeight = 0;
                 Tb_SetRoofMinWallHeight.Text = "0.00 м.";
 
-                House.Floor1DecatativePillarsLessCount = 0;
-                Tb_SetFloor1DecatativePillarsLessCount.Text = "";
-                House.Floor1DecatativePillarsOverCount = 0;
-                Tb_SetFloor1DecatativePillarsOverCount.Text = "";
+                House.WoodenPillarsLessCount = 0;
+                Tb_SetWoodenPillarsLessCount.Text = "";
+                House.WoodenPillarsOverCount = 0;
+                Tb_SetWoodenPillarsOverCount.Text = "";
+
+                House.ConcretePillarsLessCount = 0;
+                Tb_SetWoodenPillarsLessCount.Text = "";
+                House.ConcretePillarsOverCount = 0;
+                Tb_SetWoodenPillarsOverCount.Text = "";
             }
             if (selectedCanvas == RoomsLayout)
             {
@@ -1921,13 +1927,13 @@ namespace BuildingPlanCalc
         }
         private void Tb_SetFloor1DecatativePillarsLessCount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_SetFloor1DecatativePillarsLessCount.Text.Length > 0)
-                House.Floor1DecatativePillarsLessCount = int.Parse(Tb_SetFloor1DecatativePillarsLessCount.Text);
+            if (Tb_SetWoodenPillarsLessCount.Text.Length > 0)
+                House.WoodenPillarsLessCount = int.Parse(Tb_SetWoodenPillarsLessCount.Text);
         }
         private void Tb_SetFloor1DecatativePillarsOverCount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Tb_SetFloor1DecatativePillarsOverCount.Text.Length > 0)
-                House.Floor1DecatativePillarsOverCount = int.Parse(Tb_SetFloor1DecatativePillarsOverCount.Text);
+            if (Tb_SetWoodenPillarsOverCount.Text.Length > 0)
+                House.WoodenPillarsOverCount = int.Parse(Tb_SetWoodenPillarsOverCount.Text);
         }
         private void Tb_SetFloor2Square_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -3111,7 +3117,6 @@ namespace BuildingPlanCalc
             IEnumerable<TextBlock> textBlocks = FindVisualChildren<TextBlock>(grid);
             Tb_Information.Text = textBlocks.ToList().Count > 0 ? textBlocks.ToList()[0].Text : "";
         }
-       
         private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e)
         {
             ClearAllProject();
@@ -3272,6 +3277,15 @@ namespace BuildingPlanCalc
             }
         }
 
-
+        private void Tb_SetConcretePillarsLessCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Tb_SetConcretePillarsLessCount.Text.Length > 0)
+                House.ConcretePillarsLessCount = int.Parse(Tb_SetConcretePillarsLessCount.Text);
+        }
+        private void Tb_SetConcretePillarsOverCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Tb_SetConcretePillarsOverCount.Text.Length > 0)
+                House.ConcretePillarsOverCount = int.Parse(Tb_SetConcretePillarsOverCount.Text);
+        }
     }
 }

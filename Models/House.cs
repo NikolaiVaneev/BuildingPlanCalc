@@ -393,13 +393,21 @@ namespace BuildingPlanCalc.Models
         /// </summary>
         public static double Floor1RailingsLength { get; set; }
         /// <summary>
-        /// Декаративные столбы высотой до 3 метров BS
+        /// Деревянные столбы высотой до 3 метров BS
         /// </summary>
-        public static double Floor1DecatativePillarsLessCount { get; set; }
+        public static double WoodenPillarsLessCount { get; set; }
         /// <summary>
-        /// Декоратвные столбы высотой более 3 метров BT
+        /// Деревянные столбы высотой более 3 метров BT
         /// </summary>
-        public static double Floor1DecatativePillarsOverCount { get; set; }
+        public static double WoodenPillarsOverCount { get; set; }
+        /// <summary>
+        /// Бетонные столбы высотой до 3 метров DK
+        /// </summary>
+        public static double ConcretePillarsLessCount { get; set; }
+        /// <summary>
+        /// Бетонные столбы высотой выше 3 метров DL
+        /// </summary>
+        public static double ConcretePillarsOverCount { get; set; }
         /// <summary>
         /// Туалеты и ванные на 1 этаже BU
         /// </summary>
@@ -642,8 +650,10 @@ namespace BuildingPlanCalc.Models
             Floor1InnerTerassesLength = 0;
             Floor1TerassesLength = 0;
             Floor1RailingsLength = 0;
-            Floor1DecatativePillarsLessCount = 0;
-            Floor1DecatativePillarsOverCount = 0;
+            WoodenPillarsLessCount = 0;
+            WoodenPillarsOverCount = 0;
+            ConcretePillarsLessCount = 0;
+            ConcretePillarsOverCount = 0;
             Floor1BadroomCount = 0;
             Floor1BadroomSquare = 0;
             Floor1TileSquare = 0;

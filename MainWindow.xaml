@@ -21,7 +21,7 @@
     </Window.Background>
 
     <Window.Resources>
-        <!--650-->
+
         <Style x:Key="ControlButtonStyle">
             <Setter Property="Button.HorizontalAlignment" Value="Right"/>
             <Setter Property="Button.VerticalAlignment" Value="Top"/>
@@ -289,8 +289,8 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Width="145" TextWrapping="Wrap"
                                             Grid.Column="0"
-                                            Text="Декоративные столбы до 3 м. (шт.) - "/>
-                                    <TextBox x:Name="Tb_SetFloor1DecatativePillarsLessCount" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetFloor1DecatativePillarsLessCount_TextChanged"/>
+                                            Text="Деревянные столбы до 3 м. (шт.) - "/>
+                                    <TextBox x:Name="Tb_SetWoodenPillarsLessCount" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" />
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -300,10 +300,36 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Width="145" TextWrapping="Wrap"
                                             Grid.Column="0"
-                                            Text="Декоративные столбы выше 3 м. (шт.) - "/>
+                                            Text="Деревянные столбы выше 3 м. (шт.) - "/>
                                     <TextBox 
-                                              x:Name="Tb_SetFloor1DecatativePillarsOverCount"
-                                               PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetFloor1DecatativePillarsOverCount_TextChanged"/>
+                                              x:Name="Tb_SetWoodenPillarsOverCount"
+                                               PreviewTextInput="NumberValidationTextBox" Grid.Column="1" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Бетонные столбы до 3 м. (шт.) - "/>
+                                    <TextBox 
+                                              x:Name="Tb_SetConcretePillarsLessCount"
+                                               PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetConcretePillarsLessCount_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Бетонные столбы выше 3 м. (шт.) - "/>
+                                    <TextBox 
+                                              x:Name="Tb_SetConcretePillarsOverCount"
+                                               PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetConcretePillarsOverCount_TextChanged" />
                                 </Grid>
                             </StackPanel>
                         </GroupBox>
@@ -1272,7 +1298,7 @@
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor0BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
                                                              
-                                                    Text="Разрыв внутр. стены больше > 2м в несущ. стенах" 
+                                                    Text="Балка/Разрыв внутр. стены больше 2м в несущих стенах" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
                                         <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor0BreakWallsLength"
@@ -1612,7 +1638,7 @@
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor1BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
                                                          
-                                                    Text="Разрыв внутр. стены больше > 2м в несущ. стенах" 
+                                                    Text="Балка/Разрыв внутр. стены больше 2м в несущих стенах" 
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
                                         <Button Style="{StaticResource Btn}"
                                                             x:Name="Btn_SetFloor1BreakWallsLength"
@@ -1969,7 +1995,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor2BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
-                                                    Text="Разрыв внутр. стены больше > 2м в несущ. стенах" 
+                                                    Text="Балка/Разрыв внутр. стены больше 2м в несущих стенах" 
                                                               
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
                                         <Button Style="{StaticResource Btn}"
@@ -2290,7 +2316,7 @@
                                         <TextBox IsReadOnly="True" x:Name="Tb_Floor3BreakWallsLength" Grid.Column="1" Text="0.00 м." />
                                         <TextBlock TextWrapping="Wrap"
                                                          
-                                                    Text="Разрыв внутр. стены больше > 2м в несущ. стенах" 
+                                                    Text="Балка/Разрыв внутр. стены больше 2м в несущих стенах" 
                                                                
                                                     HorizontalAlignment="Stretch" Grid.Column="0"/>
                                         <Button Style="{StaticResource Btn}"

@@ -141,8 +141,8 @@ namespace BuildingPlanCalc.Services
                         House.Floor1InnerTerassesLength,
                         House.Floor1TerassesLength,
                         House.Floor1RailingsLength,
-                        House.Floor1DecatativePillarsLessCount,
-                        House.Floor1DecatativePillarsOverCount,
+                        House.WoodenPillarsLessCount,
+                        House.WoodenPillarsOverCount,
                         House.Floor1BadroomCount,
                         House.Floor1BadroomSquare,
                         House.Floor1TileSquare,
@@ -184,7 +184,10 @@ namespace BuildingPlanCalc.Services
                         House.Floor3BadroomCount,
                         House.Floor3BadroomSquare,
                         House.Floor3TileSquare,
-                        House.Floor3TilePerimeter
+                        House.Floor3TilePerimeter,
+                        House.ConcretePillarsLessCount,
+                        House.ConcretePillarsOverCount,
+                        DateTime.Now.ToString("d")
                     };
 
                     //Приведение 0 к empty
@@ -349,8 +352,8 @@ namespace BuildingPlanCalc.Services
                             House.Floor1InnerTerassesLength = ExtractFloat(rowValues[67].ToString());
                             House.Floor1TerassesLength = ExtractFloat(rowValues[68].ToString());
                             House.Floor1RailingsLength = ExtractFloat(rowValues[69].ToString());
-                            House.Floor1DecatativePillarsLessCount = ExtractInt(rowValues[70].ToString());
-                            House.Floor1DecatativePillarsOverCount = ExtractInt(rowValues[71].ToString());
+                            House.WoodenPillarsLessCount = ExtractInt(rowValues[70].ToString());
+                            House.WoodenPillarsOverCount = ExtractInt(rowValues[71].ToString());
                             House.Floor1BadroomCount = ExtractInt(rowValues[72].ToString());
                             House.Floor1BadroomSquare = ExtractFloat(rowValues[73].ToString());
                             House.Floor1TileSquare = ExtractFloat(rowValues[74].ToString());
@@ -393,6 +396,9 @@ namespace BuildingPlanCalc.Services
                             House.Floor3BadroomSquare = ExtractFloat(rowValues[111].ToString());
                             House.Floor3TileSquare = ExtractFloat(rowValues[112].ToString());
                             House.Floor3TilePerimeter = ExtractFloat(rowValues[113].ToString());
+                            House.ConcretePillarsLessCount = ExtractFloat(rowValues[114].ToString());
+                            House.ConcretePillarsOverCount = ExtractFloat(rowValues[115].ToString());
+        
                         }
                         catch
                         {
