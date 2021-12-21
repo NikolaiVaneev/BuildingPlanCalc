@@ -578,6 +578,18 @@ namespace BuildingPlanCalc.Models
         /// Периметр комнат с кафелем 3 этажа DJ
         /// </summary>
         public static double Floor3TilePerimeter { get; set; }
+        /// <summary>
+        /// Площадь дома с сайта
+        /// </summary>
+        public static double SiteHomeSquare { get; set; }
+        /// <summary>
+        /// Площадь кровли
+        /// </summary>
+        public static double RoofAreaSquare { get; set; }
+        /// <summary>
+        /// Ограждение из газобетона
+        /// </summary>
+        public static double ConcreteRailingLength { get; set; }
 
         public static void Reset()
         {
@@ -696,6 +708,9 @@ namespace BuildingPlanCalc.Models
             Floor3BadroomSquare = 0;
             Floor3TileSquare = 0;
             Floor3TilePerimeter = 0;
+            SiteHomeSquare = 0;
+            RoofAreaSquare = 0;
+            ConcreteRailingLength = 0;
         }
     }
 }

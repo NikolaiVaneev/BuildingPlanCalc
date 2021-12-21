@@ -95,6 +95,7 @@
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3DoorsLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="Floor3BalconyLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="HemmingLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
+            <Canvas Grid.Column="0" Panel.ZIndex="2" x:Name="FencingLayout" Background="Transparent" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove"/>
             <Canvas Grid.Column="0" Panel.ZIndex="1" x:Name="CanvasForPhantomShape" Background="Transparent"/>
 
             <TextBlock x:Name="Tb_Information" VerticalAlignment="Top" HorizontalAlignment="Center" Width="auto" Margin="10"/>
@@ -362,6 +363,31 @@
 
                         <GroupBox >
                             <GroupBox.Header>
+                                <RadioButton Content="Ограждения" x:Name="RB_SetLayout" GroupName="Layouts" Checked="RB_SetLayout_Checked"/>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock TextWrapping="Wrap"
+                                            Text="Ограждения из газобетона"
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <TextBox IsReadOnly="True" x:Name="Tb_SetConcreteRailingLength" Grid.Column="1" Text="0.00 м." HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <Button x:Name="Btn_SetConcreteRailingLength" Style="{StaticResource Btn}"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right" 
+                                            Background="#FFF54F35" Click="Btn_SetConcreteRailingLength_Click">
+                                        <Image Source="Assets/roulette.png" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox >
+                            <GroupBox.Header>
                                 <RadioButton Content="Кровля" x:Name="RB_SetRoofLayout" GroupName="Layouts" Checked="RB_SetRoofLayout_Checked"/>
                             </GroupBox.Header>
                             <StackPanel>
@@ -489,7 +515,19 @@
                                         <Image Source="Assets/triangle.png" />
                                     </Button>
                                 </Grid>
-                               
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Площадь кровли (кв.м.) - "/>
+                                    <TextBox x:Name="Tb_RoofAreaSquere" Grid.Column="1" 
+                                             PreviewTextInput="DecimalValidationTextBox" TextChanged="Tb_RoofAreaSquere_TextChanged" 
+                                             />
+                                </Grid>
                             </StackPanel>
                         </GroupBox>
 
@@ -1136,7 +1174,19 @@
                                         <Image Source="Assets/square.png" />
                                     </Button>
                                 </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
 
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Площадь дома с сайта (м.кв.) - "/>
+                                    <TextBox x:Name="Tb_SiteHomeSquare" Grid.Column="1" 
+                                             PreviewTextInput="DecimalValidationTextBox" TextChanged="Tb_SiteHomeSquare_TextChanged" 
+                                             />
+                                </Grid>
                             </StackPanel>
                         </GroupBox>
                         <ComboBox x:Name="CB_FloorSelect" 

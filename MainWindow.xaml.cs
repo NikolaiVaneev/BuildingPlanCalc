@@ -627,6 +627,12 @@ namespace BuildingPlanCalc
             byte roundTo = 2; //Округление до
             switch (SelectedBuidingObj)
             {
+                #region Всякие обновления
+                case (byte)GlobalVariables.ProjectObjEnum.ConcreteRailingLength:
+                    House.ConcreteRailingLength = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.ConcreteRailingLength).Select(l => l.Length).Sum(), roundTo);
+                    Tb_SetConcreteRailingLength.Text = $"{House.ConcreteRailingLength} м.";
+                    break;
+                #endregion
                 #region Раздел "Общие"
                 case (byte)GlobalVariables.ProjectObjEnum.Floor0Height:
                     House.Floor0Height = Math.Round(Shapes.Where(w => w.ObjType == (byte)GlobalVariables.ProjectObjEnum.Floor0Height).Select(l => l.Length).Sum(), roundTo);
@@ -3286,6 +3292,49 @@ namespace BuildingPlanCalc
         {
             if (Tb_SetConcretePillarsOverCount.Text.Length > 0)
                 House.ConcretePillarsOverCount = int.Parse(Tb_SetConcretePillarsOverCount.Text);
+        }
+        private void Tb_SiteHomeSquare_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+
+            double result = double.Parse(value);
+
+            House.SiteHomeSquare = result;
+        }
+
+        private void Tb_RoofAreaSquere_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+
+            double result = double.Parse(value);
+
+            House.RoofAreaSquare = result;
+        }
+
+        private void Btn_SetConcreteRailingLength_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSelectedBlockColor(sender);
+            Tb_Information.Text = "Ограждения из газобетон";
+            Button button = (Button)sender;
+            shapeColor = button.Background;
+            RB_SetLayout.IsChecked = true;
+
+            SelectLineObj((byte)GlobalVariables.ProjectObjEnum.ConcreteRailingLength);
+        }
+
+        private void RB_SetLayout_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectLayouts(FencingLayout);
         }
     }
 }

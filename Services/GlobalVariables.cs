@@ -158,7 +158,8 @@
             Floor3BadroomCount,
             Floor3BadroomSquare,
             Floor3TileSquare,
-            Floor3TilePerimeter
+            Floor3TilePerimeter,
+            ConcreteRailingLength
 
         }
     }

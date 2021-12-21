@@ -187,7 +187,10 @@ namespace BuildingPlanCalc.Services
                         House.Floor3TilePerimeter,
                         House.ConcretePillarsLessCount,
                         House.ConcretePillarsOverCount,
-                        DateTime.Now.ToString("d")
+                        DateTime.Now.ToString("d"),
+                        House.ConcreteRailingLength,
+                        House.RoofAreaSquare,
+                        House.SiteHomeSquare
                     };
 
                     //Приведение 0 к empty
