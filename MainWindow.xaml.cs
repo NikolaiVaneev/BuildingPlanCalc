@@ -2457,7 +2457,7 @@ namespace BuildingPlanCalc
             Tb_Information.Text = "Высота цоколя над землей до плиты перекрытия";
             Button button = (Button)sender;
             shapeColor = button.Background;
-            RB_SetFloor0ODLayout.IsChecked = true;
+            RB_SetHeighSetupLayout.IsChecked = true;
 
             SelectLineObj((byte)GlobalVariables.ProjectObjEnum.Floor0PlinthHeight);
         }

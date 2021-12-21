@@ -331,6 +331,32 @@
                                               x:Name="Tb_SetConcretePillarsOverCount"
                                                PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_SetConcretePillarsOverCount_TextChanged" />
                                 </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox IsReadOnly="True" x:Name="Tb_Floor0PlinthHeight" Grid.Column="1" Text="0.00 м." 
+                                                       HorizontalAlignment="Right" Margin="5 0 0 0"/>
+                                    <TextBlock TextWrapping="Wrap"
+                                                    
+                                            Text="Высота цоколя над землей до плиты перекрытия" 
+                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
+                                    <Button 
+                                                        x:Name="Btn_SetFloor0PlinthHeight"
+                                                        Style="{StaticResource Btn}"
+                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0PlinthHeight_Click" Background="#FFE68039">
+                                        <Image Source="Assets/roulette.png" />
+                                    </Button>
+                                </Grid>
+                                <StackPanel>
+                                    <TextBlock TextWrapping="Wrap" 
+                                                               x:Name="TB_PlinthOpenPerc"
+                                                    Text="Сбоку цоколь открыт на 0% (дом на склоне)" 
+                                                    HorizontalAlignment="Stretch"/>
+                                    <Slider x:Name="PlinthOpenPerc" Minimum="0" Maximum="100" ValueChanged="PlinthOpenPerc_ValueChanged"/>
+                                </StackPanel>
                             </StackPanel>
                         </GroupBox>
 
@@ -1135,32 +1161,7 @@
                                                         x:Name="Tb_Set0FloorSquare" 
                                                         PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_Set0FloorSquare_TextChanged"/>
                                     </Grid>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="auto"/>
-                                            <ColumnDefinition Width="30"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox IsReadOnly="True" x:Name="Tb_Floor0PlinthHeight" Grid.Column="1" Text="0.00 м." 
-                                                       HorizontalAlignment="Right" Margin="5 0 0 0"/>
-                                        <TextBlock TextWrapping="Wrap"
-                                                    
-                                            Text="Высота цоколя над землей до плиты перекрытия" 
-                                                   HorizontalAlignment="Stretch" Grid.Column="0" />
-                                        <Button 
-                                                        x:Name="Btn_SetFloor0PlinthHeight"
-                                                        Style="{StaticResource Btn}"
-                                                HorizontalAlignment="Right" Grid.Column="2" Click="Btn_SetFloor0PlinthHeight_Click" Background="#FFE68039">
-                                            <Image Source="Assets/roulette.png" />
-                                        </Button>
-                                    </Grid>
-                                    <StackPanel>
-                                        <TextBlock TextWrapping="Wrap" 
-                                                               x:Name="TB_PlinthOpenPerc"
-                                                    Text="Сбоку цоколь открыт на 0% (дом на склоне)" 
-                                                    HorizontalAlignment="Stretch"/>
-                                        <Slider x:Name="PlinthOpenPerc" Minimum="0" Maximum="100" ValueChanged="PlinthOpenPerc_ValueChanged"/>
-                                    </StackPanel>
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
