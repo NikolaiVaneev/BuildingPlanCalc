@@ -579,18 +579,21 @@ namespace BuildingPlanCalc.Models
         /// </summary>
         public static double Floor3TilePerimeter { get; set; }
         /// <summary>
-        /// Площадь дома с сайта
+        /// Площадь дома с сайта DN
         /// </summary>
         public static double SiteHomeSquare { get; set; }
         /// <summary>
-        /// Площадь кровли
+        /// Площадь кровли DO
         /// </summary>
         public static double RoofAreaSquare { get; set; }
         /// <summary>
-        /// Ограждение из газобетона
+        /// Ограждение из газобетона DN
         /// </summary>
         public static double ConcreteRailingLength { get; set; }
-
+        /// <summary>
+        /// Цена проекта DQ
+        /// </summary>
+        public static double Price { get; set; }
         public static void Reset()
         {
             ManagerName = string.Empty;
@@ -711,6 +714,7 @@ namespace BuildingPlanCalc.Models
             SiteHomeSquare = 0;
             RoofAreaSquare = 0;
             ConcreteRailingLength = 0;
+            Price = 0.0;
         }
     }
 }

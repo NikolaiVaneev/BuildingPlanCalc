@@ -190,7 +190,8 @@ namespace BuildingPlanCalc.Services
                         DateTime.Now.ToString("d"),
                         House.ConcreteRailingLength,
                         House.RoofAreaSquare,
-                        House.SiteHomeSquare
+                        House.SiteHomeSquare,
+                        House.Price
                     };
 
                     //Приведение 0 к empty
@@ -274,7 +275,7 @@ namespace BuildingPlanCalc.Services
                     {
                         isFinded = true;
                         // Define request parameters.
-                        string findedRange = $"A{lineProjectInTable}:DJ{lineProjectInTable}";
+                        string findedRange = $"A{lineProjectInTable}:DQ{lineProjectInTable}";
                         SpreadsheetsResource.ValuesResource.GetRequest request2 =
                                 service.Spreadsheets.Values.Get(tableID, findedRange);
 
@@ -401,7 +402,12 @@ namespace BuildingPlanCalc.Services
                             House.Floor3TilePerimeter = ExtractFloat(rowValues[113].ToString());
                             House.ConcretePillarsLessCount = ExtractFloat(rowValues[114].ToString());
                             House.ConcretePillarsOverCount = ExtractFloat(rowValues[115].ToString());
-        
+
+                            House.ConcreteRailingLength = ExtractFloat(rowValues[117].ToString());
+                            House.RoofAreaSquare = ExtractFloat(rowValues[118].ToString());
+                            House.SiteHomeSquare = ExtractFloat(rowValues[119].ToString());
+                            House.Price = ExtractFloat(rowValues[120].ToString());
+
                         }
                         catch
                         {

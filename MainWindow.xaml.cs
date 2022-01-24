@@ -147,7 +147,7 @@ namespace BuildingPlanCalc
         }
         private void window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TControl.Height = window.ActualHeight - 275;
+            TControl.Height = window.ActualHeight - 295;
         }
         #endregion
 
@@ -1396,7 +1396,10 @@ namespace BuildingPlanCalc
             Tb_Floor3BalconySquare.Text = $"{House.Floor3BalconySquare} кв.м.";
             Tb_Floor3BalconyLength.Text = $"{House.Floor3BalconyLength} м.";
             Tb_Floor3RailingsLength.Text = $"{House.Floor3RailingsLength} м.";
+            Tb_SetFloor3BadroomCount.Text = $"{House.Floor3BadroomCount}";
 
+            TB_UserName.Text = House.ManagerName;
+            TB_Price.Text = House.Price.ToString();
 
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
@@ -3336,5 +3339,22 @@ namespace BuildingPlanCalc
         {
             SelectLayouts(FencingLayout);
         }
+
+        private void TB_Price_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            string value = (sender as TextBox).Text;
+            value = value.Replace(" ", "");
+            value = value.Replace('.', ',').Trim();
+            // Если последний символ запятая, то добавляем ноль
+            if (value.Length == 0)
+                value = "0";
+
+            double result = double.Parse(value);
+
+            House.Price = result;
+        }
+
+ 
     }
 }

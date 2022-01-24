@@ -13,7 +13,7 @@
         Title="АКС"
         FontFamily="Roboto"
        
-        Height="650"  Width="850" SizeChanged="window_SizeChanged" 
+        Height="650" Width="850" SizeChanged="window_SizeChanged" 
         KeyDown="window_KeyDown" 
         KeyUp="window_KeyUp">
     <Window.Background>
@@ -110,23 +110,28 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="113"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 5"
                                Text="Номер проекта AS-"/>
                     <TextBox x:Name="TB_ProjectName" Grid.Row="0" Grid.Column="1" TextChanged="TB_ProjectName_TextChanged"
                              Margin="0 0 0 5"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" 
+                    <TextBlock Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top"
                                Text="Заполнил"/>
-                    <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"/>
+                    <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"  Margin="0 0 0 5"/>
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
+                               Text="Цена проекта (руб.)"/>
+                    <TextBox x:Name="TB_Price" Grid.Row="2" Grid.Column="1" TextChanged="TB_Price_TextChanged"  HorizontalContentAlignment="Center" PreviewTextInput="DecimalValidationTextBox"/>
+                    
                     <Button Margin="0 5 0 0"
                             x:Name="Btn_LoadData"
                             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Загрузить данные проекта"
-                            IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectDataAsync"
-                            />
+                            IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectDataAsync"/>
                 </Grid>
                 <!--Кнопки управления-->
                 <Grid Margin="5 0 5 5">
