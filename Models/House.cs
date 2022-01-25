@@ -403,11 +403,11 @@ namespace BuildingPlanCalc.Models
         /// <summary>
         /// Бетонные столбы высотой до 3 метров DK
         /// </summary>
-        public static double ConcretePillarsLessCount { get; set; }
+        public static int ConcretePillarsLessCount { get; set; }
         /// <summary>
         /// Бетонные столбы высотой выше 3 метров DL
         /// </summary>
-        public static double ConcretePillarsOverCount { get; set; }
+        public static int ConcretePillarsOverCount { get; set; }
         /// <summary>
         /// Туалеты и ванные на 1 этаже BU
         /// </summary>

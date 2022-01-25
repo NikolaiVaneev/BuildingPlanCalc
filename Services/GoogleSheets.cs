@@ -33,7 +33,7 @@ namespace BuildingPlanCalc.Services
             {
                 string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
+                    GoogleClientSecrets.FromStream(stream).Secrets,
                     Scopes,
                     "user",
                     CancellationToken.None,
@@ -59,7 +59,7 @@ namespace BuildingPlanCalc.Services
             int lineProjectInTable = 3;
             if (values != null && values.Count > 0)
             {
-                Action<int> WriteProjectData = (rowNumber) =>
+                void WriteProjectData()
                 {
                     Thread.Sleep(300);
                     // Стартовая ячейка
@@ -194,22 +194,12 @@ namespace BuildingPlanCalc.Services
                         House.Price
                     };
 
-                    //Приведение 0 к empty
-                    //var newOblist = new List<object>();
-                    //foreach (var item in oblist)
-                    //{
-                    //    if (item == null || (item.ToString().Contains("0") && item.ToString().Length == 1))
-                    //        newOblist.Add(string.Empty);
-                    //    else
-                    //        newOblist.Add(item);
-                    //}
-
                     valueRange.Values = new List<IList<object>> { oblist };
 
                     SpreadsheetsResource.ValuesResource.UpdateRequest update = service.Spreadsheets.Values.Update(valueRange, tableID, range2);
                     update.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
-                    UpdateValuesResponse result2 = update.Execute();
-                };
+                    update.Execute();
+                }
 
                 foreach (var row in values)
                 {
@@ -218,7 +208,7 @@ namespace BuildingPlanCalc.Services
                         if (House.ProjectName.ToLower() == row[0].ToString().ToLower())
                         {
                             isFinded = true;
-                            WriteProjectData(1);
+                            WriteProjectData();
                             //WriteTable(House.ManagerName, "B");
 
                             MessageBox.Show("Данные проекта успешно сохранены", "Добавление данных в таблицу", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -242,7 +232,7 @@ namespace BuildingPlanCalc.Services
             {
                 string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
+                    GoogleClientSecrets.FromStream(stream).Secrets,
                     Scopes,
                     "user",
                     CancellationToken.None,
@@ -271,7 +261,7 @@ namespace BuildingPlanCalc.Services
                 foreach (var row in values)
                 {
                     lineProjectInTable++;
-                    if (row[0].ToString().ToLower().Contains(House.ProjectName.ToLower()))
+                    if (row[0].ToString().ToLower() == House.ProjectName.ToLower())
                     {
                         isFinded = true;
                         // Define request parameters.
@@ -314,7 +304,7 @@ namespace BuildingPlanCalc.Services
                             House.Floor2F1GlaseP = ExtractFloat(rowValues[25].ToString());
                             House.Floor3F1GlaseSq = ExtractFloat(rowValues[26].ToString());
                             House.Floor3F1GlaseP = ExtractFloat(rowValues[27].ToString());
-                            House.WindowCount = ExtractInt(rowValues[27].ToString());
+                            House.WindowCount = ExtractInt(rowValues[28].ToString());
                             House.WindowSquare = ExtractFloat(rowValues[29].ToString());
                             House.Floor0OutWallsLength = ExtractFloat(rowValues[30].ToString());
                             House.Floor0InnerWallsLength = ExtractFloat(rowValues[31].ToString());
@@ -400,8 +390,8 @@ namespace BuildingPlanCalc.Services
                             House.Floor3BadroomSquare = ExtractFloat(rowValues[111].ToString());
                             House.Floor3TileSquare = ExtractFloat(rowValues[112].ToString());
                             House.Floor3TilePerimeter = ExtractFloat(rowValues[113].ToString());
-                            House.ConcretePillarsLessCount = ExtractFloat(rowValues[114].ToString());
-                            House.ConcretePillarsOverCount = ExtractFloat(rowValues[115].ToString());
+                            House.ConcretePillarsLessCount = ExtractInt(rowValues[114].ToString());
+                            House.ConcretePillarsOverCount = ExtractInt(rowValues[115].ToString());
 
                             House.ConcreteRailingLength = ExtractFloat(rowValues[117].ToString());
                             House.RoofAreaSquare = ExtractFloat(rowValues[118].ToString());
@@ -428,6 +418,11 @@ namespace BuildingPlanCalc.Services
         {
             if (string.IsNullOrEmpty(obj))
                 return 0;
+
+            if (obj.Contains(','))
+            {
+                obj = obj.Substring(0, obj.IndexOf(','));
+            }
 
             var result = int.TryParse(obj, out int a);
             if (result) return a;

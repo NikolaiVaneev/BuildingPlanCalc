@@ -75,7 +75,7 @@ namespace BuildingPlanCalc
         byte ShapeType { get; set; } = 1;
         byte tempShapeType;
         byte SelectedBuidingObj = 0;
-
+        readonly int scrollingPanelMarginBottom = 300;
 
         #region Управление окном
         private void AppClose(object sender, RoutedEventArgs e)
@@ -96,13 +96,13 @@ namespace BuildingPlanCalc
                 case WindowState.Normal:
                     {
                         WindowState = WindowState.Maximized;
-                        TControl.Height = window.ActualHeight - 280;
+                        TControl.Height = window.ActualHeight - scrollingPanelMarginBottom;
                         break;
                     }
                 case WindowState.Maximized:
                     {
                         WindowState = WindowState.Normal;
-                        TControl.Height = window.ActualHeight - 275;
+                        TControl.Height = window.ActualHeight - scrollingPanelMarginBottom;
                         break;
                     }
             }
@@ -147,7 +147,7 @@ namespace BuildingPlanCalc
         }
         private void window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TControl.Height = window.ActualHeight - 295;
+            TControl.Height = window.ActualHeight - scrollingPanelMarginBottom;
         }
         #endregion
 
@@ -1207,9 +1207,14 @@ namespace BuildingPlanCalc
             Tb_Floor3BalconySquare.Text = "0.00 м.";
             Tb_Floor3BalconyLength.Text = "0.00 м.";
             Tb_Floor3RailingsLength.Text = "0.00 м.";
-
+            Tb_SetConcreteRailingLength.Text = "0.00 м.";
 
             // Ручные поля
+            PlinthOpenPerc.Value = 0;
+
+            Tb_SiteHomeSquare.Text = "";
+            Tb_RoofAreaSquere.Text = "";
+
             Tb_SetWoodenPillarsLessCount.Text = "";
             Tb_SetWoodenPillarsOverCount.Text = "";
             Tb_SetConcretePillarsLessCount.Text = "";
@@ -1235,6 +1240,8 @@ namespace BuildingPlanCalc
 
             SetFloorsHouse.SelectedIndex = 0;
             RoofType.SelectedIndex = -1;
+
+            TB_Price.Text = "";
         }
         private void LoadForm()
         {
@@ -1252,7 +1259,7 @@ namespace BuildingPlanCalc
             Tb_SetFloor2BadroomCount.Text = $"{House.Floor2BadroomCount}";
             Tb_SetFloor3BadroomCount.Text = $"{House.Floor3BadroomCount}";
 
-
+            Tb_Set0FloorSquare.Text = $"{House.Floor0Square}";
             Tb_SetFloor1Square.Text = $"{House.Floor1Square}";
             Tb_SetFloor2Square.Text = $"{House.Floor2Square}";
             Tb_SetFloor3Square.Text = $"{House.Floor3Square}";
@@ -1260,8 +1267,8 @@ namespace BuildingPlanCalc
             Tb_SetWoodenPillarsLessCount.Text = $"{House.WoodenPillarsLessCount}";
             Tb_SetWoodenPillarsOverCount.Text = $"{House.WoodenPillarsOverCount}";
 
-            Tb_SetConcretePillarsLessCount.Text = $"{House.WoodenPillarsLessCount}";
-            Tb_SetConcretePillarsOverCount.Text = $"{House.WoodenPillarsOverCount}";
+            Tb_SetConcretePillarsLessCount.Text = $"{House.ConcretePillarsLessCount}";
+            Tb_SetConcretePillarsOverCount.Text = $"{House.ConcretePillarsOverCount}";
 
             if (House.Floor3Height > 0)
                 SetFloorsHouse.SelectedIndex = 2;
@@ -1401,6 +1408,8 @@ namespace BuildingPlanCalc
             TB_UserName.Text = House.ManagerName;
             TB_Price.Text = House.Price.ToString();
 
+            Tb_SiteHomeSquare.Text = House.SiteHomeSquare.ToString();
+            Tb_RoofAreaSquere.Text = House.RoofAreaSquare.ToString();
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
@@ -1920,7 +1929,7 @@ namespace BuildingPlanCalc
             string value = (sender as TextBox).Text;
             value = value.Replace(" ", "");
             value = value.Replace('.', ',').Trim();
-            double result = 0.0;
+            double result;
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
@@ -3152,8 +3161,8 @@ namespace BuildingPlanCalc
                 for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
                     var child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                        yield return (T)child;
+                    if (child != null && child is T t)
+                        yield return t;
                     foreach (T childOfChild in FindVisualChildren<T>(child))
                         yield return childOfChild;
                 }
