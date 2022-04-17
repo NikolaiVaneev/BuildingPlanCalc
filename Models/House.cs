@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace BuildingPlanCalc.Models
 {
+    [Serializable]
     public static class House
     {
         /// <summary>

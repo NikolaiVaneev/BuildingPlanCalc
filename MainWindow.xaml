@@ -132,7 +132,33 @@
                             x:Name="Btn_LoadData"
                             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Загрузить данные проекта"
                             IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectDataAsync"/>
+
+
+                    
                 </Grid>
+
+                <!--Сохрание и загрузка-->
+                <Grid Margin="5 0 5 5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button 
+                            ToolTip="Сохранить в файл"
+                            Grid.Column="0" Content="Сохранить" Background="#FFACD8D2" 
+                            Click="SaveToFile"></Button>
+                    <Button ToolTip="Загрузить из файла"
+                            Grid.Column="2" 
+                            Content="Зарузить" Background="#FFACD8D2" 
+                            Click="LoadToFile">
+                    </Button>
+                </Grid>
+                
                 <!--Кнопки управления-->
                 <Grid Margin="5 0 5 5">
                     <Grid.RowDefinitions>

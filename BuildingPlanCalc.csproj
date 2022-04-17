@@ -66,6 +66,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,6 +91,7 @@
     <Compile Include="Services\Excel.cs" />
     <Compile Include="Services\GlobalVariables.cs" />
     <Compile Include="Services\GoogleSheets.cs" />
+    <Compile Include="Services\SerializeStatic.cs" />
     <Compile Include="Services\Settings.cs" />
     <Compile Include="UI\WheelSpeedScrollViewer.cs" />
     <Page Include="MainWindow.xaml">

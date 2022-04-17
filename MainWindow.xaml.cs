@@ -1,7 +1,8 @@
 ﻿using BuildingPlanCalc.Interfaces;
 using BuildingPlanCalc.Models;
 using BuildingPlanCalc.Services;
-
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -520,7 +521,7 @@ namespace BuildingPlanCalc
                 CalcSize();
             }
             isPainting = false;
-          
+
         }
         private void DrawShape(Point p)
         {
@@ -1245,6 +1246,8 @@ namespace BuildingPlanCalc
         }
         private void LoadForm()
         {
+            TB_ProjectName.Text = House.ProjectName.Substring(3);
+
             if (House.Floor0Height == 0)
                 Floor0Enabled.IsChecked = false;
             else
@@ -3061,7 +3064,7 @@ namespace BuildingPlanCalc
         {
             SelectBuilderObject(sender, ref RB_SetRoofLayout);
             SelectTriangleObj((byte)GlobalVariables.ProjectObjEnum.RoofSquare);
-            
+
         }
         private void Btn_SetCanopySquareTriangle_Click(object sender, RoutedEventArgs e)
         {
@@ -3143,7 +3146,7 @@ namespace BuildingPlanCalc
         {
             Shapes.Clear();
             coeffLength = 0.1;
-           // selectedCanvas.Children.Clear();
+            // selectedCanvas.Children.Clear();
 
             foreach (Canvas cv in FindVisualChildren<Canvas>(window))
             {
@@ -3363,7 +3366,27 @@ namespace BuildingPlanCalc
 
             House.Price = result;
         }
-
- 
+        private void SaveToFile(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Building plan calc file (*.bpc) | *.bpc";
+            saveFileDialog.FileName = House.ProjectName;
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                SerializeStatic.Save(typeof(House), saveFileDialog.FileName);
+                MessageBox.Show("Проект успешно сохранен", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void LoadToFile(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Building plan calc file (*.bpc) | *.bpc";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SerializeStatic.Load(typeof(House), openFileDialog.FileName);
+                LoadForm();
+                MessageBox.Show("Проект успешно загружен", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }
