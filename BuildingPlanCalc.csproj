@@ -88,6 +88,7 @@
     <Compile Include="Models\ModifyLine.cs" />
     <Compile Include="Models\ModifyRect.cs" />
     <Compile Include="Models\ModifyTriangle.cs" />
+    <Compile Include="Secure.cs" />
     <Compile Include="Services\Excel.cs" />
     <Compile Include="Services\GlobalVariables.cs" />
     <Compile Include="Services\GoogleSheets.cs" />
@@ -155,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\roulette.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\diskette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

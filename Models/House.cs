@@ -230,7 +230,7 @@ namespace BuildingPlanCalc.Models
         /// Площадь мансардных окон AD
         /// </summary>
         public static double WindowSquare { get; set; }
-        
+
         // цокольный этаж
         /// <summary>
         /// Длина всех несущих стен на цокольном этаже AE
@@ -595,6 +595,66 @@ namespace BuildingPlanCalc.Models
         /// Цена проекта DQ
         /// </summary>
         public static double Price { get; set; }
+
+        /// <sumary>
+        /// Толщина фундаментной плиты(м)
+        /// </summary>
+        public static double FoundationPlateThickness { get; set; }
+
+        /// <sumary>
+        /// Высота ленты(м)    
+        /// </summary>
+        public static double TapeHeight { get; set; }
+        /// <sumary>
+        /// Ширина ленты под дом(м)    
+        /// </summary>
+        public static double TapeWidthUnderTheHouse { get; set; }
+        /// <sumary>
+        /// Кол-во стержней арматуры в ленте(шт)   
+        /// </summary>
+        public static int NumberOfRebars { get; set; }
+        /// <sumary>
+        /// Сечение основной арматуры фундамента(мм)
+        /// </summary>
+        public static double SectionOfTheMainReinforcement { get; set; }
+        /// <sumary>
+        /// Толщина ЖБ перекрытия(м)
+        /// </summary>
+        public static double RCFloorThickness { get; set; }
+        /// <sumary>
+        /// Толщина балок перекрытия(м)    
+        /// </summary>
+        public static double FloorBeamThickness { get; set; }
+        /// <sumary>
+        /// Высота балок перекрытия(м)
+        /// </summary>
+        public static double FloorBeamHeight { get; set; }
+        /// <sumary>
+        /// Толщина утепления между балок(м)   
+        /// </summary>
+        public static double InsulationThickness { get; set; }
+        /// <sumary>
+        /// Толщина несущих стен(м)    
+        /// </summary>
+        public static double BearingWWllThickness { get; set; }
+        /// <sumary>
+        /// Толщина стен цокольного этажа(м)   
+        /// </summary>
+        public static double BasementWallThickness { get; set; }
+        /// <sumary>
+        /// Высота стропил(м) 
+        /// </summary>
+        public static double RafterHeight { get; set; }
+        /// <sumary>
+        /// Толщина стропил(м) 
+        /// </summary>
+        public static double RafterThickness { get; set; }
+        /// <sumary>
+        /// Толщина утепления(м)
+        /// </summary>
+        public static double InsulationThickness2 { get; set; }
+
+
         public static void Reset()
         {
             ManagerName = string.Empty;
@@ -646,7 +706,7 @@ namespace BuildingPlanCalc.Models
             Floor0PlinthHeight = 0;
             PlinthOpenPerc = 0;
             Floor0BadroomCount = 0;
-            Floor0BadroomSquare = 0;;
+            Floor0BadroomSquare = 0; ;
             Floor0TileSquare = 0;
             Floor0TilePerimeter = 0;
             Floor1OutWallsLength = 0;
@@ -716,6 +776,20 @@ namespace BuildingPlanCalc.Models
             RoofAreaSquare = 0;
             ConcreteRailingLength = 0;
             Price = 0.0;
+            FoundationPlateThickness = 0;
+            TapeHeight = 0;
+            TapeWidthUnderTheHouse = 0;
+            NumberOfRebars = 0;
+            SectionOfTheMainReinforcement = 0;
+            RCFloorThickness = 0;
+            FloorBeamThickness = 0;
+            FloorBeamHeight = 0;
+            InsulationThickness = 0;
+            BearingWWllThickness = 0;
+            BasementWallThickness = 0;
+            RafterHeight = 0;
+            RafterThickness = 0;
+            InsulationThickness2 = 0;
         }
     }
 }

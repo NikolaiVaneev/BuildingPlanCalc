@@ -123,18 +123,18 @@
                     <TextBlock Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top"
                                Text="Заполнил"/>
                     <TextBox x:Name="TB_UserName" Grid.Row="1" Grid.Column="1" TextChanged="TB_UserName_TextChanged"  Margin="0 0 0 5"/>
-                    
+
                     <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
                                Text="Цена проекта (руб.)"/>
                     <TextBox x:Name="TB_Price" Grid.Row="2" Grid.Column="1" TextChanged="TB_Price_TextChanged"  HorizontalContentAlignment="Center" PreviewTextInput="DecimalValidationTextBox"/>
-                    
+
                     <Button Margin="0 5 0 0"
                             x:Name="Btn_LoadData"
                             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Загрузить данные проекта"
                             IsEnabled="{Binding ElementName=TB_ProjectName, Path=Text.Length}" Click="LoadProjectDataAsync"/>
 
 
-                    
+
                 </Grid>
 
                 <!--Сохрание и загрузка-->
@@ -148,17 +148,26 @@
                         <ColumnDefinition Width="3"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button 
-                            ToolTip="Сохранить в файл"
-                            Grid.Column="0" Content="Сохранить" Background="#FFACD8D2" 
-                            Click="SaveToFile"></Button>
+                    <Button ToolTip="Сохранить в файл"
+                            Grid.Column="0" Background="#FFACD8D2" 
+                            Click="SaveToFile">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/diskette.png" Height="15" />
+                            <TextBlock Text="Сохранить" Margin="3 0" />
+                        </StackPanel>
+
+                    </Button>
                     <Button ToolTip="Загрузить из файла"
                             Grid.Column="2" 
-                            Content="Зарузить" Background="#FFACD8D2" 
+                             Background="#FFACD8D2" 
                             Click="LoadToFile">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/folder.png" Height="15" />
+                            <TextBlock Text="Загрузить" Margin="3 0" />
+                        </StackPanel>
                     </Button>
                 </Grid>
-                
+
                 <!--Кнопки управления-->
                 <Grid Margin="5 0 5 5">
                     <Grid.RowDefinitions>
@@ -166,16 +175,17 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="95*"/>
                         <ColumnDefinition Width="3"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="111*" />
                     </Grid.ColumnDefinitions>
                     <Button x:Name="Btn_ClearAllProject" 
                             ToolTip="Очистить весь проект (Ctrl + N)"
                             Grid.Column="0" Content="Очистить все" Background="#FFF0A98E" 
-                            Click="Btn_ClearAllProject_Click"></Button>
+                            Click="Btn_ClearAllProject_Click" Grid.ColumnSpan="2"></Button>
                     <Button ToolTip="Очистить выбранный слой (Ctrl + Q)"
-                            Grid.Column="2" 
+                            Grid.Column="3" 
                             Content="Очистить слой" Background="#FFACD8D2" Click="ClearSelectedLayout_Click"
                              >
                     </Button>
@@ -183,7 +193,7 @@
                         x:Name="Btn_DeleteLastLine" 
                         Content="Действие назад (Ctrl + Z)" Click="Btn_DeleteLastLine_Click" IsEnabled="False"
                         ToolTip="Отменить последнюю фигуру (Ctrl + Z)"
-                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="0 3">
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"  Margin="0,3,0,3">
 
                     </Button>
                 </Grid>
@@ -220,6 +230,150 @@
                 <local:WheelSpeedScrollViewer VerticalScrollBarVisibility="Auto"  Margin="5 0" 
                                               CanContentScroll="False" x:Name="TControl">
                     <StackPanel >
+                        <GroupBox Header="Параметры дома">
+                            <StackPanel>
+                                <Grid Margin="0 5 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина фундаментной ленты (м) - "/>
+                                    <TextBox x:Name="Tb_FoundationPlateThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_FoundationPlateThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Высота ленты (м) - "/>
+                                    <TextBox x:Name="Tb_TapeHeight" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_TapeHeight_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Ширина ленты под дом (м) - "/>
+                                    <TextBox x:Name="Tb_TapeWidthUnderTheHouse" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_TapeWidthUnderTheHouse_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Количество стержней арматуры в ленте (шт) - "/>
+                                    <TextBox x:Name="Tb_NumberOfRebars" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" TextChanged="Tb_NumberOfRebars_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Сечение основной арматуры фунтамента (мм) - "/>
+                                    <TextBox x:Name="Tb_SectionOfTheMainReinforcement" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_SectionOfTheMainReinforcement_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина ЖБ перекрытия (м) - "/>
+                                    <TextBox x:Name="Tb_RCFloorThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_RCFloorThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина балок перекрытия (м) - "/>
+                                    <TextBox x:Name="Tb_FloorBeamThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_FloorBeamThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Высота балок перекрытия (м) - "/>
+                                    <TextBox x:Name="Tb_FloorBeamHeight" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_FloorBeamHeight_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина утепления между балок (м) - "/>
+                                    <TextBox x:Name="Tb_InsulationThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_InsulationThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина несущих стен (м) - "/>
+                                    <TextBox x:Name="Tb_BearingWWllThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_BearingWWllThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина стен цокольного этажа (м) - "/>
+                                    <TextBox x:Name="Tb_BasementWallThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_BasementWallThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Высота стропил (м) - "/>
+                                    <TextBox x:Name="Tb_RafterHeight" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_RafterHeight_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина стропил (м) - "/>
+                                    <TextBox x:Name="Tb_RafterThickness" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_RafterThickness_TextChanged" />
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Width="145" TextWrapping="Wrap"
+                                            Grid.Column="0"
+                                            Text="Толщина утепления (м) - "/>
+                                    <TextBox x:Name="Tb_InsulationThickness2" PreviewTextInput="DecimalValidationTextBox" Grid.Column="1" TextChanged="Tb_InsulationThickness2_TextChanged" />
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
                                 <RadioButton x:Name="RB_SetHeighSetupLayout" IsChecked="True" Content="Высоты этажей" GroupName="Layouts" Checked="RB_SetHeighSetupLayout_Checked"/>
@@ -437,7 +591,7 @@
                                     <Button x:Name="Btn_SetRoofSquare" Style="{StaticResource Btn}"
                                                  Grid.Column="2" Click="Btn_SetRoofSquare_Click" Background="#FF81C918">
                                         <Image Source="Assets/square.png" />
-                                        
+
                                     </Button>
                                     <Button 
                                                 x:Name="Btn_SetRoofSquareTriangle"
@@ -1652,7 +1806,7 @@
                                             <Image Source="Assets/roulette.png" />
                                         </Button>
                                     </Grid>
-                                  
+
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="GB_1FloorBlockDoors">

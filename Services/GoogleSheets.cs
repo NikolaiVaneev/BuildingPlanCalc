@@ -20,11 +20,10 @@ namespace BuildingPlanCalc.Services
     {
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static readonly string ApplicationName = "BuildingPlanCalc";
-        static readonly string tableID = "10VcNTGBZTrUn3Qcr_2kZz40hMoEaKYcrZPEqwcqUaAE";
-        static readonly string listName = "Параметры проектов";
+
         static bool isFinded = false;
 
-        public static void SaveData()
+        public static void SaveData(string tableID = "10VcNTGBZTrUn3Qcr_2kZz40hMoEaKYcrZPEqwcqUaAE", string listName = "Параметры проектов")
         {
             UserCredential credential;
 
@@ -191,7 +190,21 @@ namespace BuildingPlanCalc.Services
                         House.ConcreteRailingLength,
                         House.RoofAreaSquare,
                         House.SiteHomeSquare,
-                        House.Price
+                        House.Price,
+                        House.FoundationPlateThickness,
+                        House.TapeHeight,
+                        House.TapeWidthUnderTheHouse,
+                        House.NumberOfRebars,
+                        House.SectionOfTheMainReinforcement,
+                        House.RCFloorThickness,
+                        House.FloorBeamThickness,
+                        House.FloorBeamHeight,
+                        House.InsulationThickness,
+                        House.BearingWWllThickness,
+                        House.BasementWallThickness,
+                        House.RafterHeight,
+                        House.RafterThickness,
+                        House.InsulationThickness2
                     };
 
                     valueRange.Values = new List<IList<object>> { oblist };
@@ -223,7 +236,7 @@ namespace BuildingPlanCalc.Services
             if (!isFinded)
                 MessageBox.Show("Данные о проекте не найдены." + Environment.NewLine + "Проверьте правильность названия проекта или его наличие в таблице", "Ошибка добавления данных", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-        public static void LoadData()
+        public static void LoadData(string tableID = "10VcNTGBZTrUn3Qcr_2kZz40hMoEaKYcrZPEqwcqUaAE")
         {
             UserCredential credential;
 
@@ -261,11 +274,11 @@ namespace BuildingPlanCalc.Services
                 foreach (var row in values)
                 {
                     lineProjectInTable++;
-                    if (row[0].ToString().ToLower() == House.ProjectName.ToLower())
+                    if (row.Count > 0 && row[0].ToString().ToLower() == House.ProjectName.ToLower())
                     {
                         isFinded = true;
                         // Define request parameters.
-                        string findedRange = $"A{lineProjectInTable}:DQ{lineProjectInTable}";
+                        string findedRange = $"A{lineProjectInTable}:EE{lineProjectInTable}";
                         SpreadsheetsResource.ValuesResource.GetRequest request2 =
                                 service.Spreadsheets.Values.Get(tableID, findedRange);
 
@@ -398,6 +411,20 @@ namespace BuildingPlanCalc.Services
                             House.SiteHomeSquare = ExtractFloat(rowValues[119].ToString());
                             House.Price = ExtractFloat(rowValues[120].ToString());
 
+                            House.FoundationPlateThickness = ExtractFloat(rowValues[121].ToString());
+                            House.TapeHeight = ExtractFloat(rowValues[122].ToString());
+                            House.TapeWidthUnderTheHouse = ExtractFloat(rowValues[123].ToString());
+                            House.NumberOfRebars = ExtractInt(rowValues[124].ToString());
+                            House.SectionOfTheMainReinforcement = ExtractFloat(rowValues[125].ToString());
+                            House.RCFloorThickness = ExtractFloat(rowValues[126].ToString());
+                            House.FloorBeamThickness = ExtractFloat(rowValues[127].ToString());
+                            House.FloorBeamHeight = ExtractFloat(rowValues[128].ToString());
+                            House.InsulationThickness = ExtractFloat(rowValues[129].ToString());
+                            House.BearingWWllThickness = ExtractFloat(rowValues[130].ToString());
+                            House.BasementWallThickness = ExtractFloat(rowValues[131].ToString());
+                            House.RafterHeight = ExtractFloat(rowValues[132].ToString());
+                            House.RafterThickness = ExtractFloat(rowValues[133].ToString());
+                            House.InsulationThickness2 = ExtractFloat(rowValues[134].ToString());
                         }
                         catch
                         {

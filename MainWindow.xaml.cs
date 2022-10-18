@@ -76,7 +76,7 @@ namespace BuildingPlanCalc
         byte ShapeType { get; set; } = 1;
         byte tempShapeType;
         byte SelectedBuidingObj = 0;
-        readonly int scrollingPanelMarginBottom = 300;
+        readonly int scrollingPanelMarginBottom = 320;
 
         #region Управление окном
         private void AppClose(object sender, RoutedEventArgs e)
@@ -1243,6 +1243,21 @@ namespace BuildingPlanCalc
             RoofType.SelectedIndex = -1;
 
             TB_Price.Text = "";
+
+            Tb_FoundationPlateThickness.Text = "";
+            Tb_TapeHeight.Text = "";
+            Tb_TapeWidthUnderTheHouse.Text = "";
+            Tb_NumberOfRebars.Text = "";
+            Tb_SectionOfTheMainReinforcement.Text = "";
+            Tb_RCFloorThickness.Text = "";
+            Tb_FloorBeamThickness.Text = "";
+            Tb_FloorBeamHeight.Text = "";
+            Tb_InsulationThickness.Text = "";
+            Tb_BearingWWllThickness.Text = "";
+            Tb_BasementWallThickness.Text = "";
+            Tb_RafterHeight.Text = "";
+            Tb_RafterThickness.Text = "";
+            Tb_InsulationThickness2.Text = "";
         }
         private void LoadForm()
         {
@@ -1413,6 +1428,21 @@ namespace BuildingPlanCalc
 
             Tb_SiteHomeSquare.Text = House.SiteHomeSquare.ToString();
             Tb_RoofAreaSquere.Text = House.RoofAreaSquare.ToString();
+
+            Tb_FoundationPlateThickness.Text = House.FoundationPlateThickness.ToString();
+            Tb_TapeHeight.Text = House.TapeHeight.ToString();
+            Tb_TapeWidthUnderTheHouse.Text = House.TapeWidthUnderTheHouse.ToString();
+            Tb_NumberOfRebars.Text = House.NumberOfRebars.ToString();
+            Tb_SectionOfTheMainReinforcement.Text = House.SectionOfTheMainReinforcement.ToString();
+            Tb_RCFloorThickness.Text = House.RCFloorThickness.ToString();
+            Tb_FloorBeamThickness.Text = House.FloorBeamThickness.ToString();
+            Tb_FloorBeamHeight.Text = House.FloorBeamHeight.ToString();
+            Tb_InsulationThickness.Text = House.InsulationThickness.ToString();
+            Tb_BearingWWllThickness.Text = House.BearingWWllThickness.ToString();
+            Tb_BasementWallThickness.Text = House.BasementWallThickness.ToString();
+            Tb_RafterHeight.Text = House.RafterHeight.ToString();
+            Tb_RafterThickness.Text = House.RafterThickness.ToString();
+            Tb_InsulationThickness2.Text = House.InsulationThickness2.ToString();
         }
         private void Btn_SetRange_Click(object sender, RoutedEventArgs e)
         {
@@ -1975,22 +2005,46 @@ namespace BuildingPlanCalc
                 House.Floor2BadroomCount = int.Parse(Tb_SetFloor2BadroomCount.Text);
         }
         private void Tb_SetFloor3Square_TextChanged(object sender, TextChangedEventArgs e)
+            => House.Floor3Square = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_FoundationPlateThickness_TextChanged(object sender, TextChangedEventArgs e) => House.FoundationPlateThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_TapeHeight_TextChanged(object sender, TextChangedEventArgs e) => House.TapeHeight = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_TapeWidthUnderTheHouse_TextChanged(object sender, TextChangedEventArgs e) => House.TapeWidthUnderTheHouse = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_NumberOfRebars_TextChanged(object sender, TextChangedEventArgs e)
+
         {
-            string value = (sender as TextBox).Text;
-            value = value.Replace(" ", "");
+            if (Tb_NumberOfRebars.Text.Length > 0)
+                House.NumberOfRebars = int.Parse(Tb_NumberOfRebars.Text);
+        }
+        private void Tb_SectionOfTheMainReinforcement_TextChanged(object sender, TextChangedEventArgs e) => House.SectionOfTheMainReinforcement = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_RCFloorThickness_TextChanged(object sender, TextChangedEventArgs e) => House.RCFloorThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_FloorBeamThickness_TextChanged(object sender, TextChangedEventArgs e) => House.FloorBeamThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_FloorBeamHeight_TextChanged(object sender, TextChangedEventArgs e) => House.FloorBeamHeight = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_InsulationThickness_TextChanged(object sender, TextChangedEventArgs e) => House.InsulationThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_BearingWWllThickness_TextChanged(object sender, TextChangedEventArgs e) => House.BearingWWllThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_BasementWallThickness_TextChanged(object sender, TextChangedEventArgs e) => House.BasementWallThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_RafterHeight_TextChanged(object sender, TextChangedEventArgs e) => House.RafterHeight = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_RafterThickness_TextChanged(object sender, TextChangedEventArgs e) => House.RafterThickness = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_InsulationThickness2_TextChanged(object sender, TextChangedEventArgs e) => House.InsulationThickness2 = ConvertStringToDouble((sender as TextBox).Text);
+        private void Tb_SetFloor3BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Tb_SetFloor3BadroomCount.Text.Length > 0)
+                House.Floor3BadroomCount = int.Parse(Tb_SetFloor3BadroomCount.Text);
+        }
+
+        /// <summary>
+        /// Конвертировать строку в двоичное число
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private double ConvertStringToDouble(string input)
+        {
+            var value = input.Replace(" ", "");
             value = value.Replace('.', ',').Trim();
             // Если последний символ запятая, то добавляем ноль
             if (value.Length == 0)
                 value = "0";
 
-            double result = double.Parse(value);
-
-            House.Floor3Square = result;
-        }
-        private void Tb_SetFloor3BadroomCount_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (Tb_SetFloor3BadroomCount.Text.Length > 0)
-                House.Floor3BadroomCount = int.Parse(Tb_SetFloor3BadroomCount.Text);
+            return double.Parse(value);
         }
 
         private void CalcFloorsCount()
@@ -3138,10 +3192,8 @@ namespace BuildingPlanCalc
             IEnumerable<TextBlock> textBlocks = FindVisualChildren<TextBlock>(grid);
             Tb_Information.Text = textBlocks.ToList().Count > 0 ? textBlocks.ToList()[0].Text : "";
         }
-        private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e)
-        {
-            ClearAllProject();
-        }
+        private void Btn_ClearAllProject_Click(object sender, RoutedEventArgs e) => ClearAllProject();
+        
         private void ClearAllProject()
         {
             Shapes.Clear();
@@ -3388,5 +3440,7 @@ namespace BuildingPlanCalc
                 MessageBox.Show("Проект успешно загружен", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+
     }
 }
